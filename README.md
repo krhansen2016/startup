@@ -1,4 +1,4 @@
-# ConceptThreads
+# Concept Threads
 
 [My Notes](notes.md)
 
