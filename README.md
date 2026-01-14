@@ -16,7 +16,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 ### Elevator pitch
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Have you ever had an idea for a piece of clothing or an outfit but you just couldn't seem to visualize how it would actually look? Well Concept Threads is the solution! It allows for creative and inventive people alike to see their fashion ideas come to life! With Concept Threads, users can mix and match all kinds of clothing pieces with different colors and patterns. Have you ever wondered what a baby blue chevron v-neck with bishop sleeves would look like? Well wonder no longer! Users will also be able to save their favorite designs and share them with others, allowing for a collaborative and inspiring design experience.
 
 ### Design
 
