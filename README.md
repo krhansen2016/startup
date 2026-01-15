@@ -20,7 +20,8 @@ Have you ever had an idea for a piece of clothing or an outfit but you just coul
 
 ### Design
 
-![Design image](design1_CT.png)(design2_CT.png)
+![Design image#1](design1_CT.png)
+![Design image#2](design2_CT.png)
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
