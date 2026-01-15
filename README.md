@@ -41,12 +41,18 @@ These are some sketches of what the finished product could potentially look like
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - Description here
-- **CSS** - Description here
-- **React** - Description here
-- **Service** - Description here
-- **DB/Login** - Description here
-- **WebSocket** - Description here
+- **HTML** - Uses proper HTML structure to define the application. There will be four different pages. The login page, design creation page, profile page, and the community page. 
+- **CSS** - Make consistent theme and styling across the pages of the application. It will be used for things like font, color scheme, and icons. Determines the look of clothing pieces.
+- **React** - Provides login, display of choices, color and pattern selection, live design preview, and the community feed.
+- **Service** - Backend service with endpoints for:
+    - Login
+    - Retrieving clothing piece types
+    - Saving and retrieving user-created designs
+    - Sharing designs
+    - Retrieving user profiles
+    - Retrieving friend lists
+- **DB/Login** - Stores user accounts, saved designs, and community posts in a database. Register and login users. Credentials are stored in database along with designs.
+- **WebSocket** - Provides real-time updates through the community page.
 
 ## 🚀 AWS deliverable
 
