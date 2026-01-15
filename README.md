@@ -23,14 +23,7 @@ Have you ever had an idea for a piece of clothing or an outfit but you just coul
 ![Design image#1](design1_CT.PNG)
 ![Design image#2](design2_CT.PNG)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-```mermaid
-sequenceDiagram
-    actor You
-    actor Website
-    You->>Website: Replace this with your design
-```
+These are some sketches of what the finished product could potentially look like.
 
 ### Key features
 
