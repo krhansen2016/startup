@@ -2,7 +2,7 @@
 
 [My Notes](notes.md)
 
-Concept Threads is custom clothing designing application. It allows for users to select from a variety of clothing parts. Like sleeves, skirts, pants, top, etc. They will be able to choose different colors and patterns for their uniques pieces of clothing. Users will be able to create their own accounts, save their favorite designs, and share designs with others. 
+Concept Threads is custom clothing designing application. It allows for users to select from a variety of clothing parts. Like sleeves, skirts, pants, top, etc. They will be able to choose different colors and patterns for their unique pieces of clothing. Users will be able to create their own accounts, save their favorite designs, and share designs with others. 
 
 ## 🚀 Specification Deliverable
 
@@ -27,9 +27,15 @@ These are some sketches of what the finished product could potentially look like
 
 ### Key features
 
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
+- Ability to create a user account and login
+- Account data and created designs are persistently saved and stored
+- Ability to select from multiple categories of clothing to create custom designs
+- Dropdown menu with organized pieces of clothing
+- Color picker wheel for customizing clothing colors and patterns
+- Live design preview that updates as changes are made
+- A community page with a shared design feed
+- Ability to create user profile that displays saved designs
+- Ability to add friends and interact with others online
 
 ### Technologies
 
