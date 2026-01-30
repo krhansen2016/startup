@@ -66,15 +66,15 @@ I made an AWS account, created a new EC2 instance, leased a domain, and edited m
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **HTML pages** - I did not complete this part of the deliverable.
-- [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [ ] **Links** - I did not complete this part of the deliverable.
-- [ ] **Text** - I did not complete this part of the deliverable.
-- [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
-- [ ] **Images** - I did not complete this part of the deliverable.
-- [ ] **Login placeholder** - I did not complete this part of the deliverable.
-- [ ] **DB data placeholder** - I did not complete this part of the deliverable.
-- [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [x] **HTML pages** - I made 4 HTML pages for my startup. The index.html for the main page and login. The create.html for creating an outfit design. The profile.html for view the user's profile and saved designs. Finally, the community.html to post designs and see what others are sharing.
+- [x] **Proper HTML element usage** - I did proper use of HTML tags. Each HTML page is built up of heads and bodies, with the bodies containing headers, mains, and footers.
+- [x] **Links** - I created several links between each of my pages. Each page has links that can access all of the other pages.
+- [x] **Text** - I have plenty text in my pages to act as headers, labels, or placeholders.
+- [x] **3rd party API placeholder** - I included placeholders for a 3rd party Authentication API that will allow users to sign in.
+- [x] **Images** - I included several images like a favicon, default profile pictures, and placeholders for designs.
+- [x] **Login placeholder** - I created a placeholder for the login with a text type of input tag and buttons to submit entered text.
+- [x] **DB data placeholder** - I used text and images to represent designs and other data that will we saved and pulled from a database.
+- [x] **WebSocket placeholder** - I used text and images to represent posts that other users can make and view in realtime.
 
 ## 🚀 CSS deliverable
 
