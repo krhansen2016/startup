@@ -29,3 +29,10 @@ body {
   border-bottom: 2px solid black;
   padding-bottom: 5px;
 }
+
+.login-box .user-box input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid black;
+    font-size: 15px;
+}
