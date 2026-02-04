@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap');
 
+body {
+  background-color: #FFD2D2;
+}
+
 .heading {
     font-family: 'Hachi Maru Pop';
 }
@@ -11,5 +15,5 @@
 }
 
 .login_box {
-    
+
 }
