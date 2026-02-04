@@ -3,3 +3,9 @@
 .heading {
     font-family: 'Hachi Maru Pop';
 }
+
+#login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
