@@ -31,13 +31,37 @@ body {
   padding-bottom: 5px;
 }
 
+.login-box .user-box {
+    position: relative;
+    margin-bottom: 35px;
+}
+
 .login-box .user-box input {
     background: transparent;
     border: none;
     border-bottom: 2px solid black;
     font-size: 15px;
     font-family: 'Lexend';
+    color: black;
     width: 100%;
     outline: none;
     margin-bottom: 35px;
+    padding: 10px 0;
+}
+
+.login-box .user-box label {
+    font-size: 18px;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    color: black;
+    pointer-events: none;
+    transition: 0.4s ease;
+}
+
+.login-box .user-box input:focus ~ label,
+.login-box .user-box input:valid ~ label {
+    top: -15px;
+    font-size: 12px;
+    color: #000;
 }
