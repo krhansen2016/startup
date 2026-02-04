@@ -14,3 +14,12 @@ body {
   text-align: center;
   font-size: 40px;
 }
+
+footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  height: 150px;
+  padding: 10px;
+}
