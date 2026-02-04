@@ -75,3 +75,12 @@
 .login-box button:hover {
     transform: scale(0.95);
 }
+
+.login-footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    height: 150px;
+    padding: 10px;
+}
