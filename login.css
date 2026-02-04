@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+
+#login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-box {
+    padding: 10px 50px 25px 50px;
+    background: #FF5D60;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 50px;
+}
+
+.login-box h1 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 70px;
+  border-bottom: 2px solid black;
+  padding-bottom: 5px;
+}
+
+.login-box .user-box {
+    position: relative;
+    margin-bottom: 35px;
+}
+
+.login-box .user-box input {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid black;
+    font-size: 15px;
+    font-family: 'Lexend';
+    color: black;
+    width: 100%;
+    outline: none;
+    margin-bottom: 35px;
+    padding: 10px 0;
+}
+
+.login-box .user-box label {
+    font-size: 18px;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    color: black;
+    pointer-events: none;
+    transition: 0.4s ease;
+}
+
+.login-box .user-box input:focus ~ label,
+.login-box .user-box input:valid ~ label {
+    top: -15px;
+    font-size: 12px;
+    color: #000;
+}
+
+.login-box .buttons {
+    margin-top: -35px;
+}
