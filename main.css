@@ -9,3 +9,8 @@ body {
 .heading {
     font-family: 'Hachi Maru Pop';
 }
+
+#main-header {
+  text-align: center;
+  font-size: 40px;
+}
