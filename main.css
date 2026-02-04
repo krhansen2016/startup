@@ -14,7 +14,7 @@ body {
     align-items: center;
 }
 
-.login_box {
+.login-box {
     padding: 50px;
     padding-top: 10px;
     background: #FF5D60;
@@ -22,7 +22,7 @@ body {
     border-radius: 50px;
 }
 
-.login_box h1 {
+.login-box h1 {
   text-align: center;
   margin-top: 0;
   margin-bottom: 70px;
