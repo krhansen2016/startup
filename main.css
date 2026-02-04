@@ -35,4 +35,6 @@ body {
     border: none;
     border-bottom: 1px solid black;
     font-size: 15px;
+    width: 100%;
+    outline: none;
 }
