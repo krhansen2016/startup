@@ -66,6 +66,12 @@
     font-size: 13px;
     background-color: #C6E0FF;
     border-radius: 25px;
+    border: 2px solid black;
     padding: 15px;
-    transition: 0.3s ease;
+    transition: transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,.2);
+}
+
+.login-box button:hover {
+    transform: scale(0.95);
 }
