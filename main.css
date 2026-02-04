@@ -15,5 +15,8 @@ body {
 }
 
 .login_box {
-
+    padding: 50px;
+    background: #FF5D60;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 50px;
 }
