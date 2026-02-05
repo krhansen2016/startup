@@ -3,17 +3,18 @@
 #design-tools {
     display: flex;
     max-height: 75vh;
+    width: 100%;
 }
 
 #clothing-select {
     display: flex;
-    justify-content: right;
+    justify-content: center;
     width: 50%;
 }
 
 #live-preview {
     display: flex;
-    justify-content: left;
+    justify-content: flex-start;
     width: 50%;
 }
 
@@ -34,13 +35,12 @@
 
 .menu {
     list-style: none;
-    padding: 0;
+    width: 80%;
 }
 
 .dropdown-btn {
     width: 100%;
     background: #C6E0FF;
-    border: none;
     border: 3px solid black;
     border-radius: 10px;
     box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);
