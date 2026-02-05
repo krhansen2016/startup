@@ -15,11 +15,15 @@ body {
   font-size: 40px;
 }
 
+header {
+  margin-bottom: 80px;
+}
+
 footer {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  height: 150px;
+  height: 120px;
   padding: 10px;
 }
