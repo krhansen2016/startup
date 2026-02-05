@@ -18,3 +18,21 @@ footer {
   height: 120px;
   padding: 10px;
 }
+
+header h1{
+  font-size: 35px;
+  margin: 10px;
+}
+
+header hr{
+  border: none;
+  height: 2px;
+  background-color: black;
+  width: 100%;
+  width: calc(100vw);
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
