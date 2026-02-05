@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+
 #live-preview img {
     width: 100%;
     height: auto;
@@ -26,4 +28,21 @@
     text-decoration: underline;
     text-underline-offset: 6px;
     text-decoration-thickness: 2px;
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+}
+
+.dropdown-btn {
+    width: 100%;
+    background: #C6E0FF;
+    border: none;
+    border: 2px solid black;
+    padding: 10px;
+    text-align: left;
+    font-family: 'Lexend';
+    font-size: 18px;
+    cursor: pointer;
 }
