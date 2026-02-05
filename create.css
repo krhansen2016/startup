@@ -91,3 +91,6 @@
     border-radius: 10px;
 }
 
+.colors button:hover {
+    transform: scale(1.1);
+}
