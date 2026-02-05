@@ -93,4 +93,148 @@
 
 .colors button:hover {
     transform: scale(1.1);
+} 
+
+#burgundy {
+    background-color: #830A22;
+}
+
+#dark-red {
+    background-color: #870000;
+}
+
+#red {
+    background-color: #E20000;
+}
+
+#red-orange {
+    background-color: #FF552E;
+}
+
+#orange {
+    background-color: #FF7C19;
+}
+
+#yellow {
+    background-color: #FFF875;
+}
+
+#light-green {
+    background-color: #79FF65;
+}
+
+#dark-green {
+    background-color: #094C1F;
+}
+
+#olive-green {
+    background-color: #2C4A0E;
+}
+
+#mint {
+    background-color: #52FFD1;
+}
+
+#teal {
+    background-color: #1FECBC;
+}
+
+#dark-teal {
+    background-color: #00776B;
+}
+
+#light-blue {
+    background-color: #A9FFFE;
+}
+
+#blue {
+    background-color: #2F3EC6;
+}
+
+#dark-blue {
+    background-color: #070052;
+}
+
+#indigo {
+    background-color: #3A005E;
+}
+
+#periwinkle {
+    background-color: #D2CAFF;
+}
+
+#lavender {
+    background-color: #F3CCFF;
+}
+
+#purple {
+    background-color: #500068;
+}
+
+#dark-purple {
+    background-color: #2E0030;
+}
+
+#plum {
+ background-color: #8E0E6C;
+}
+
+#berry {
+    background-color: #B52B62;
+}
+
+#salmon {
+ background-color: #FF7777;
+}
+
+#magenta {
+    background-color: #FA2669;
+}
+
+#pink {
+    background-color: #FF46AF;
+}
+
+#light-pink {
+ background-color: #FFBFD9;
+}
+
+#dark-brown {
+     background-color: #352200
+}
+
+#brown {
+    background-color: #682E0A;
+}
+
+#light-brown {
+    background-color: #CD8B62;
+}
+
+#red-brown {
+    background-color: #AE6245;
+}
+
+#black {
+ background-color: #010010;
+}
+
+#grey {
+    background-color: #585858;
+}
+
+#eggshell {
+     background-color: #FFEFEA;
+}
+
+#white {
+    background-color: #F5F5F5;
+}
+
+#gold {
+    background-color: #FFC235;
+}
+
+#silver {
+    background-color: #C8C8C8;
 }
