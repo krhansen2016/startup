@@ -1,27 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
 
-#live-preview img {
-    height: 100%;
-    width: auto;
-    max-width: 100%;
-    border: 5px solid black;
-    object-fit: contain;
-}
-
-#create-tools {
+#design-tools {
     display: flex;
-    gap: 2rem;
+    max-height: 75vh;
 }
 
-#create-tools ul {
-    width: 30%
+#clothing-select {
+    display: flex;
+    justify-content: right;
+    width: 50%;
 }
 
 #live-preview {
-    height: 75vh;
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    justify-content: left;
+    width: 50%;
+}
+
+#live-preview img {
+    border: 8px solid black;
+    border-radius: 20px;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4);
 }
 
 #create-header {
@@ -42,7 +41,9 @@
     width: 100%;
     background: #C6E0FF;
     border: none;
-    border: 2px solid black;
+    border: 3px solid black;
+    border-radius: 10px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);
     padding: 10px;
     text-align: left;
     font-family: 'Lexend';
