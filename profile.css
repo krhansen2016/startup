@@ -12,7 +12,7 @@
 #profile-img {
     width: 100%;
     height: 100%;
-    border: 3px solid black;
+    border: 4px solid black;
     border-radius: 50%;
     object-fit: cover;
 }
@@ -37,4 +37,25 @@
     width: 100%;
     height: 100%;
     border-radius: 50%
+}
+
+.designs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    list-style: none;
+    gap: 50px;
+    padding: 0;
+}
+
+.designs li {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    gap: 8px;
+}
+
+.designs img {
+    width: 100%;
+    border: 4px solid black;
+    border-radius: 10px;
 }
