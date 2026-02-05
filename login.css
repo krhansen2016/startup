@@ -75,3 +75,13 @@
 .login-box button:hover {
     transform: scale(0.95);
 }
+
+#github-link:link,
+#github-link:visited {
+    color: #A8006B;
+    text-decoration: none;
+}
+
+#github-link:hover {
+    text-decoration: underline;
+}
