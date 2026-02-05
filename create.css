@@ -66,24 +66,17 @@
     margin-left: auto;
 }
 
+.color-select {
+    background-color: #C6E0FF;
+    padding: 10px;
+    border: 3px solid black;
+    border-radius: 10px;
+}
+
 .colors {
-    display: flex;
-    align-items: center;
+    display: grid;
 }
 
-.colors input[type="color"] {
-    width: 50px;
-    height: 50px;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-}
-
-.colors input[type="color"]::-webkit-color-swatch-wrapper {
-  padding: 0;
-}
-
-.colors input[type="color"]::-webkit-color-swatch {
-  border: none;
-  border-radius: 6px;
+.color {
+    
 }
