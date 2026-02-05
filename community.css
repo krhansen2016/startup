@@ -14,6 +14,25 @@
     background-color: #FF5D60;
     display: flex;
     flex-direction: column;
-    gap: 10px
+    gap: 5px
+}
+
+.posts .profile-pic {
+    border: 4px solid black;
+    border-radius: 50%;
+    width: 15%;
+}
+
+.posts .post-pic {
+    border: 4px solid black;
+    border-radius: 10px;
+    width: 50%
+}
+
+.posts p {
+    background-color: #C6E0FF;
+    padding: 10px 20px 20px 10px;
+    border: 4px solid black;
+    border-radius: 10px;    
 }
 
