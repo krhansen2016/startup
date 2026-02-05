@@ -45,6 +45,7 @@
     font-family: 'Lexend';
     font-size: 18px;
     cursor: pointer;
+    margin-bottom: 3px;
 }
 
 .dropdown-menu {
