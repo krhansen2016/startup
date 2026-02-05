@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lan="en">
+<html lang="en">
     <head>
-        <meta charset=""UTF-8/>
+        <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>create.html</title>
         <link rel="icon" href="startup_favicon.jpg" />
         <link rel="stylesheet" href="main.css" />
+        <link rel="stylesheet" href="create.css">
     </head>
     <body>
         <header>
@@ -13,95 +14,97 @@
             <hr>
         </header>
         <main>
-            <h3 class="heading">Create a New Design</h3>
-            <div id="live_preview"><img src="preview_placeholder.jpg" alt="Example of what the live preview could look like." width="50%" style="border: 5px solid black"></div>
-            <ul>
-                <li>
-                    <div id="bodices_drop">
-                        <label for="bodices">Bodice Type</label>
-                        <select id="bodices" name="Bodice Type">
-                            <option value="" disabled selected>Select Here</option>
-                            <option value="loose">Loose</option>
-                            <option value="form_fitting">Form Fitting</option>
-                            <option value="gathered">Gathered</option>
-                            <option value="boned">Boned</option>
-                        </select>
-                    </div>
-                </li>
-                <li>
-                    <div id="necklines_drop">
-                        <label for="necklines">Necklines</label>
-                        <select id="necklines" name="Necklines">
-                            <option value="" disabled selected>Select Here</option>
-                            <option value="crew">Crew</option>
-                            <option value="vneck">V-Neck</option>
-                            <option value="square">Square</option>
-                            <option value="turtle">Turtleneck</option>
-                            <option value="sweetheart">Sweetheart</option>
-                            <option value="collar">Collared</option>
-                            <option value="halter">Halter</option>
-                            <option value="asymetric">Asymetric</option>
-                        </select>
-                    </div>
-                </li>
-                <li>
-                    <div id="sleeves_drop">
-                        <label for="sleeves">Sleeves</label>
-                        <select id="sleeves" name="Sleeves">
-                            <option value="" disabled selected>Select Here</option>
-                            <option value="none">None</option>
-                            <option value="straps">Straps</option>
-                            <option value="off_shoulder">Off the Shoulder</option>
-                            <option value="short">Short</option>
-                            <option value="long">Long</option>
-                            <option value="elbow">Elbow-Length</option>
-                            <option value="puff">Puffed</option>
-                            <option value="peasant">Peasant</option>
-                            <option value="lantern">Lantern</option>
-                            <option value="frill">Frill</option>
-                            <option value="bishop">Bishops</option>
-                            <option value="flared">Flared</option>
-                            <option value="cape">Cape</option>
-                        </select>
-                    </div>
-                </li>
-                <li>
-                    <div id="bottoms_drop">
-                        <label for="bottoms">Bottoms</label>
-                        <select id="bottoms">
-                            <option value="" disabled selected>Select Here</option>
-                            <optgroup label="Pants">
-                                <option value="shorts">Shorts</option>
-                                <option value="capris">Capris</option>
-                                <option value="straight">Straight</option>
-                                <option value="skinny">Skinny</option>
-                                <option value="bootcut">Bootcut</option>
-                                <option value="flare">Flare</option>
-                                <option value="wide">Wide</option>
-                                <option value="cargo">Cargo</option>
-                                <option value="sweat">Sweatpants</option>
-                            </optgroup>
-                            <optgroup label="Skirt">
-                                <option value="mini">Mini</option>
-                                <option value="midi">Midi</option>
-                                <option value="maxi">Maxi</option>
-                                <option value="pencil">Pencil</option>
-                                <option value="tutu">Tutu</option>
-                                <option value="mermaid">Mermaid</option>
-                                <option value="tiered">Tiered</option>
-                                <option value="mullet">Mullet</option>
-                                <option value="slit">Slit</option>
-                                <option value="asymetrical">Asymetrical</option>
-                                <option value="pleated">Pleated</option>
-                                <option value="circle">Circle</option>
-                                <option value="wrap">Wrap</option>
-                                <option value="princess">Princess</option>
-                                <option value="gypsy">Gypsy</option>
-                            </optgroup>
-                        </select>
-                    </div>
-                </li>
-            </ul>
+            <h3 class="heading" id="create-header">Create a New Design</h3>
+            <div id="create-tools">
+                <ul>
+                    <li>
+                        <div id="bodices_drop">
+                            <label for="bodices">Bodice Type</label>
+                            <select id="bodices" name="Bodice Type">
+                                <option value="" disabled selected>Select Here</option>
+                                <option value="loose">Loose</option>
+                                <option value="form_fitting">Form Fitting</option>
+                                <option value="gathered">Gathered</option>
+                                <option value="boned">Boned</option>
+                            </select>
+                        </div>
+                    </li>
+                    <li>
+                        <div id="necklines_drop">
+                            <label for="necklines">Necklines</label>
+                            <select id="necklines" name="Necklines">
+                                <option value="" disabled selected>Select Here</option>
+                                <option value="crew">Crew</option>
+                                <option value="vneck">V-Neck</option>
+                                <option value="square">Square</option>
+                                <option value="turtle">Turtleneck</option>
+                                <option value="sweetheart">Sweetheart</option>
+                                <option value="collar">Collared</option>
+                                <option value="halter">Halter</option>
+                                <option value="asymetric">Asymetric</option>
+                            </select>
+                        </div>
+                    </li>
+                    <li>
+                        <div id="sleeves_drop">
+                            <label for="sleeves">Sleeves</label>
+                            <select id="sleeves" name="Sleeves">
+                                <option value="" disabled selected>Select Here</option>
+                                <option value="none">None</option>
+                                <option value="straps">Straps</option>
+                                <option value="off_shoulder">Off the Shoulder</option>
+                                <option value="short">Short</option>
+                                <option value="long">Long</option>
+                                <option value="elbow">Elbow-Length</option>
+                                <option value="puff">Puffed</option>
+                                <option value="peasant">Peasant</option>
+                                <option value="lantern">Lantern</option>
+                                <option value="frill">Frill</option>
+                                <option value="bishop">Bishops</option>
+                                <option value="flared">Flared</option>
+                                <option value="cape">Cape</option>
+                            </select>
+                        </div>
+                    </li>
+                    <li>
+                        <div id="bottoms_drop">
+                            <label for="bottoms">Bottoms</label>
+                            <select id="bottoms">
+                                <option value="" disabled selected>Select Here</option>
+                                <optgroup label="Pants">
+                                    <option value="shorts">Shorts</option>
+                                    <option value="capris">Capris</option>
+                                    <option value="straight">Straight</option>
+                                    <option value="skinny">Skinny</option>
+                                    <option value="bootcut">Bootcut</option>
+                                    <option value="flare">Flare</option>
+                                    <option value="wide">Wide</option>
+                                    <option value="cargo">Cargo</option>
+                                    <option value="sweat">Sweatpants</option>
+                                </optgroup>
+                                <optgroup label="Skirt">
+                                    <option value="mini">Mini</option>
+                                    <option value="midi">Midi</option>
+                                    <option value="maxi">Maxi</option>
+                                    <option value="pencil">Pencil</option>
+                                    <option value="tutu">Tutu</option>
+                                    <option value="mermaid">Mermaid</option>
+                                    <option value="tiered">Tiered</option>
+                                    <option value="mullet">Mullet</option>
+                                    <option value="slit">Slit</option>
+                                    <option value="asymetrical">Asymetrical</option>
+                                    <option value="pleated">Pleated</option>
+                                    <option value="circle">Circle</option>
+                                    <option value="wrap">Wrap</option>
+                                    <option value="princess">Princess</option>
+                                    <option value="gypsy">Gypsy</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                    </li>
+                </ul>
+                <div id="live-preview"><img src="preview_placeholder.jpg" alt="Example of what the live preview could look like." ></div>
+            </div>
             <div id="colors">
                 <label for="color">Color:</label>
                 <input type="color">
