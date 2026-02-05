@@ -1,0 +1,29 @@
+.profile {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 50%;
+}
+
+#profile-img {
+    border: 3px solid black;
+    border-radius: 50%;
+    width: 100%;
+    height: auto;
+}
+
+#edit-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 50%;
+    padding: 8px;
+    cursor: pointer;
+}
+
+#edit-btn {
+    width: 20px;
+    height: 20px;
+}
