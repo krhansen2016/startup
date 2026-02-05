@@ -24,15 +24,6 @@
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4);
 }
 
-#create-header {
-    text-align: center;
-    font-size: 25px;
-    margin-top: 15px;
-    text-decoration: underline;
-    text-underline-offset: 6px;
-    text-decoration-thickness: 2px;
-}
-
 .menu {
     list-style: none;
     width: 80%;

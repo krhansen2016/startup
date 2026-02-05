@@ -10,6 +10,15 @@ body {
     font-family: 'Hachi Maru Pop';
 }
 
+#description-header {
+    text-align: center;
+    font-size: 25px;
+    margin-top: 15px;
+    text-decoration: underline;
+    text-underline-offset: 6px;
+    text-decoration-thickness: 2px;
+}
+
 footer {
   display: flex;
   flex-direction: column;
