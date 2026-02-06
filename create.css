@@ -2,7 +2,6 @@
 
 #design-tools {
     display: flex;
-    max-height: 75vh;
     width: 100%;
 }
 
@@ -48,9 +47,10 @@
 .dropdown-menu {
     list-style: none;
     background: #FF5D60;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease;
+    margin: 5px 0 15px 0;
+    padding: 10px;
+    border: 3px solid black;
+    border-radius: 10px;
 }
 
 .arrow {
