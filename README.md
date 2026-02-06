@@ -80,12 +80,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Visually appealing colors and layout. No overflowing elements.** - I did not complete this part of the deliverable.
-- [ ] **Use of a CSS framework** - I did not complete this part of the deliverable.
-- [ ] **All visual elements styled using CSS** - I did not complete this part of the deliverable.
-- [ ] **Responsive to window resizing using flexbox and/or grid display** - I did not complete this part of the deliverable.
-- [ ] **Use of a imported font** - I did not complete this part of the deliverable.
-- [ ] **Use of different types of selectors including element, class, ID, and pseudo selectors** - I did not complete this part of the deliverable.
+- [x] **Visually appealing colors and layout. No overflowing elements.** - I picked out a specific color palette so my startup will appear cohesive. I also made it so there were no overflowing elements. Every element is were I want it to be and so the layout is also visually appealing.
+- [ ] **Use of a CSS framework** - I forgot to use a CSS Framework.
+- [x] **All visual elements styled using CSS** -Every visual element is solely styled using CSS.
+- [x] **Responsive to window resizing using flexbox and/or grid display** - Each page response to window resizing by using either flexbox or grid display.
+- [x] **Use of a imported font** - I imported two different google fonts that go well together and used them for all my text.
+- [x] **Use of different types of selectors including element, class, ID, and pseudo selectors** - I used many different types of selectors, such as elements, classes, ids, and pseudo selectors.
 
 ## 🚀 React part 1: Routing deliverable
 
