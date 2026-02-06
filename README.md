@@ -81,7 +81,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
 - [x] **Visually appealing colors and layout. No overflowing elements.** - I picked out a specific color palette so my startup will appear cohesive. I also made it so there were no overflowing elements. Every element is were I want it to be and so the layout is also visually appealing.
-- [ ] **Use of a CSS framework** - I forgot to use a CSS Framework.
+- [x] **Use of a CSS framework** - I utilized the bootstrap framwork on my profile page of my startup.
 - [x] **All visual elements styled using CSS** -Every visual element is solely styled using CSS.
 - [x] **Responsive to window resizing using flexbox and/or grid display** - Each page response to window resizing by using either flexbox or grid display.
 - [x] **Use of a imported font** - I imported two different google fonts that go well together and used them for all my text.
