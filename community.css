@@ -19,7 +19,7 @@
 
 .posts li .post-content {
     display: flex;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 10px;
 }
 
@@ -45,8 +45,8 @@
 
 .posts li p {
     margin: 0;
+    margin-bottom: 10px;
     flex: 1;
-    max-height: 150px;
     overflow-y: auto;
     background-color: #C6E0FF;
     padding: 8px;
