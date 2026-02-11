@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
 
-body {
+.body {
   background-color: #FFD2CC;
   font-family: 'Lexend';
 }
