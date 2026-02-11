@@ -31,10 +31,10 @@ export default function App() {
                     <div>
                         <nav>
                             <menu>
-                                <li><button><NavLink to={<Login />}>Login</NavLink></button></li>
-                                <li><button><NavLink to={<Create />}>Create</NavLink></button></li>
-                                <li><button><NavLink to={<Profile />}>Profile</NavLink></button></li>
-                                <li><button><NavLink to={<Community />}>Community</NavLink></button></li>
+                                <li><button><NavLink to="/">Login</NavLink></button></li>
+                                <li><button><NavLink to="/create">Create</NavLink></button></li>
+                                <li><button><NavLink to="/profile">Profile</NavLink></button></li>
+                                <li><button><NavLink to="/community">Community</NavLink></button></li>
                             </menu>
                         </nav>
                     </div>
