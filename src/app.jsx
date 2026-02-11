@@ -14,7 +14,8 @@ export default function App() {
         <BrowserRouter>
             <div className="app">
                 <header>
-                    <h1 className="heading" id="login-header">Concept Threads</h1>
+                    <h1 class="heading" id="main-header">Concept Threads</h1>
+                    <hr />
                 </header>
 
                 <Routes>
