@@ -14,7 +14,7 @@ export default function App() {
         <BrowserRouter>
             <div className="app">
                 <header>
-                    <h1 class="heading" id="main-header">Concept Threads</h1>
+                    <h1 className="heading" id="main-header">Concept Threads</h1>
                     <hr />
                 </header>
 
@@ -28,14 +28,14 @@ export default function App() {
 
                 <footer className="nav">
                     <div>Created by: Kendyl Hansen</div>
-                    <div>Find my GitHub Repository <a id="github-link"href="https://github.com/krhansen2016/startup">here</a>!</div>
+                    <div>Find my GitHub Repository <a id="github-link" href="https://github.com/krhansen2016/startup">here</a>!</div>
                     <div>
                         <nav>
                             <menu>
-                                <li><button><NavLink to="/">Login</NavLink></button></li>
-                                <li><button><NavLink to="/create">Create</NavLink></button></li>
-                                <li><button><NavLink to="/profile">Profile</NavLink></button></li>
-                                <li><button><NavLink to="/community">Community</NavLink></button></li>
+                                <li><NavLink to="/" className="btn w-100">Login</NavLink></li>
+                                <li><NavLink to="/create" className="btn w-100">Create</NavLink></li>
+                                <li><NavLink to="/profile" className="btn w-100">Profile</NavLink></li>
+                                <li><NavLink to="/community" className="btn w-100">Community</NavLink></li>
                             </menu>
                         </nav>
                     </div>
