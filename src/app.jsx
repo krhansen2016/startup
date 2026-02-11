@@ -16,7 +16,14 @@ export default function App() {
                 <header>
                     <h1 className="heading" id="login-header">Concept Threads</h1>
                 </header>
-                <main id="login">App components go here</main>
+
+                <Routes>
+                    <Route path="/" element={<Login />} exact />
+                    <Route path="/create" element={<Create />} exact />
+                    <Route path="/profile" element={<Profile />} exact />
+                    <Route path="/community" element={<Community />} exact />
+                </Routes>
+
                 <footer className="nav">
                     <div>Created by: Kendyl Hansen</div>
                     <div>Find my GitHub Repository <a id="github-link"href="https://github.com/krhansen2016/startup">here</a>!</div>
