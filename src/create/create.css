@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
 
 #design-tools {
@@ -63,7 +64,14 @@
     border: 3px solid black;
     border-radius: 10px;
     margin-top: 20px;
+    margin-bottom: 30px;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+}
+
+#color-label {
+    font-family: "Hachi Maru Pop";
+    font-weight: bold;
+    font-size: 20px;
 }
 
 .colors {
@@ -91,12 +99,12 @@
     transform: scale(1.1);
 } 
 
-#burgundy {
-    background-color: #830A22;
+#dark-red {
+    background-color: #590303;
 }
 
-#dark-red {
-    background-color: #870000;
+#burgundy {
+    background-color: #830A22;
 }
 
 #red {

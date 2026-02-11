@@ -94,10 +94,10 @@ export function Create() {
                     </div>
             </div>
             <div className="color-select">
-                <label>Colors:</label>
+                <label id="color-label">Colors:</label>
                 <div className="colors">
-                    <button id="burgundy"></button>
                     <button id="dark-red"></button>
+                    <button id="burgundy"></button>
                     <button id="red"></button>
                     <button id="red-orange"></button>
                     <button id="orange"></button>
