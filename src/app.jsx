@@ -4,6 +4,10 @@ import "./app.css";
 import "./login/login.css"
 
 import { BrowserRouter, NavLink, Route, Routes } from "react-router-dom";
+import { Login } from "./login/login";
+import { Create } from "./create/create"
+import { Profile } from "./profile/profile"
+import { Community } from "./community/community"
 
 export default function App() {
     return (
