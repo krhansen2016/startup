@@ -4,21 +4,21 @@ import "./app.css";
 
 export default function App() {
     return <div className="body bg-dark text-light"><header>
-            <h1 class="heading" id="login-header">Concept Threads</h1>
+            <h1 className="heading" id="login-header">Concept Threads</h1>
         </header>
         <main id="login">
-            <div class="login-box">
-            <h1 class="heading">Login</h1>
+            <div className="login-box">
+            <h1 className="heading">Login</h1>
             <form method="get" action="create.html">
-                <div class="user-box">
+                <div className="user-box">
                     <input type="text" name="email" required />
                     <label>Email</label>
                 </div>
-                <div class="user-box">
+                <div className="user-box">
                     <input type="password" name="password" required />
                     <label>Password</label>
                 </div>
-                <div class="buttons">
+                <div className="buttons">
                     <button type="submit">Login to Existing Account</button>
                     <button type="submit">Create New Account</button>
                 </div>
