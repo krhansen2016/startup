@@ -91,9 +91,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Bundled using Vite** - I did not complete this part of the deliverable.
-- [ ] **Components** - I did not complete this part of the deliverable.
-- [ ] **Router** - I did not complete this part of the deliverable.
+- [x] **Bundled using Vite** - I used npm to install vite. Then I used vite to bundle all my files and used commands like npm run dev. It's super cool that I am able to do this now!
+- [x] **Components** - I turned all my pages, login, profile, create, and community into react components! So fun!
+- [x] **Router** - I created routing between all of my pages. I also made a NotFound route.
 
 ## 🚀 React part 2: Reactivity deliverable
 
