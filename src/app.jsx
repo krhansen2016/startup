@@ -22,6 +22,7 @@ export default function App() {
                     <Route path="/create" element={<Create />} exact />
                     <Route path="/profile" element={<Profile />} exact />
                     <Route path="/community" element={<Community />} exact />
+                    <Route path="*" element={<NotFound />} exact />
                 </Routes>
 
                 <footer className="nav">
