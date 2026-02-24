@@ -51,7 +51,7 @@ I am going to use the required technologies in the following ways.
     - Sharing designs
     - Retrieving user profiles
     - Retrieving friend lists
-- **DB/Login** - Stores user accounts, saved designs, and community posts in a database. Register and login users. Credentials are stored in database along with designs. A 3rd party API will be used to authenticate users.
+- **DB/Login** - Stores user accounts, saved designs, and community posts in a database. Register and login users. Credentials are stored in database along with designs.
 - **WebSocket** - Provides real-time updates through the community page.
 
 ## 🚀 AWS deliverable
