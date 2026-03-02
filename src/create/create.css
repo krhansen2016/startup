@@ -65,6 +65,17 @@
     margin-left: auto;
 }
 
+.preview-stack {
+    position: relative;
+}
+
+.preview-stack img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
 .color-select {
     background-color: #C6E0FF;
     padding: 10px;

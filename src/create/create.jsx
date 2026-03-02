@@ -114,7 +114,12 @@ export function Create() {
                     </ul>
                 </div>
                     <div id="live-preview">
-                        <img src={getPreviewImage()} alt="Live Design Preview" />
+                        <div className="preview-stack">
+                            {design.bodice && (<img src={`/images/bodice/${design.bodice}.png`} />)}
+                            {design.sleeves && (<img src={`/images/sleeves/${design.sleeves}.png`} />)}
+                            {design.necklines && (<img src={`/images/necklines/${design.necklines}.png`} />)}
+                            {design.bottoms && (<img src={`/images/bottoms/${design.bottoms}.png`} />)}
+                        </div>
                     </div>
             </div>
             <div className="color-select">
