@@ -22,7 +22,7 @@ export function Create() {
 
     function getPreviewImage() {
         if (!design.bodice) {
-            return "/preview_placeholder.jpg";
+            return "/live_preview_empty.jpg";
         }
         return `/images/${design.bodice}.png`;
     }
