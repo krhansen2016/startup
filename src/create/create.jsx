@@ -20,6 +20,13 @@ export function Create() {
         setOpenMenu(null);
     }
 
+    function getPreviewImage() {
+        if (!design.bodice) {
+            return "/preview_placeholder.jpg";
+        }
+        return `/images/${design.bodice}.png`;
+    }
+
     return (
         <main>
             <h3 className="heading" id="description-header">Create a New Design</h3>
@@ -107,7 +114,7 @@ export function Create() {
                     </ul>
                 </div>
                     <div id="live-preview">
-                        <img src="preview_placeholder.jpg" alt="Example of what the live preview could look like." />
+                        <img src={getPreviewImage()} alt="Live Design Preview" />
                     </div>
             </div>
             <div className="color-select">
