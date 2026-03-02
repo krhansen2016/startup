@@ -15,6 +15,11 @@ export function Create() {
         setOpenMenu(openMenu === menuName ? null : menuName);
     }
 
+    function selectOption(category, value) {
+        setDesign({...design, [category]: value,});
+        setOpenMenu(null);
+    }
+
     return (
         <main>
             <h3 className="heading" id="description-header">Create a New Design</h3>
