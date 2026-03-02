@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import "./create.css";
 
 export function Create() {
+    const [openMenu, setOpenMenu] = useState(null);
+
+    function toggleMenu(menuName) {
+        setOpenMenu(openMenu === menuName ? null : menuName);
+    }
+
     return (
         <main>
             <h3 className="heading" id="description-header">Create a New Design</h3>
@@ -9,8 +15,8 @@ export function Create() {
                 <div id="clothing-select">
                     <ul className="menu">
                         <li className="dropdown">
-                            <button className="dropdown-btn">Bodice Type <span className="arrow">▼</span></button>
-                            <ul className="dropdown-menu">
+                            <button className="dropdown-btn" onClick={() => toggleMenu("bodice")}>Bodice Type <span className="arrow">▼</span></button>
+                            <ul className={`dropdown-menu ${openMenu === "bodice" ? "show" : ""}`}>
                                 <li>Loose</li>
                                 <li>Form Fitting</li>
                                 <li>Gathered</li>
