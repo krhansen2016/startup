@@ -2,7 +2,14 @@ import React, { useState } from "react";
 import "./create.css";
 
 export function Create() {
-    const [openMenu, setOpenMenu] = useState(null);
+    const [openMenus, setOpenMenus] = useState({
+        bodice: false,
+        necklines: false,
+        sleeves: false,
+        bottoms: false,
+        pants: false,
+        skirts: false,
+    });
     const [design, setDesign] = useState({
         bodice: "",
         necklines: "",
@@ -15,17 +22,31 @@ export function Create() {
     });
 
     function toggleMenu(menuName) {
-        setOpenMenu(openMenu === menuName ? null : menuName);
+        setOpenMenus(prev => ({...prev, [menuName]: !prev[menuName],}));
     }
 
     function selectOption(category, value) {
         setDesign({...design, [category]: value,});
-        setOpenMenu(null);
+        setOpenMenus({
+            bodice: false,
+            necklines: false,
+            sleeves: false,
+            bottoms: false,
+            pants: false,
+            skirts: false,
+        });
     }
 
     function selectBottom(type, style) {
         setDesign({...design, bottom: { type, style }});
-        setOpenMenu(null);
+        setOpenMenus({
+            bodice: false,
+            necklines: false,
+            sleeves: false,
+            bottoms: false,
+            pants: false,
+            skirts: false,
+        });
     }
 
     return (
@@ -36,7 +57,7 @@ export function Create() {
                     <ul className="menu">
                         <li className="dropdown">
                             <button className="dropdown-btn" onClick={() => toggleMenu("bodice")}>Bodice Type <span className="arrow">▼</span></button>
-                            <ul className={`dropdown-menu ${openMenu === "bodice" ? "show" : ""}`}>
+                            <ul className={`dropdown-menu ${openMenus.bodice ? "show" : ""}`}>
                                 <li onClick={() => selectOption("bodice", "loose")}>Loose</li>
                                 <li onClick={() => selectOption("bodice", "fitted")}>Form Fitting</li>
                                 <li onClick={() => selectOption("bodice", "gathered")}>Gathered</li>
@@ -45,7 +66,7 @@ export function Create() {
                         </li>
                         <li className="dropdown">
                             <button className="dropdown-btn" onClick={() => toggleMenu("necklines")}>Necklines <span className="arrow">▼</span></button>
-                            <ul className={`dropdown-menu ${openMenu === "necklines" ? "show" : ""}`}>
+                            <ul className={`dropdown-menu ${openMenus.necklines ? "show" : ""}`}>
                                 <li onClick={() => selectOption("necklines", "crew")}>Crew</li>
                                 <li onClick={() => selectOption("necklines", "vneck")}>V-Neck</li>
                                 <li onClick={() => selectOption("necklines", "Square")}>Square</li>
@@ -57,7 +78,7 @@ export function Create() {
                         </li>
                         <li className="dropdown">
                             <button className="dropdown-btn" onClick={() => toggleMenu("sleeves")}>Sleeves <span className="arrow">▼</span></button>
-                            <ul className={`dropdown-menu ${openMenu === "sleeves" ? "show" : ""}`}>
+                            <ul className={`dropdown-menu ${openMenus.sleeves ? "show" : ""}`}>
                                 <li onClick={() => selectOption("sleeves", "none")}>None</li>
                                 <li onClick={() => selectOption("sleeves", "straps")}>Straps</li>
                                 <li onClick={() => selectOption("sleeves", "off_shoulder")}>Off the Shoulder</li>
@@ -75,10 +96,10 @@ export function Create() {
                         </li>
                         <li className="dropdown">
                             <button className="dropdown-btn" onClick={() => toggleMenu("bottoms")}>Bottoms <span className="arrow">▼</span></button>
-                            <ul className={`dropdown-menu ${openMenu === "bottoms" ? "show" : ""}`}>
+                            <ul className={`dropdown-menu ${openMenus.bottoms ? "show" : ""}`}>
                                 <li className="dropdown">
                                     <button className="dropdown-btn" onClick={() => toggleMenu("pants")}>Pants <span className="arrow">▼</span></button>
-                                    <ul className={`dropdown-menu ${openMenu === "pants" ? "show" : ""}`}>
+                                    <ul className={`dropdown-menu ${openMenus.pants ? "show" : ""}`}>
                                         <li onClick={() => selectBottom("pants", "shorts")}>Shorts</li>
                                         <li onClick={() => selectBottom("pants", "capris")}>Capris</li>
                                         <li onClick={() => selectBottom("pants", "straight")}>Straight</li>
@@ -92,22 +113,22 @@ export function Create() {
                                 </li>
                                 <li className="dropdown">
                                     <button className="dropdown-btn" onClick={() => toggleMenu("skirts")}>Skirts <span className="arrow">▼</span></button>
-                                    <ul className={`dropdown-menu ${openMenu === "skirts" ? "show" : ""}`}>
-                                        <li onClick={() => selectBottom("skirt", "mini")}>Mini</li>
-                                        <li onClick={() => selectBottom("skirt", "midi")}>Midi</li>
-                                        <li onClick={() => selectBottom("skirt", "maxi")}>Maxi</li>
-                                        <li onClick={() => selectBottom("skirt", "pencil")}>Pencil</li>
-                                        <li onClick={() => selectBottom("skirt", "tutu")}>Tutu</li>
-                                        <li onClick={() => selectBottom("skirt", "mermaid")}>Mermaid</li>
-                                        <li onClick={() => selectBottom("skirt", "layered_skirt")}>Layered</li>
-                                        <li onClick={() => selectBottom("skirt", "mullet")}>Mullet</li>
-                                        <li onClick={() => selectBottom("skirt", "slit")}>Slit</li>
-                                        <li onClick={() => selectBottom("skirt", "asymetrical_skirt")}>Asymetrical</li>
-                                        <li onClick={() => selectBottom("skirt", "pleated")}>Pleated</li>
-                                        <li onClick={() => selectBottom("skirt", "circle")}>Circle</li>
-                                        <li onClick={() => selectBottom("skirt", "wrapped")}>Wrapped</li>
-                                        <li onClick={() => selectBottom("skirt", "princess")}>Princess</li>
-                                        <li onClick={() => selectBottom("skirt", "gypsy")}>Gypsy</li>
+                                    <ul className={`dropdown-menu ${openMenus.skirts ? "show" : ""}`}>
+                                        <li onClick={() => selectBottom("skirts", "mini")}>Mini</li>
+                                        <li onClick={() => selectBottom("skirts", "midi")}>Midi</li>
+                                        <li onClick={() => selectBottom("skirts", "maxi")}>Maxi</li>
+                                        <li onClick={() => selectBottom("skirts", "pencil")}>Pencil</li>
+                                        <li onClick={() => selectBottom("skirts", "tutu")}>Tutu</li>
+                                        <li onClick={() => selectBottom("skirts", "mermaid")}>Mermaid</li>
+                                        <li onClick={() => selectBottom("skirts", "layered_skirt")}>Layered</li>
+                                        <li onClick={() => selectBottom("skirts", "mullet")}>Mullet</li>
+                                        <li onClick={() => selectBottom("skirts", "slit")}>Slit</li>
+                                        <li onClick={() => selectBottom("skirts", "asymetrical_skirt")}>Asymetrical</li>
+                                        <li onClick={() => selectBottom("skirts", "pleated")}>Pleated</li>
+                                        <li onClick={() => selectBottom("skirts", "circle")}>Circle</li>
+                                        <li onClick={() => selectBottom("skirts", "wrapped")}>Wrapped</li>
+                                        <li onClick={() => selectBottom("skirts", "princess")}>Princess</li>
+                                        <li onClick={() => selectBottom("skirts", "gypsy")}>Gypsy</li>
                                     </ul>
                                 </li>
                             </ul>
