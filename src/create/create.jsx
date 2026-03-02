@@ -26,7 +26,6 @@ export function Create() {
                                 <li>Turtleneck</li>
                                 <li>Sweetheart</li>
                                 <li>Collared</li>
-                                <li>Halter</li>
                                 <li>Asymetric</li>
                             </ul>
                         </li>
@@ -40,12 +39,12 @@ export function Create() {
                                 <li>Long</li>
                                 <li>Elbow-Length</li>
                                 <li>Puffed</li>
-                                <li>Peasant</li>
-                                <li>Lantern</li>
-                                <li>Frilled</li>
+                                <li>Juliet</li>
                                 <li>Bishops</li>
-                                <li>Flared</li>
-                                <li>Cape</li>
+                                <li>Flounce</li>
+                                <li>Bell</li>
+                                <li>Layered</li>
+                                <li>Kimono</li>
                             </ul>
                         </li>
                         <li className="dropdown">
