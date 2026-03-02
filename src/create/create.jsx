@@ -3,6 +3,13 @@ import "./create.css";
 
 export function Create() {
     const [openMenu, setOpenMenu] = useState(null);
+    const [design, setDesign] = useState({
+        bodice: "",
+        neckline: "",
+        sleeves: "",
+        bottoms: "",
+        color: "",
+    })
 
     function toggleMenu(menuName) {
         setOpenMenu(openMenu === menuName ? null : menuName);
