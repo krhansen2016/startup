@@ -24,8 +24,8 @@ export function Create() {
                             </ul>
                         </li>
                         <li className="dropdown">
-                            <button className="dropdown-btn">Necklines <span className="arrow">▼</span></button>
-                            <ul className="dropdown-menu">
+                            <button className="dropdown-btn" onClick={() => toggleMenu("necklines")}>Necklines <span className="arrow">▼</span></button>
+                            <ul className={`dropdown-menu ${openMenu === "necklines" ? "show" : ""}`}>
                                 <li>Crew</li>
                                 <li>V-Neck</li>
                                 <li>Square</li>
@@ -36,8 +36,8 @@ export function Create() {
                             </ul>
                         </li>
                         <li className="dropdown">
-                            <button className="dropdown-btn">Sleeves <span className="arrow">▼</span></button>
-                            <ul className="dropdown-menu">
+                            <button className="dropdown-btn" onClick={() => toggleMenu("sleeves")}>Sleeves <span className="arrow">▼</span></button>
+                            <ul className={`dropdown-menu ${openMenu === "sleeves" ? "show" : ""}`}>
                                 <li>None</li>
                                 <li>Straps</li>
                                 <li>Off the Shoulder</li>
@@ -54,11 +54,11 @@ export function Create() {
                             </ul>
                         </li>
                         <li className="dropdown">
-                            <button className="dropdown-btn">Bottoms <span className="arrow">▼</span></button>
-                            <ul className="dropdown-menu">
+                            <button className="dropdown-btn" onClick={() => toggleMenu("bottoms")}>Bottoms <span className="arrow">▼</span></button>
+                            <ul className={`dropdown-menu ${openMenu === "bottoms" ? "show" : ""}`}>
                                 <li className="dropdown">
-                                    <button className="dropdown-btn">Pants <span className="arrow">▼</span></button>
-                                    <ul className="dropdown-menu">
+                                    <button className="dropdown-btn" onClick={() => toggleMenu("pants")}>Pants <span className="arrow">▼</span></button>
+                                    <ul className={`dropdown-menu ${openMenu === "pants" ? "show" : ""}`}>
                                         <li>Shorts</li>
                                         <li>Capris</li>
                                         <li>Straight</li>
@@ -71,8 +71,8 @@ export function Create() {
                                     </ul>
                                 </li>
                                 <li className="dropdown">
-                                    <button className="dropdown-btn">Skirts <span className="arrow">▼</span></button>
-                                    <ul className="dropdown-menu">
+                                    <button className="dropdown-btn" onClick={() => toggleMenu("skirts")}>Skirts <span className="arrow">▼</span></button>
+                                    <ul className={`dropdown-menu ${openMenu === "skirts" ? "show" : ""}`}>
                                         <li>Mini</li>
                                         <li>Midi</li>
                                         <li>Maxi</li>
