@@ -67,6 +67,8 @@
 
 .preview-stack {
     position: relative;
+    width: 400px;
+    height: 500px;
 }
 
 .preview-stack img {

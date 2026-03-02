@@ -7,7 +7,7 @@ export function Create() {
         bodice: "",
         necklines: "",
         sleeves: "",
-        bottoms: {
+        bottom: {
             type: "",
             style: "",
         },
@@ -21,18 +21,6 @@ export function Create() {
     function selectOption(category, value) {
         setDesign({...design, [category]: value,});
         setOpenMenu(null);
-    }
-
-    function getPreviewImage() {
-        if (!design.bodice && 
-            !design.neckline && 
-            !design.sleeves && 
-            !design.pants && 
-            !design.skirts
-        ) {
-            return "/live_preview_empty.png";
-        }
-        return `/images/${design.bodice}.png`;
     }
 
     function selectBottom(type, style) {
@@ -128,6 +116,9 @@ export function Create() {
                 </div>
                     <div id="live-preview">
                         <div className="preview-stack">
+
+                            <img src="live_preview_empty.png" />
+
                             {design.bodice && (<img src={`/bodices/${design.bodice}.png`} />)}
                             {design.sleeves && (<img src={`/sleeves/${design.sleeves}.png`} />)}
                             {design.necklines && (<img src={`/necklines/${design.necklines}.png`} />)}
