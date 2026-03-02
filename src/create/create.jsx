@@ -150,42 +150,42 @@ export function Create() {
             <div className="color-select">
                 <label id="color-label">Colors:</label>
                 <div className="colors">
-                    <button id="dark-red"></button>
-                    <button id="burgundy"></button>
-                    <button id="red"></button>
-                    <button id="red-orange"></button>
-                    <button id="orange"></button>
-                    <button id="gold"></button>
-                    <button id="yellow"></button>
-                    <button id="light-green"></button>
-                    <button id="green"></button>
-                    <button id="dark-green"></button>
-                    <button id="olive"></button>
-                    <button id="mint"></button>
-                    <button id="teal"></button>
-                    <button id="dark-teal"></button>
-                    <button id="light-blue"></button>
-                    <button id="blue"></button>
-                    <button id="dark-blue"></button>
-                    <button id="indigo"></button>
-                    <button id="periwinkle"></button>
-                    <button id="lavender"></button>
-                    <button id="purple"></button>
-                    <button id="dark-purple"></button>
-                    <button id="plum"></button>
-                    <button id="berry"></button>
-                    <button id="salmon"></button>
-                    <button id="magenta"></button>
-                    <button id="pink"></button>
-                    <button id="light-pink"></button>
-                    <button id="dark-brown"></button>
-                    <button id="brown"></button>
-                    <button id="light-brown"></button>
-                    <button id="eggshell"></button>
-                    <button id="black"></button>
-                    <button id="grey"></button>
-                    <button id="silver"></button>
-                    <button id="white"></button>
+                    <button id="dark-red" onClick={() => setDesign({...design, color: "dark-red"})}></button>
+                    <button id="burgundy" onClick={() => setDesign({...design, color: "burgundy"})}></button>
+                    <button id="red"  onClick={() => setDesign({...design, color: "red"})}></button>
+                    <button id="red-orange"  onClick={() => setDesign({...design, color: "red-orange"})}></button>
+                    <button id="orange"  onClick={() => setDesign({...design, color: "orange"})}></button>
+                    <button id="gold" onClick={() => setDesign({...design, color: "gold"})}></button>
+                    <button id="yellow" onClick={() => setDesign({...design, color: "yellow"})}></button>
+                    <button id="light-green" onClick={() => setDesign({...design, color: "light-green"})}></button>
+                    <button id="green" onClick={() => setDesign({...design, color: "green"})}></button>
+                    <button id="dark-green" onClick={() => setDesign({...design, color: "dark-green"})}></button>
+                    <button id="olive" onClick={() => setDesign({...design, color: "olive"})}></button>
+                    <button id="mint" onClick={() => setDesign({...design, color: "mint"})}></button>
+                    <button id="teal" onClick={() => setDesign({...design, color: "teal"})}></button>
+                    <button id="dark-teal" onClick={() => setDesign({...design, color: "dark-teal"})}></button>
+                    <button id="light-blue" onClick={() => setDesign({...design, color: "light-blue"})}></button>
+                    <button id="blue" onClick={() => setDesign({...design, color: "blue"})}></button>
+                    <button id="dark-blue" onClick={() => setDesign({...design, color: "dark-blue"})}></button>
+                    <button id="indigo" onClick={() => setDesign({...design, color: "indigo"})}></button>
+                    <button id="periwinkle" onClick={() => setDesign({...design, color: "periwinkle"})}></button>
+                    <button id="lavender" onClick={() => setDesign({...design, color: "lavender"})}></button>
+                    <button id="purple" onClick={() => setDesign({...design, color: "purple"})}></button>
+                    <button id="dark-purple" onClick={() => setDesign({...design, color: "dark-purple"})}></button>
+                    <button id="plum" onClick={() => setDesign({...design, color: "plum"})}></button>
+                    <button id="berry" onClick={() => setDesign({...design, color: "berry"})}></button>
+                    <button id="salmon" onClick={() => setDesign({...design, color: "salmon"})}></button>
+                    <button id="magenta" onClick={() => setDesign({...design, color: "magenta"})}></button>
+                    <button id="pink" onClick={() => setDesign({...design, color: "pink"})}></button>
+                    <button id="light-pink" onClick={() => setDesign({...design, color: "light-pink"})}></button>
+                    <button id="dark-brown" onClick={() => setDesign({...design, color: "dark-brown"})}></button>
+                    <button id="brown" onClick={() => setDesign({...design, color: "brown"})}></button>
+                    <button id="light-brown" onClick={() => setDesign({...design, color: "light-brown"})}></button>
+                    <button id="eggshell" onClick={() => setDesign({...design, color: "eggshell"})}></button>
+                    <button id="black" onClick={() => setDesign({...design, color: "black"})}></button>
+                    <button id="grey" onClick={() => setDesign({...design, color: "grey"})}></button>
+                    <button id="silver" onClick={() => setDesign({...design, color: "silver"})}></button>
+                    <button id="white" onClick={() => setDesign({...design, color: "white"})}></button>
                 </div>
             </div>
         </main>
