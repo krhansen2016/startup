@@ -9,6 +9,12 @@ export function Profile() {
         setDesigns(saved);
     }, []);
 
+    function deleteDesign(id) {
+        const updatedDesigns = designs.filter(design => design.id !== id);
+        setDesigns(updatedDesigns);
+        localStorage.setItem("userDesigns", JSON.stringify(updatedDesigns));
+    }
+
     return (
         <main className="container-lg">
             <h3 className="heading" id="description-header">My Profile</h3>
@@ -23,6 +29,7 @@ export function Profile() {
                 {designs.map((item) => (
                     <li key={item.id} className="col-12 col-sm-6 col-md-4">
                         <label>Design</label>
+                        <button className="delete-btn" onClick={() => deleteDesign(item.id)}>Delete</button>
                         <div className="preview-stack">
                             <img src="live_preview_empty.png" />
                             {item.design.bodice && (<img src={`/bodices/${item.design.bodice}.png`}/>)}
