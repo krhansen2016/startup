@@ -10,6 +10,7 @@ export function Create() {
         pants: false,
         skirts: false,
     });
+
     const [design, setDesign] = useState({
         bodice: "",
         necklines: "",
@@ -18,15 +19,23 @@ export function Create() {
             type: "",
             style: "",
         },
-        color: "",
+        colors: {
+            bodice: "",
+            necklines: "",
+            sleeves: "",
+            bottom: "",
+        }
     });
+
+    const[selectedClothing, setSelectedClothing] = useState("bodice");
 
     function toggleMenu(menuName) {
         setOpenMenus(prev => ({...prev, [menuName]: !prev[menuName],}));
     }
 
     function selectOption(category, value) {
-        setDesign({...design, [category]: value,});
+        setDesign(prev => ({...prev, [category]: value,}));
+        setSelectedClothing(category);
         setOpenMenus({
             bodice: false,
             necklines: false,
@@ -38,7 +47,8 @@ export function Create() {
     }
 
     function selectBottom(type, style) {
-        setDesign({...design, bottom: { type, style }});
+        setDesign(prev => ({...prev, bottom: { type, style }}));
+        setSelectedClothing("bottom");
         setOpenMenus({
             bodice: false,
             necklines: false,
@@ -140,52 +150,72 @@ export function Create() {
 
                             <img src="live_preview_empty.png" />
 
-                            {design.bodice && (<img src={`/bodices/${design.bodice}.png`} />)}
-                            {design.sleeves && (<img src={`/sleeves/${design.sleeves}.png`} />)}
-                            {design.necklines && (<img src={`/necklines/${design.necklines}.png`} />)}
-                            {design.bottom.style && (<img src={`/bottoms/${design.bottom.type}/${design.bottom.style}.png`} />)}
+                            {design.bodice && (
+                                <div className="clothing-wrapper">
+                                    <img className="clothing-base" src={`/bodices/${design.bodice}.png`} />
+                                    <div className="clothing-color" style={{ backgroundColor: design.colors.bodice }}></div> 
+                                </div>
+                            )}
+                            {design.sleeves && (
+                                <div className="clothing-wrapper">
+                                    <img className="clothing-base" src={`/sleeves/${design.sleeves}.png`} />
+                                    <div className="clothing-color" style={{ backgroundColor: design.colors.sleeves }}></div> 
+                                </div>
+                            )}
+                            {design.necklines && (
+                                <div className="clothing-wrapper">
+                                    <img className="clothing-base" src={`/necklines/${design.necklines}.png`} />
+                                    <div className="clothing-color" style={{ backgroundColor: design.colors.necklines }}></div> 
+                                </div>
+                            )}
+                            {design.bottom.style && (
+                                <div className="clothing-wrapper">
+                                    <img className="clothing-base" src={`/bottoms/${design.bottom.type}/${design.bottom.style}.png`} />
+                                    <div className="clothing-color" style={{ backgroundColor: design.colors.bottom }}></div> 
+                                </div>
+                            )}
                         </div>
                     </div>
             </div>
             <div className="color-select">
                 <label id="color-label">Colors:</label>
                 <div className="colors">
-                    <button id="dark-red"></button>
-                    <button id="burgundy"></button>
-                    <button id="red"></button>
-                    <button id="red-orange"></button>
-                    <button id="orange"></button>
-                    <button id="gold"></button>
-                    <button id="yellow"></button>
-                    <button id="light-green"></button>
-                    <button id="green"></button>
-                    <button id="dark-green"></button>
-                    <button id="olive"></button>
-                    <button id="mint"></button>
-                    <button id="teal"></button>
-                    <button id="dark-teal"></button>
-                    <button id="light-blue"></button>
-                    <button id="blue"></button>
-                    <button id="dark-blue"></button>
-                    <button id="indigo"></button>
-                    <button id="periwinkle"></button>
-                    <button id="lavender"></button>
-                    <button id="purple"></button>
-                    <button id="dark-purple"></button>
-                    <button id="plum"></button>
-                    <button id="berry"></button>
-                    <button id="salmon"></button>
-                    <button id="magenta"></button>
-                    <button id="pink"></button>
-                    <button id="light-pink"></button>
-                    <button id="dark-brown"></button>
-                    <button id="brown"></button>
-                    <button id="light-brown"></button>
-                    <button id="eggshell"></button>
-                    <button id="black"></button>
-                    <button id="grey"></button>
-                    <button id="silver"></button>
-                    <button id="white"></button>
+                    <button id="dark-red" onClick={() => setDesign(prev => ({...prev, colors: {...prev.colors, [selectedClothing]: "#590303"}}))}></button>
+                    <button id="burgundy" onClick={() => setDesign(prev => ({...prev, colors: {...prev.colors, [selectedClothing]: "#830A22"}}))}></button>
+                    <button id="red"  onClick={() => setDesign(prev => ({...prev, colors: {...prev.colors, [selectedClothing]: "#E20000"}}))}></button>
+                    <button id="red-orange"  onClick={() => setDesign(prev => ({...prev, colors: {...prev.colors, [selectedClothing]: "#FF552E"}}))}></button>
+                    <button id="orange"  onClick={() => setDesign(prev => ({...prev, colors: {...prev.colors, [selectedClothing]: "#FF7C19"}}))}></button>
+                    <button id="gold" onClick={() => setDesign(prev => ({...prev, colors: {...prev.colors, [selectedClothing]: "#FFC235"}}))}></button>
+                    <button id="yellow" onClick={() => setDesign(prev => ({...prev, colors: {...prev.colors, [selectedClothing]: "#FFF875"}}))}></button>
+                    <button id="light-green" onClick={() => setDesign(prev => ({...prev, colors: {...prev.colors, [selectedClothing]: "#79FF65"}}))}></button>
+                    <button id="green" onClick={() => setDesign(prev => ({...prev, colors: {...prev.colors, [selectedClothing]: "#009B15"}}))}></button>
+                    <button id="dark-green" onClick={() => setDesign(prev => ({...prev, colors: {...prev.colors, [selectedClothing]: "#004315"}}))}></button>
+                    <button id="olive" onClick={() => setDesign(prev => ({...prev, colors: {...prev.colors, [selectedClothing]: "#3C5920"}}))}></button>
+                    <button id="mint" onClick={() => setDesign(prev => ({...prev, colors: {...prev.colors, [selectedClothing]: "#58ffae"}}))}></button>
+                    <button id="teal" onClick={() => setDesign(prev => ({...prev, colors: {...prev.colors, [selectedClothing]: "#49ffd7"}}))}></button>
+                    <button id="dark-teal" onClick={() => setDesign(prev => ({...prev, colors: {...prev.colors, [selectedClothing]: "#00776B"}}))}></button>
+                    <button id="light-blue" onClick={() => setDesign(prev => ({...prev, colors: {...prev.colors, [selectedClothing]: "#4aedff"}}))}></button>
+                    <button id="blue" onClick={() => setDesign(prev => ({...prev, colors: {...prev.colors, [selectedClothing]: "#3c4dea"}}))}></button>
+                    <button id="dark-blue" onClick={() => setDesign(prev => ({...prev, colors: {...prev.colors, [selectedClothing]: "#090069"}}))}></button>
+                    <button id="indigo" onClick={() => setDesign(prev => ({...prev, colors: {...prev.colors, [selectedClothing]: "indigo"}}))}></button>
+                    <button id="periwinkle" onClick={() => setDesign(prev => ({...prev, colors: {...prev.colors, [selectedClothing]: "#D2CAFF"}}))}></button>
+                    <button id="lavender" onClick={() => setDesign(prev => ({...prev, colors: {...prev.colors, [selectedClothing]: "#F3CCFF"}}))}></button>
+                    <button id="purple" onClick={() => setDesign(prev => ({...prev, colors: {...prev.colors, [selectedClothing]: "rgb(173, 0, 173)"}}))}></button>
+                    <button id="dark-purple" onClick={() => setDesign(prev => ({...prev, colors: {...prev.colors, [selectedClothing]: "#50005b"}}))}></button>
+                    <button id="plum" onClick={() => setDesign(prev => ({...prev, colors: {...prev.colors, [selectedClothing]: "#a00777"}}))}></button>
+                    <button id="berry" onClick={() => setDesign(prev => ({...prev, colors: {...prev.colors, [selectedClothing]: "#B52B62"}}))}></button>
+                    <button id="salmon" onClick={() => setDesign(prev => ({...prev, colors: {...prev.colors, [selectedClothing]: "#fc8787"}}))}></button>
+                    <button id="magenta" onClick={() => setDesign(prev => ({...prev, colors: {...prev.colors, [selectedClothing]: "#FA2669"}}))}></button>
+                    <button id="pink" onClick={() => setDesign(prev => ({...prev, colors: {...prev.colors, [selectedClothing]: "#ff0dae"}}))}></button>
+                    <button id="light-pink" onClick={() => setDesign(prev => ({...prev, colors: {...prev.colors, [selectedClothing]: "#ffa1c6"}}))}></button>
+                    <button id="dark-brown" onClick={() => setDesign(prev => ({...prev, colors: {...prev.colors, [selectedClothing]: "#352200"}}))}></button>
+                    <button id="brown" onClick={() => setDesign(prev => ({...prev, colors: {...prev.colors, [selectedClothing]: "#682E0A"}}))}></button>
+                    <button id="light-brown" onClick={() => setDesign(prev => ({...prev, colors: {...prev.colors, [selectedClothing]: "#CD8B62"}}))}></button>
+                    <button id="eggshell" onClick={() => setDesign(prev => ({...prev, colors: {...prev.colors, [selectedClothing]: "#fce0d7"}}))}></button>
+                    <button id="black" onClick={() => setDesign(prev => ({...prev, colors: {...prev.colors, [selectedClothing]: "#010010"}}))}></button>
+                    <button id="grey" onClick={() => setDesign(prev => ({...prev, colors: {...prev.colors, [selectedClothing]: "#585858"}}))}></button>
+                    <button id="silver" onClick={() => setDesign(prev => ({...prev, colors: {...prev.colors, [selectedClothing]: "#C8C8C8"}}))}></button>
+                    <button id="white" onClick={() => setDesign(prev => ({...prev, colors: {...prev.colors, [selectedClothing]: "#F5F5F5"}}))}></button>
                 </div>
             </div>
         </main>
