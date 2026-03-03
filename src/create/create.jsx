@@ -128,11 +128,10 @@ export function Create() {
                                         <li onClick={() => selectBottom("skirts", "mullet")}>Mullet</li>
                                         <li onClick={() => selectBottom("skirts", "slit")}>Slit</li>
                                         <li onClick={() => selectBottom("skirts", "asymetrical_skirt")}>Asymetrical</li>
-                                        <li onClick={() => selectBottom("skirts", "pleated")}>Pleated</li>
                                         <li onClick={() => selectBottom("skirts", "circle")}>Circle</li>
                                         <li onClick={() => selectBottom("skirts", "wrapped")}>Wrapped</li>
                                         <li onClick={() => selectBottom("skirts", "princess")}>Princess</li>
-                                        <li onClick={() => selectBottom("skirts", "gypsy")}>Gypsy</li>
+                                        <li onClick={() => selectBottom("skirts", "tattered")}>Tattered</li>
                                     </ul>
                                 </li>
                             </ul>
@@ -144,17 +143,17 @@ export function Create() {
 
                             <img src="live_preview_empty.png" />
 
-                            {design.bodice && (<img src={`/bodices/${design.bodice}/${design.color || "default"}.png`} alt="bodice" />)}
-                            {design.sleeves && (<img src={`/sleeves/${design.sleeves}/${design.color || "default"}.png`} alt="sleeves" />)}
-                            {design.necklines && (<img src={`/necklines/${design.necklines}/${design.color || "default"}.png`} alt="necklines" />)}
-                            {design.bottom.style && (<img src={`/bottoms/${design.bottom.type}/${design.bottom.style}/${design.color || "default"}.png`} alt="bodice" />)}
+                            {design.bodice && (<img src={`/bodices/${design.bodice}${design.color ? `/${design.bodice}_${design.color}.png` : `/${design.bodice}.png`}`} alt="bodice" />)}
+                            {design.sleeves && (<img src={`/sleeves/${design.sleeves}${design.color ? `/${design.sleeves}_${design.color}.png` : `/${design.sleeves}.png`}`} alt="sleeves" />)}
+                            {design.necklines && (<img src={`/necklines/${design.necklines}${design.color ? `/${design.necklines}_${design.color}.png` : `/${design.necklines}.png`}`} alt="necklines" />)}
+                            {design.bottom.style && (<img src={`/bottoms/${design.bottom.type}/${design.bottom.style}${design.color ? `/${design.bottom.style}_${design.color}.png` : `/${design.bottom.style}.png`}`} alt="bottom"/>)}
                         </div>
                     </div>
             </div>
             <div className="color-select">
                 <label id="color-label">Colors:</label>
                 <div className="colors">
-                    <button id="dark-red" onClick={() => selectColor("#590303")}></button>
+                    <button id="dark-red" onClick={() => selectColor("dark-red")}></button>
                     <button id="burgundy"></button>
                     <button id="red"></button>
                     <button id="red-orange"></button>
