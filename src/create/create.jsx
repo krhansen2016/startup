@@ -21,6 +21,10 @@ export function Create() {
         color: "",
     });
 
+    function selectColor(color) {
+        setDesign(prev => ({...prev, color }));
+    }
+
     function toggleMenu(menuName) {
         setOpenMenus(prev => ({...prev, [menuName]: !prev[menuName],}));
     }
@@ -140,17 +144,17 @@ export function Create() {
 
                             <img src="live_preview_empty.png" />
 
-                            {design.bodice && (<img src={`/bodices/${design.bodice}.png`} />)}
-                            {design.sleeves && (<img src={`/sleeves/${design.sleeves}.png`} />)}
-                            {design.necklines && (<img src={`/necklines/${design.necklines}.png`} />)}
-                            {design.bottom.style && (<img src={`/bottoms/${design.bottom.type}/${design.bottom.style}.png`} />)}
+                            {design.bodice && (<img src={`/bodices/${design.bodice}/${design.color || "default"}.png`} alt="bodice" />)}
+                            {design.sleeves && (<img src={`/sleeves/${design.sleeves}/${design.color || "default"}.png`} alt="sleeves" />)}
+                            {design.necklines && (<img src={`/necklines/${design.necklines}/${design.color || "default"}.png`} alt="necklines" />)}
+                            {design.bottom.style && (<img src={`/bottoms/${design.bottom.type}/${design.bottom.style}/${design.color || "default"}.png`} alt="bodice" />)}
                         </div>
                     </div>
             </div>
             <div className="color-select">
                 <label id="color-label">Colors:</label>
                 <div className="colors">
-                    <button id="dark-red"></button>
+                    <button id="dark-red" onClick={() => selectColor("#590303")}></button>
                     <button id="burgundy"></button>
                     <button id="red"></button>
                     <button id="red-orange"></button>
