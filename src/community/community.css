@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+
 .posts ul {
     list-style: none;
     padding: 0;
@@ -51,4 +53,71 @@
     background-color: #C6E0FF;
     padding: 8px;
     border-radius: 10px;
+}
+
+.new-post {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 15px;
+    border: 4px solid black;
+    border-radius: 10px;
+    background-color: #FF5D60;
+    box-shadow: 0 4px 6px rgba(0,0,0,.2);
+}
+
+.new-post input {
+    flex: 2;
+    padding: 8px 12px;
+    font-family: 'Lexend';
+    font-size: 14px;
+    border-radius: 10px;
+    border: 2px solid black;
+    outline: none;
+}
+
+.new-post select {
+    flex: 1;
+    padding: 8px 12px;
+    font-family: 'Lexend', sans-serif;
+    font-size: 14px;
+    border-radius: 10px;
+    border: 2px solid black;
+    outline: none;
+    background-color: #fff;
+}
+
+.new-post .preview-stack {
+    flex: 0 0 auto;
+    width: 80px;
+    height: 80px;
+    border: 4px solid black;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #C6E0FF;
+}
+
+.new-post .preview-stack img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.new-post button {
+    flex: 0 0 auto;
+    padding: 8px 20px;
+    font-family: 'Lexend', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    border-radius: 25px;
+    border: 2px solid black;
+    background-color: #C6E0FF;
+    box-shadow: 0 4px 6px rgba(0,0,0,.2);
+    transition: transform 0.2s ease;
+}
+
+.new-post button:hover {
+    transform: scale(0.95);
 }
