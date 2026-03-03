@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./profile.css"
 
 export function Profile() {
+    const [designs, setDesigns] = useState([]);
+
+    useEffect(() => {
+        const saved = JSON.parse(localStorage.getItem("userDesigns")) || [];
+        setDesigns(saved);
+    }, []);
+
     return (
         <main className="container-lg">
             <h3 className="heading" id="description-header">My Profile</h3>
@@ -13,30 +20,18 @@ export function Profile() {
             </div>
             <h3 className="heading" id="description-header">My Designs</h3>
             <ul className="designs row g-4">
-                <li className="col-12 col-sm-6 col-md-4">
-                    <label for="design">design_1</label>
-                    <img src="default_design.jpg" alt="default design preview" />
-                </li>
-                <li className="col-12 col-sm-6 col-md-4">
-                    <label for="design">design_2</label>
-                    <img src="default_design.jpg" alt="default design preview" />
-                </li>
-                <li className="col-12 col-sm-6 col-md-4">
-                    <label for="design">design_3</label>
-                    <img src="default_design.jpg" alt="default design preview" />
-                </li>
-                <li className="col-12 col-sm-6 col-md-4">
-                    <label for="design">design_4</label>
-                    <img src="default_design.jpg" alt="default design preview" />
-                </li>
-                <li className="col-12 col-sm-6 col-md-4">
-                    <label for="design">design_5</label>
-                    <img src="default_design.jpg" alt="default design preview" />
-                </li>
-                <li className="col-12 col-sm-6 col-md-4">
-                    <label for="design">design_6</label>
-                    <img src="default_design.jpg" alt="default design preview" />
-                </li>
+                {designs.map((item) => (
+                    <li key={item.id} className="col-12 col-sm-6 col-md-4">
+                        <label>Design</label>
+                        <div className="preview-stack">
+                            <img src="live_preview_empty.png" />
+                            {item.design.bodice && (<img src={`/bodices/${item.design.bodice}.png`}/>)}
+                            {item.design.sleeves && (<img src={`/sleeves/${item.design.sleeves}.png`}/>)}
+                            {item.design.necklines && (<img src={`/necklines/${item.design.necklines}.png`}/>)}
+                            {item.design.bottom.style && (<img src={`/bottoms/${item.design.bottom.type}/${item.design.bottom.style}.png`}/>)}
+                        </div>
+                    </li>
+                ))}
             </ul>
         </main>
     )

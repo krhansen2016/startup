@@ -53,6 +53,14 @@ export function Create() {
         });
     }
 
+    function saveDesign() {
+        const storedDesigns = JSON.parse(localStorage.getItem("userDesigns")) || [];
+        const newDesign = {id: Date.now(), design,};
+        const updatedDesigns = [newDesign, ...storedDesigns];
+        localStorage.setItem("userDesigns", JSON.stringify(updatedDesigns));
+        alert("Design saved!")
+    }
+
     return (
         <main>
             <h3 className="heading" id="description-header">Create a New Design</h3>
@@ -191,6 +199,7 @@ export function Create() {
                     <button id="white"></button>
                 </div>
             </div>
+            <button onClick={saveDesign} className="save-btn">Save Design</button>
         </main>
     )
 }
