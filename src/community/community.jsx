@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./community.css";
 import { Placeholder } from "react-bootstrap";
 
@@ -6,6 +6,23 @@ import { Placeholder } from "react-bootstrap";
 export function Community() {
 
     const [posts, setPosts] = useState([]);
+    const [text, setText] = useState("");
+
+    function addPost() {
+    const newPost = {
+        username: localStorage.getItem("userName") || "Guest",
+        text,
+        image: "default_design.jpg",
+        profilePic: "default_profile2.0.jpg"
+    };
+
+    const updatedPosts = [newPost, ...posts];
+
+    setPosts(updatedPosts);
+    localStorage.setItem("communityPosts", JSON.stringify(updatedPosts));
+
+    setText("");
+}
 
     useEffect(() => {
         const storedPosts = localStorage.getItem("communityPosts");
