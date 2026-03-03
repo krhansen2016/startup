@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./community.css";
-import { Placeholder } from "react-bootstrap";
-
 
 export function Community() {
 
@@ -16,7 +14,7 @@ export function Community() {
         profilePic: "default_profile2.0.jpg"
     };
 
-    const updatedPosts = [newPost, ...posts];
+    const updatedPosts = [newPost, ...posts].slice(0, 10);
 
     setPosts(updatedPosts);
     localStorage.setItem("communityPosts", JSON.stringify(updatedPosts));
@@ -51,6 +49,34 @@ export function Community() {
         }
     }, []);
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            const randomUser = "User-" + Math.floor(Math.random() * 100);
+
+            const randomMessages = [
+                "What do you think?",
+                "Felt cute, might delete later",
+                "I'm absolutely obsessed with this!",
+                "Trying something new!"
+            ];
+
+            const newPost = {
+                username: randomUser,
+                text: randomMessages[ Math.floor(Math.random() * randomMessages.length)],
+                image: "default_design.jpg",
+                profilePic: "default_profile2.0.jpg"
+            };
+
+            setPosts(prevPosts => {
+                const updated = [newPost, ...prevPosts].slice(0, 10);
+
+                localStorage.setItem("communityPosts", JSON.stringify(updated));
+                return updated;
+            });
+        }, 5000);
+        return () => clearInterval(interval);
+    }, []);
+
     return (
         <main>
             <h2 className="heading" id="description-header">The Community</h2>
@@ -60,9 +86,9 @@ export function Community() {
             </div>
             <div className="posts">
                 <ul>
-                    {posts.map((post, index) => (
+                    {posts.slice(0, 10).map((post, index) => (
                         <li key={index}>
-                            <img className="profile-pic" src="{post.profilePic" alt="profile" />
+                            <img className="profile-pic" src={post.profilePic} alt="profile" />
                             <label>{post.username}</label>
                             <div className="post-content">
                                 <img className="post-pic" src={post.image} alt="design" />
