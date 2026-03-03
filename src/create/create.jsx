@@ -10,6 +10,7 @@ export function Create() {
         pants: false,
         skirts: false,
     });
+
     const [design, setDesign] = useState({
         bodice: "",
         necklines: "",
@@ -140,17 +141,20 @@ export function Create() {
 
                             <img src="live_preview_empty.png" />
 
-                            {design.bodice && (<img src={`/bodices/${design.bodice}.png`} />)}
-                            {design.sleeves && (<img src={`/sleeves/${design.sleeves}.png`} />)}
-                            {design.necklines && (<img src={`/necklines/${design.necklines}.png`} />)}
-                            {design.bottom.style && (<img src={`/bottoms/${design.bottom.type}/${design.bottom.style}.png`} />)}
+                            {design.bodice && (<img className="clothing" src={`/bodices/${design.bodice}.png`} />)}
+                            {design.sleeves && (<img className="clothing" src={`/sleeves/${design.sleeves}.png`} />)}
+                            {design.necklines && (<img className="clothing" src={`/necklines/${design.necklines}.png`} />)}
+                            {design.bottom.style && (<img className="clothing" src={`/bottoms/${design.bottom.type}/${design.bottom.style}.png`} />)}
+
+                            <div className="color" style={{ backgroundColor: design.color }}></div>
+
                         </div>
                     </div>
             </div>
             <div className="color-select">
                 <label id="color-label">Colors:</label>
                 <div className="colors">
-                    <button id="dark-red" onClick={() => setDesign({...design, color: "dark-red"})}></button>
+                    <button id="dark-red" onClick={() => setDesign({...design, color: "#590303"})}></button>
                     <button id="burgundy" onClick={() => setDesign({...design, color: "burgundy"})}></button>
                     <button id="red"  onClick={() => setDesign({...design, color: "red"})}></button>
                     <button id="red-orange"  onClick={() => setDesign({...design, color: "red-orange"})}></button>
