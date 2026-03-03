@@ -3,6 +3,12 @@ import "./profile.css"
 
 export function Profile() {
     const [designs, setDesigns] = useState([]);
+    const [profilePic, setProfilePic] = useState("default_profile2.0.jpg");
+
+    useEffect(() => {
+        const savedPic = localStorage.getItem("profilePic");
+        if (savedPic) setProfilePic(savedPic)
+    }, []);
 
     useEffect(() => {
         const saved = JSON.parse(localStorage.getItem("userDesigns")) || [];
@@ -15,13 +21,23 @@ export function Profile() {
         localStorage.setItem("userDesigns", JSON.stringify(updatedDesigns));
     }
 
+    function changeProfilePic() {
+        const newPic = prompt("Enter image url to change profile picture: ", profilePic);
+        if (newPic) {
+            setProfilePic(newPic);
+            localStorage.setItem("profilePic", newPic);
+        }
+    }
+
     return (
         <main className="container-lg">
             <h3 className="heading" id="description-header">My Profile</h3>
             <div className="profile">
                 <div className="profile-img-wrapper">
-                    <img id="profile-img" src="default_profile2.0.jpg" alt="Default of the profile picture." />
-                    <button id="edit-btn"><img src="edit_profilepic.PNG" alt="Change Profile Picture" /></button>
+                    <img id="profile-img" src={profilePic} alt="Profile Picture" />
+                    <button id="edit-btn" onClick={changeProfilePic}>
+                        <img src="edit_profilepic.PNG" alt="Change Profile Picture" />
+                    </button>
                 </div>
             </div>
             <h3 className="heading" id="description-header">My Designs</h3>
