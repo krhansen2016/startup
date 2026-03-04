@@ -91,7 +91,6 @@ export function Create() {
                         <li className="dropdown">
                             <button className="dropdown-btn" onClick={() => toggleMenu("sleeves")}>Sleeves <span className="arrow">▼</span></button>
                             <ul className={`dropdown-menu ${openMenus.sleeves ? "show" : ""}`}>
-                                <li onClick={() => selectOption("sleeves", "none")}>None</li>
                                 <li onClick={() => selectOption("sleeves", "straps")}>Straps</li>
                                 <li onClick={() => selectOption("sleeves", "off_shoulder")}>Off the Shoulder</li>
                                 <li onClick={() => selectOption("sleeves", "short")}>Short</li>
