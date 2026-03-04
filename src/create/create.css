@@ -123,144 +123,32 @@
     background-color: #590303;
 }
 
-#burgundy {
-    background-color: #830A22;
-}
-
-#red {
-    background-color: #E20000;
-}
-
 #red-orange {
     background-color: #FF552E;
-}
-
-#orange {
-    background-color: #FF7C19;
-}
-
-#gold {
-    background-color: #FFC235;
 }
 
 #yellow {
     background-color: #FFF875;
 }
 
-#light-green {
-    background-color: #79FF65;
-}
-
-#green {
-    background-color: #009B15;
-}
-
-#dark-green {
-    background-color: #004315;
-}
-
 #olive {
     background-color: #3C5920;
-}
-
-#mint {
-    background-color: #58ffae;
-}
-
-#teal {
-    background-color: #49ffd7;
-}
-
-#dark-teal {
-    background-color: #00776B;
-}
-
-#light-blue {
-    background-color: #4aedff;
 }
 
 #blue {
     background-color: #3c4dea;
 }
 
-#dark-blue {
-    background-color: #090069;
-}
-
-#indigo {
-    background-color: indigo;
-}
-
-#periwinkle {
-    background-color: #D2CAFF;
-}
-
-#lavender {
-    background-color: #F3CCFF;
-}
-
-#purple {
-    background-color: rgb(173, 0, 173);
-}
-
 #dark-purple {
     background-color: #50005b;
-}
-
-#plum {
- background-color: #a00777;
-}
-
-#berry {
-    background-color: #B52B62;
-}
-
-#salmon {
- background-color: #fc8787;
-}
-
-#magenta {
-    background-color: #FA2669;
-}
-
-#pink {
-    background-color: #ff0dae;
 }
 
 #light-pink {
  background-color: #ffa1c6;
 }
 
-#dark-brown {
-     background-color: #352200
-}
-
-#brown {
-    background-color: #682E0A;
-}
-
 #light-brown {
     background-color: #CD8B62;
-}
-
-#eggshell {
-     background-color: #fce0d7;
-}
-
-#black {
- background-color: #010010;
-}
-
-#grey {
-    background-color: #585858;
-}
-
-#silver {
-    background-color: #C8C8C8;
-}
-
-#white {
-    background-color: #F5F5F5;
 }
 
 .save-btn {

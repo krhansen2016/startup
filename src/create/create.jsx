@@ -162,41 +162,13 @@ export function Create() {
                 <label id="color-label">Colors:</label>
                 <div className="colors">
                     <button id="dark-red" onClick={() => selectColor("dark-red")}></button>
-                    <button id="burgundy"></button>
-                    <button id="red"></button>
                     <button id="red-orange"></button>
-                    <button id="orange"></button>
-                    <button id="gold"></button>
                     <button id="yellow"></button>
-                    <button id="light-green"></button>
-                    <button id="green"></button>
-                    <button id="dark-green"></button>
                     <button id="olive"></button>
-                    <button id="mint"></button>
-                    <button id="teal"></button>
-                    <button id="dark-teal"></button>
-                    <button id="light-blue"></button>
                     <button id="blue"></button>
-                    <button id="dark-blue"></button>
-                    <button id="indigo"></button>
-                    <button id="periwinkle"></button>
-                    <button id="lavender"></button>
-                    <button id="purple"></button>
                     <button id="dark-purple"></button>
-                    <button id="plum"></button>
-                    <button id="berry"></button>
-                    <button id="salmon"></button>
-                    <button id="magenta"></button>
-                    <button id="pink"></button>
                     <button id="light-pink"></button>
-                    <button id="dark-brown"></button>
-                    <button id="brown"></button>
                     <button id="light-brown"></button>
-                    <button id="eggshell"></button>
-                    <button id="black"></button>
-                    <button id="grey"></button>
-                    <button id="silver"></button>
-                    <button id="white"></button>
                 </div>
             </div>
             <button onClick={saveDesign} className="save-btn">Save Design</button>
