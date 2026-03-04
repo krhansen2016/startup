@@ -13,7 +13,7 @@ export function Community() {
         const newPost = {
             username: localStorage.getItem("userName") || "Guest",
             text,
-            image: `/saved_designs/${selectedDesign.id}.png`,
+            design: selectedDesign.design,
             profilePic: localStorage.getItem("profilePic") || "default_profile2.0.jpg",
     };
 
@@ -83,12 +83,18 @@ export function Community() {
             <h2 className="heading" id="description-header">The Community</h2>
             <div className="new-post">
                 <input value={text} onChange={(e) => setText(e.target.value)} placeholder="Make a community post..." />
-                <select value={selectedDesign?.id || ""} onChange={(e) => setSelectedDesign(userDesigns.find(d => d.id === e.target.value))}>
+                <select value={selectedDesign?.id || ""} onChange={(e) => setSelectedDesign(userDesigns.find(d => d.id === Number(e.target.value)))}>
                     {userDesigns.map(d => (
                         <option key={d.id} value={d.id}>{`Design ${d.id}`}</option>
                     ))}
                 </select>
-                <div className="preview-stack"><img src={`/saved_designs/${selectedDesign.id}.png`} alt="Selected design preview" /></div>
+                <div className="preview-stack">
+                    <img src="live_preview_empty.png" />
+                    {selectedDesign?.design.bodice && <img src={`/bodices/${selectedDesign.design.bodice}.png`} />}
+                    {selectedDesign?.design.sleeves && <img src={`/sleeves/${selectedDesign.design.sleeves}.png`} />}
+                    {selectedDesign?.design.necklines && <img src={`/necklines/${selectedDesign.design.necklines}.png`} />}
+                    {selectedDesign?.design.bottom.style && <img src={`/bottoms/${selectedDesign.design.bottom.type}/${selectedDesign.design.bottom.style}.png`} />}
+                </div>
                 <button onClick={addPost}>Post</button>
             </div>
             <div className="posts">
@@ -98,7 +104,13 @@ export function Community() {
                             <img className="profile-pic" src={post.profilePic} alt="profile" />
                             <label>{post.username}</label>
                             <div className="post-content">
-                                <img className="post-pic" src={post.image} alt="design" />
+                                <div className="preview-stack">
+                                    <img src="live_preview_empty.png" />
+                                    {post.design?.bodice && <img src={`/bodices/${post.design.bodice}.png`} />}
+                                    {post.design?.sleeves && <img src={`/sleeves/${post.design.sleeves}.png`} />}
+                                    {post.design?.necklines && <img src={`/necklines/${post.design.necklines}.png`} />}
+                                    {post.design?.bottom.style && <img src={`/bottoms/${post.design.bottom.type}/${post.design.bottom.style}.png`} />}
+                                </div>
                                 <p>{post.text}</p>
                             </div>
                         </li>
