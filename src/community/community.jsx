@@ -92,7 +92,7 @@ export function Community() {
                     <img src="live_preview_empty.png" />
                     {selectedDesign?.design.bodice && (<img src={`/bodices/${selectedDesign.design.bodice}${selectedDesign.design.color ? `/${selectedDesign.design.bodice}_${selectedDesign.design.color}.png` : `/${selectedDesign.design.bodice}.png`}`} />)}
                     {selectedDesign?.design.sleeves && (<img src={`/sleeves/${selectedDesign.design.sleeves}${selectedDesign.design.color ? `/${selectedDesign.design.sleeves}_${selectedDesign.design.color}.png` : `/${selectedDesign.design.sleeves}.png`}`} />)}
-                    {selectedDesign?.design.neckline && (<img src={`/necklines/${selectedDesign.design.neckline}${selectedDesign.design.color ? `/${selectedDesign.design.neckline}_${selectedDesign.design.color}.png` : `/${selectedDesign.design.neckline}.png`}`} />)}
+                    {selectedDesign?.design.necklines && (<img src={`/necklines/${selectedDesign.design.neckline}${selectedDesign.design.color ? `/${selectedDesign.design.neckline}_${selectedDesign.design.color}.png` : `/${selectedDesign.design.neckline}.png`}`} />)}
                     {selectedDesign?.design.bottom.style && (<img src={`/bottoms/${selectedDesign.design.bottom.type}/${selectedDesign.design.bottom.style}${selectedDesign.design.color ? `/${selectedDesign.design.bottom.style}_${selectedDesign.design.color}.png` : `/${selectedDesign.design.bottom.style}.png`}`} />)}
                 </div>
                 <button onClick={addPost}>Post</button>
