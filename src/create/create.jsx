@@ -162,13 +162,13 @@ export function Create() {
                 <label id="color-label">Colors:</label>
                 <div className="colors">
                     <button id="dark-red" onClick={() => selectColor("dark-red")}></button>
-                    <button id="red-orange"></button>
-                    <button id="yellow"></button>
-                    <button id="olive"></button>
-                    <button id="blue"></button>
-                    <button id="dark-purple"></button>
-                    <button id="light-pink"></button>
-                    <button id="light-brown"></button>
+                    <button id="red-orange" onClick={() => selectColor("red-orange")}></button>
+                    <button id="yellow" onClick={() => selectColor("yellow")}></button>
+                    <button id="olive" onClick={() => selectColor("olive")}></button>
+                    <button id="blue" onClick={() => selectColor("blue")}></button>
+                    <button id="dark-purple" onClick={() => selectColor("dark-purple")}></button>
+                    <button id="light-pink" onClick={() => selectColor("light-pink")}></button>
+                    <button id="light-brown" onClick={() => selectColor("light-brown")}></button>
                 </div>
             </div>
             <button onClick={saveDesign} className="save-btn">Save Design</button>
