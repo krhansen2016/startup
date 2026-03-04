@@ -90,10 +90,10 @@ export function Community() {
                 </select>
                 <div className="preview-stack">
                     <img src="live_preview_empty.png" />
-                    {selectedDesign?.design.bodice && <img src={`/bodices/${selectedDesign.design.bodice}.png`} />}
-                    {selectedDesign?.design.sleeves && <img src={`/sleeves/${selectedDesign.design.sleeves}.png`} />}
-                    {selectedDesign?.design.necklines && <img src={`/necklines/${selectedDesign.design.necklines}.png`} />}
-                    {selectedDesign?.design.bottom.style && <img src={`/bottoms/${selectedDesign.design.bottom.type}/${selectedDesign.design.bottom.style}.png`} />}
+                    {selectedDesign?.design.bodice && (<img src={`/bodices/${selectedDesign.design.bodice}${selectedDesign.design.color ? `/${selectedDesign.design.bodice}_${selectedDesign.design.color}.png` : `/${selectedDesign.design.bodice}.png`}`} />)}
+                    {selectedDesign?.design.sleeves && (<img src={`/sleeves/${selectedDesign.design.sleeves}${selectedDesign.design.color ? `/${selectedDesign.design.sleeves}_${selectedDesign.design.color}.png` : `/${selectedDesign.design.sleeves}.png`}`} />)}
+                    {selectedDesign?.design.neckline && (<img src={`/necklines/${selectedDesign.design.neckline}${selectedDesign.design.color ? `/${selectedDesign.design.neckline}_${selectedDesign.design.color}.png` : `/${selectedDesign.design.neckline}.png`}`} />)}
+                    {selectedDesign?.design.bottom.style && (<img src={`/bottoms/${selectedDesign.design.bottom.type}/${selectedDesign.design.bottom.style}${selectedDesign.design.color ? `/${selectedDesign.design.bottom.style}_${selectedDesign.design.color}.png` : `/${selectedDesign.design.bottom.style}.png`}`} />)}
                 </div>
                 <button onClick={addPost}>Post</button>
             </div>
@@ -106,10 +106,10 @@ export function Community() {
                             <div className="post-content">
                                 <div className="preview-stack">
                                     <img src="live_preview_empty.png" />
-                                    {post.design?.bodice && <img src={`/bodices/${post.design.bodice}.png`} />}
-                                    {post.design?.sleeves && <img src={`/sleeves/${post.design.sleeves}.png`} />}
-                                    {post.design?.necklines && <img src={`/necklines/${post.design.necklines}.png`} />}
-                                    {post.design?.bottom.style && <img src={`/bottoms/${post.design.bottom.type}/${post.design.bottom.style}.png`} />}
+                                    {post.design?.bodice && (<img src={`/bodices/${post.design.bodice}${post.design.color ? `/${post.design.bodice}_${post.design.color}.png` : `/${post.design.bodice}.png`}`} alt="bodice" />)}
+                                    {post.design?.sleeves && (<img src={`/sleeves/${post.design.sleeves}${post.design.color ? `/${post.design.sleeves}_${post.design.color}.png` : `/${post.design.sleeves}.png`}`} alt="sleeves" />)}
+                                    {post.design?.necklines && ( <img src={`/necklines/${post.design.necklines}${post.design.color ? `/${post.design.necklines}_${post.design.color}.png` : `/${post.design.necklines}.png`}`} alt="necklines"/>)}
+                                    {post.design?.bottom?.style && (<img src={`/bottoms/${post.design.bottom.type}/${post.design.bottom.style}${post.design.color ? `/${post.design.bottom.style}_${post.design.color}.png` : `/${post.design.bottom.style}.png`}`} alt="bottom" />)}
                                 </div>
                                 <p>{post.text}</p>
                             </div>
