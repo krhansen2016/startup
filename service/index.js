@@ -28,11 +28,12 @@ apiRouter.post('/post', verifyAuth, (req, res) => {
 });
 
 apiRouter.post('/auth/create', async (req, res) => {
-  if (await findUser('email', req.bodu.email)) {
+  if (await findUser('email', req.body.email)) {
     res.status(409).send({ msg: 'Existing user' });
   }
   else {
     const user = await createUser(req.body.email, req.body.password);
+    users.push(user);
     setAuthCookie(res, user.token);
     res.send({ email: user.email });
   }
@@ -60,8 +61,8 @@ apiRouter.delete('/auth/logout', async (req, res) => {
   res.status(204).end();
 });
 
-app.use(function (err, req, next) {
-  res.status(500).send({ type: err.eventNames, message: err.message });
+app.use(function (err, req, res, next) {
+  res.status(500).send({ type: err.name, message: err.message });
 });
 
 app.use((_req, res) => {
