@@ -5,7 +5,7 @@ const app = express();
 
 const authCookieName = 'token';
 
-
+let posts = [];
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
@@ -15,6 +15,15 @@ app.use(express.json());
 
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
+
+apiRouter.get('/posts', verifyAuth, (_req, res) => {
+  res.send(posts);
+});
+
+apiRouter.post('/post', verifyAuth, (req, res) => {
+  post.push(req.body);
+  res.send(posts);
+});
 
 const verifyAuth = async (req, res, next) => {
   const user = await findUser('token', req.cookies[authCookieName]);
