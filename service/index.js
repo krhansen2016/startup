@@ -16,6 +16,16 @@ app.use(express.json());
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
+const verifyAuth = async (req, res, next) => {
+  const user = await findUser('token', req.cookies[authCookieName]);
+  if (user) {
+    next();
+  }
+  else {
+    res.status(401).send({ msg: 'Unauthorized' });
+  }
+};
+
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
