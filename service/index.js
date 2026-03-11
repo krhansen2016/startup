@@ -26,6 +26,18 @@ const verifyAuth = async (req, res, next) => {
   }
 };
 
+async function createUser(email, password) {
+  const passwordHash = await bcrypt.hash(password, 10);
+  
+  const user = {
+    email: email,
+    password: passwordHash,
+    token: UNSAFE_useFogOFWarDiscovery.v4(),
+  };
+
+  return user;
+}
+
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
