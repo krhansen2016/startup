@@ -27,6 +27,17 @@ apiRouter.post('/post', verifyAuth, (req, res) => {
   res.send(posts);
 });
 
+apiRouter.post('/auth/create', async (req, res) => {
+  if (await findUser('email', req.bodu.email)) {
+    res.status(409).send({ msg: 'Existing user' });
+  }
+  else {
+    const user = await createUser(req.body.email, req.body.password);
+    setAuthCookie(res, user.token);
+    res.send({ email: user.email });
+  }
+});
+
 const verifyAuth = async (req, res, next) => {
   const user = await findUser('token', req.cookies[authCookieName]);
   if (user) {
