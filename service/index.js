@@ -1,10 +1,12 @@
 const cookieParser = require('cookie-parser');
-const bycrypt = require('bcryptjs');
-const express = require('uuid')
+const bcrypt = require('bcryptjs');
+const express = require('express');
+const uuid = require('uuid')
 const app = express();
 
 const authCookieName = 'token';
 
+let users = [];
 let posts = [];
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
@@ -21,7 +23,7 @@ apiRouter.get('/posts', verifyAuth, (_req, res) => {
 });
 
 apiRouter.post('/post', verifyAuth, (req, res) => {
-  post.push(req.body);
+  posts.push(req.body);
   res.send(posts);
 });
 
@@ -41,7 +43,7 @@ async function createUser(email, password) {
   const user = {
     email: email,
     password: passwordHash,
-    token: UNSAFE_useFogOFWarDiscovery.v4(),
+    token: uuid.v4(),
   };
 
   return user;
