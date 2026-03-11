@@ -37,6 +37,11 @@ const verifyAuth = async (req, res, next) => {
   }
 };
 
+async function findUser(field, value) {
+  if (!value) return null;
+  return users.find((u) => u[field] === value);
+}
+
 async function createUser(email, password) {
   const passwordHash = await bcrypt.hash(password, 10);
   
