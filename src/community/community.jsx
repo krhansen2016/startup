@@ -112,6 +112,13 @@ export function Community() {
                     {selectedDesign?.design.necklines && (<img src={`/necklines/${selectedDesign.design.neckline}${selectedDesign.design.color ? `/${selectedDesign.design.neckline}_${selectedDesign.design.color}.png` : `/${selectedDesign.design.neckline}.png`}`} />)}
                     {selectedDesign?.design.bottom.style && (<img src={`/bottoms/${selectedDesign.design.bottom.type}/${selectedDesign.design.bottom.style}${selectedDesign.design.color ? `/${selectedDesign.design.bottom.style}_${selectedDesign.design.color}.png` : `/${selectedDesign.design.bottom.style}.png`}`} />)}
                 </div>
+                <select value={selectedGroup} onChange={e => setSelectedGroup(e.target.value)}>
+                    {emojiGroups.map(group => (<option key={group} value={group}>{group}</option>))}
+                </select>
+                <select value={selectedEmoji} onChange={e => setSelectedEmoji(e.target.value)}>
+                    <option value="">None</option>
+                    {emojis.map(emoji => (<option key={emoji.unicode[0]} value={emoji.htmlCode[0]}>{emoji.name} {emoji.htmlCode[0]}</option>))}
+                </select>
                 <button onClick={addPost}>Post</button>
             </div>
             <div className="posts">
