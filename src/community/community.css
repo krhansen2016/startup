@@ -121,3 +121,16 @@
 .new-post button:hover {
     transform: scale(0.95);
 }
+
+.emoji-picker {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.emoji-picker select {
+    flex: 1;
+    padding: 5px;
+    border-radius: 8px;
+    border: 2px solid black;
+}
