@@ -121,19 +121,3 @@
 .new-post button:hover {
     transform: scale(0.95);
 }
-
-.post-reactions {
-    display: flex;
-    gap: 8px;
-    margin-top: 5px;
-    flex-wrap: wrap;
-}
-
-.reaction-btn {
-    cursor: pointer;
-    border: 1 px solid black;
-    border-radius: 8px;
-    padding: 2px 6px;
-    background-color: #C6E0FF;
-    font-size: 14px;
-}
