@@ -17,7 +17,7 @@ export function Community() {
         if (!selectedDesign) return alert("You must have at least one saved design!");
         const newPost = {
             username: localStorage.getItem("userName") || "Guest",
-            text: text + (selectedEmoji ? `${selectedEmoji}` : ""),
+            text: text + (selectedEmoji ? ` ${selectedEmoji}` : ""),
             design: selectedDesign.design,
             profilePic: localStorage.getItem("profilePic") || "default_profile2.0.jpg",
         };
@@ -40,7 +40,7 @@ export function Community() {
         if (!selectedGroup) return;
         fetch(`/api/emojis/group/${selectedGroup}`).then(res => res.json()).then(data => setEmojis(data)).catch(err => console.error(err));
     }, [selectedGroup]);
-    
+
     useEffect(() => {
         const storedPosts = localStorage.getItem("communityPosts");
 
@@ -101,6 +101,15 @@ export function Community() {
             <h2 className="heading" id="description-header">The Community</h2>
             <div className="new-post">
                 <input value={text} onChange={(e) => setText(e.target.value)} placeholder="Make a community post..." />
+                <div className="emoji-picker">
+                    <select value={selectedGroup} onChange={e => setSelectedGroup(e.target.value)}>
+                        {emojiGroups.map(group => (<option key={group} value={group}>{group}</option>))}
+                    </select>
+                    <select value={selectedEmoji} onChange={e => setSelectedEmoji(e.target.value)}>
+                        <option value="">None</option>
+                        {emojis.map(emoji => (<option key={emoji.unicode[0]} value={emoji.htmlCode[0]}>{emoji.name} {emoji.htmlCode[0]}</option>))}
+                    </select>
+                </div>
                 <select value={selectedDesign?.id || ""} onChange={(e) => setSelectedDesign(userDesigns.find(d => d.id === Number(e.target.value)))}>
                     {userDesigns.map(d => (
                         <option key={d.id} value={d.id}>{`Design ${d.id}`}</option>
@@ -113,13 +122,6 @@ export function Community() {
                     {selectedDesign?.design.necklines && (<img src={`/necklines/${selectedDesign.design.neckline}${selectedDesign.design.color ? `/${selectedDesign.design.neckline}_${selectedDesign.design.color}.png` : `/${selectedDesign.design.neckline}.png`}`} />)}
                     {selectedDesign?.design.bottom.style && (<img src={`/bottoms/${selectedDesign.design.bottom.type}/${selectedDesign.design.bottom.style}${selectedDesign.design.color ? `/${selectedDesign.design.bottom.style}_${selectedDesign.design.color}.png` : `/${selectedDesign.design.bottom.style}.png`}`} />)}
                 </div>
-                <select value={selectedGroup} onChange={e => setSelectedGroup(e.target.value)}>
-                    {emojiGroups.map(group => (<option key={group} value={group}>{group}</option>))}
-                </select>
-                <select value={selectedEmoji} onChange={e => setSelectedEmoji(e.target.value)}>
-                    <option value="">None</option>
-                    {emojis.map(emoji => (<option key={emoji.unicode[0]} value={emoji.htmlCode[0]}>{emoji.name} {emoji.htmlCode[0]}</option>))}
-                </select>
                 <button onClick={addPost}>Post</button>
             </div>
             <div className="posts">
