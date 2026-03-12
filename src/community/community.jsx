@@ -8,6 +8,11 @@ export function Community() {
     const userDesigns = JSON.parse(localStorage.getItem("userDesigns")) || [];
     const [selectedDesign, setSelectedDesign] = useState(userDesigns.length > 0 ? userDesigns[0] : null);
 
+    const [emojiGroups, setEmojiGroups] = useState([]);
+    const [selectedGroup, setSelectedGroup] = useState("");
+    const [emojis, setEmojis] = useState([]);
+    const [selectedEmoji, setSelectedEmoji] = useState("");
+
     function addPost() {
         if (!selectedDesign) return alert("You must have at least one saved design!");
         const newPost = {
@@ -15,14 +20,26 @@ export function Community() {
             text,
             design: selectedDesign.design,
             profilePic: localStorage.getItem("profilePic") || "default_profile2.0.jpg",
-    };
+        };
 
-    const updatedPosts = [newPost, ...posts].slice(0, 10);
-    setPosts(updatedPosts);
-    localStorage.setItem("communityPosts", JSON.stringify(updatedPosts));
-    setText("");
-}
+        const updatedPosts = [newPost, ...posts].slice(0, 10);
+        setPosts(updatedPosts);
+        localStorage.setItem("communityPosts", JSON.stringify(updatedPosts));
+        setText("");
+    }
 
+    useEffect(() => {
+        fetch("/api/emoji-groups").then(res => res.json()).then(groups => {
+            setEmojiGroups(groups);
+            setSelectedGroup(groups[0]);
+        });
+    }, []);
+
+    useEffect(() => {
+        if (!selectedGroup) return;
+        fetch(`/api/emojis/group/${selectedGroup}`).then(res => res.json()).then(data => setEmojis(data)).catch(err => console.error(err));
+    }, [selectedGroup]);
+    
     useEffect(() => {
         const storedPosts = localStorage.getItem("communityPosts");
 
@@ -32,17 +49,17 @@ export function Community() {
         else {
             const mockPosts = [
                 {
-                username: "DesignQueen",
-                text: "My newest outfit!",
-                image: "default_design.jpg",
-                profilePic: "default_profile2.0.jpg"
-            },
-            {
-                username: "ThreadMaster",
-                text: "Trying a new style today.",
-                image: "default_design.jpg",
-                profilePic: "default_profile2.0.jpg"
-            }
+                    username: "DesignQueen",
+                    text: "My newest outfit!",
+                    image: "default_design.jpg",
+                    profilePic: "default_profile2.0.jpg"
+                },
+                {
+                    username: "ThreadMaster",
+                    text: "Trying a new style today.",
+                    image: "default_design.jpg",
+                    profilePic: "default_profile2.0.jpg"
+                }
             ];
 
             setPosts(mockPosts);
@@ -63,7 +80,7 @@ export function Community() {
 
             const newPost = {
                 username: randomUser,
-                text: randomMessages[ Math.floor(Math.random() * randomMessages.length)],
+                text: randomMessages[Math.floor(Math.random() * randomMessages.length)],
                 image: "default_design.jpg",
                 profilePic: "default_profile2.0.jpg"
             };
@@ -108,7 +125,7 @@ export function Community() {
                                     <img src="live_preview_empty.png" />
                                     {post.design?.bodice && (<img src={`/bodices/${post.design.bodice}${post.design.color ? `/${post.design.bodice}_${post.design.color}.png` : `/${post.design.bodice}.png`}`} alt="bodice" />)}
                                     {post.design?.sleeves && (<img src={`/sleeves/${post.design.sleeves}${post.design.color ? `/${post.design.sleeves}_${post.design.color}.png` : `/${post.design.sleeves}.png`}`} alt="sleeves" />)}
-                                    {post.design?.necklines && ( <img src={`/necklines/${post.design.necklines}${post.design.color ? `/${post.design.necklines}_${post.design.color}.png` : `/${post.design.necklines}.png`}`} alt="necklines"/>)}
+                                    {post.design?.necklines && (<img src={`/necklines/${post.design.necklines}${post.design.color ? `/${post.design.necklines}_${post.design.color}.png` : `/${post.design.necklines}.png`}`} alt="necklines" />)}
                                     {post.design?.bottom?.style && (<img src={`/bottoms/${post.design.bottom.type}/${post.design.bottom.style}${post.design.color ? `/${post.design.bottom.style}_${post.design.color}.png` : `/${post.design.bottom.style}.png`}`} alt="bottom" />)}
                                 </div>
                                 <p>{post.text}</p>
