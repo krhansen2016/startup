@@ -17,7 +17,7 @@ export function Community() {
         if (!selectedDesign) return alert("You must have at least one saved design!");
         const newPost = {
             username: localStorage.getItem("userName") || "Guest",
-            text,
+            text: text + (selectedEmoji ? `${selectedEmoji}` : ""),
             design: selectedDesign.design,
             profilePic: localStorage.getItem("profilePic") || "default_profile2.0.jpg",
         };
@@ -26,6 +26,7 @@ export function Community() {
         setPosts(updatedPosts);
         localStorage.setItem("communityPosts", JSON.stringify(updatedPosts));
         setText("");
+        setSelectedEmoji("");
     }
 
     useEffect(() => {
