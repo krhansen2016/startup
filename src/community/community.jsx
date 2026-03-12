@@ -13,20 +13,40 @@ export function Community() {
     const [emojis, setEmojis] = useState([]);
     const [selectedEmoji, setSelectedEmoji] = useState("");
 
+    function addReaction(postIndex, emoji) {
+        setPosts(prevPosts => {
+            const updated = [...prevPosts];
+            const post = updated[postIndex];
+
+            if (!post.reactions) post.reactions = [];
+
+            const existing = post.reactions.find(r => r.emoji === emoji);
+            if (existing) {
+                existing.count += 1;
+            }
+            else {
+                post.reactions.push({ emoji, count: 1 });
+            }
+
+            localStorage.setItem("communityPosts", JSON.stringify(updated));
+            return updated;
+        });
+    }
+
     function addPost() {
         if (!selectedDesign) return alert("You must have at least one saved design!");
         const newPost = {
             username: localStorage.getItem("userName") || "Guest",
-            text: text + (selectedEmoji ? ` ${selectedEmoji}` : ""),
+            text: text,
             design: selectedDesign.design,
             profilePic: localStorage.getItem("profilePic") || "default_profile2.0.jpg",
+            reactions: []
         };
 
         const updatedPosts = [newPost, ...posts].slice(0, 10);
         setPosts(updatedPosts);
         localStorage.setItem("communityPosts", JSON.stringify(updatedPosts));
         setText("");
-        setSelectedEmoji("");
     }
 
     useEffect(() => {
@@ -53,13 +73,15 @@ export function Community() {
                     username: "DesignQueen",
                     text: "My newest outfit!",
                     image: "default_design.jpg",
-                    profilePic: "default_profile2.0.jpg"
+                    profilePic: "default_profile2.0.jpg",
+                    reactions: []
                 },
                 {
                     username: "ThreadMaster",
                     text: "Trying a new style today.",
                     image: "default_design.jpg",
-                    profilePic: "default_profile2.0.jpg"
+                    profilePic: "default_profile2.0.jpg",
+                    reactions: []
                 }
             ];
 
@@ -101,15 +123,6 @@ export function Community() {
             <h2 className="heading" id="description-header">The Community</h2>
             <div className="new-post">
                 <input value={text} onChange={(e) => setText(e.target.value)} placeholder="Make a community post..." />
-                <div className="emoji-picker">
-                    <select value={selectedGroup} onChange={e => setSelectedGroup(e.target.value)}>
-                        {emojiGroups.map(group => (<option key={group} value={group}>{group}</option>))}
-                    </select>
-                    <select value={selectedEmoji} onChange={e => setSelectedEmoji(e.target.value)}>
-                        <option value="">None</option>
-                        {emojis.map(emoji => (<option key={emoji.unicode[0]} value={emoji.htmlCode[0]}>{emoji.name} {emoji.htmlCode[0]}</option>))}
-                    </select>
-                </div>
                 <select value={selectedDesign?.id || ""} onChange={(e) => setSelectedDesign(userDesigns.find(d => d.id === Number(e.target.value)))}>
                     {userDesigns.map(d => (
                         <option key={d.id} value={d.id}>{`Design ${d.id}`}</option>
@@ -139,6 +152,14 @@ export function Community() {
                                     {post.design?.bottom?.style && (<img src={`/bottoms/${post.design.bottom.type}/${post.design.bottom.style}${post.design.color ? `/${post.design.bottom.style}_${post.design.color}.png` : `/${post.design.bottom.style}.png`}`} alt="bottom" />)}
                                 </div>
                                 <p>{post.text}</p>
+                                <div className="post-reactions">
+                                    {post.reactions?.map((r, i) => (<button key={i} onClick={() => addReaction(index, r.emoji)} className="reaction-btn">{r.emoji} {r.count}</button>))}
+                                    <select value={selectedEmoji} onChange={e => setSelectedEmoji(e.target.value)}>
+                                        <option value="">React...</option>
+                                        {emojis.map(emoji => (<option key={emoji.unicode[0]} value={emoji.htmlCode[0]}>{emoji.name} {emoji.htmlCode[0]}</option>))}
+                                    </select>
+                                    <button onClick={() => selectedEmoji && addReaction(index, selectedEmoji)}>Add Reaction</button>
+                                </div>
                             </div>
                         </li>
                     ))}
