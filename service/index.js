@@ -1,9 +1,8 @@
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const express = require('express');
-const uuid = require('uuid')
+const { v4: uuidv4 } = require('uuid')
 const app = express();
-const fetch = require('node-fetch');
 
 const authCookieName = 'token';
 
@@ -40,7 +39,7 @@ async function createUser(email, password) {
   const user = {
     email: email,
     password: passwordHash,
-    token: uuid.v4(),
+    token: uuidv4(),
   };
 
   return user;
@@ -80,7 +79,7 @@ apiRouter.post('/auth/login', async (req, res) => {
   const user = await findUser('email', req.body.email)
   if (user) {
     if (await bcrypt.compare(req.body.password, user.password)) {
-      user.token = uuid.v4();
+      user.token = uuidv4();
       setAuthCookie(res, user.token);
       res.send({ email: user.email });
       return;
@@ -98,24 +97,24 @@ apiRouter.delete('/auth/logout', async (req, res) => {
   res.status(204).end();
 });
 
-apiRouter.get('/emojis/gorup', verifyAuth, async (req, res) => {
+apiRouter.get('/emojis/group/:group', verifyAuth, async (req, res) => {
   const group = req.params.group;
-  try {
-    const response = await fetch(`https://emojihub.yurace.pro/api/all/group/${group}`);
-    const data = await response.json();
-    res.send(data);
-  }
-  catch (err) {
-    console.error(err);
-    res.status(500).send({ msg: 'Failed to fetch the emojis' });
-  }
+  const response = await fetch(`https://emojihub.yurace.pro/api/all/group/${group}`);
+  const data = await response.json();
+  res.send(data);
 });
 
 apiRouter.get('/emoji-groups', (_req, res) => {
   res.send([
-    "smileys-and-people",
-    "animals-and-nature",
-    "food-and-drink",
+    "face-positive",
+    "face-neutral",
+    "face-negative",
+    "body",
+    "cat-face",
+    "animal-bird",
+    "animal-mammal",
+    "food-fruit",
+    "food-sweet",
     "travel-and-places",
     "activities",
     "objects",
