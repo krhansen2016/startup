@@ -98,6 +98,32 @@ apiRouter.delete('/auth/logout', async (req, res) => {
   res.status(204).end();
 });
 
+apiRouter.get('/emojis/gorup', verifyAuth, async (req, res) => {
+  const group = req.params.group;
+  try {
+    const response = await fetch(`https://emojihub.yurace.pro/api/all/group/${group}`);
+    const data = await response.json();
+    res.send(data);
+  }
+  catch (err) {
+    console.error(err);
+    res.status(500).send({ msg: 'Failed to fetch the emojis' });
+  }
+});
+
+apiRouter.get('/emoji-groups', (_req, res) => {
+  res.send([
+    "smileys-and-people",
+    "animals-and-nature",
+    "food-and-drink",
+    "travel-and-places",
+    "activities",
+    "objects",
+    "symbols",
+    "flags"
+  ]);
+});
+
 app.use(function (err, req, res, next) {
   res.status(500).send({ type: err.name, message: err.message });
 });
