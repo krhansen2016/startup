@@ -97,30 +97,31 @@ apiRouter.delete('/auth/logout', async (req, res) => {
   res.status(204).end();
 });
 
-apiRouter.get('/emojis/group/:group', verifyAuth, async (req, res) => {
-  const group = req.params.group;
-  const response = await fetch(`https://emojihub.yurace.pro/api/all/group/${group}`);
-  const data = await response.json();
-  res.send(data);
+apiRouter.get('/emoji-groups', async (_req, res) => {
+  try {
+    const response = await fetch('https://emojihub.yurace.pro/api/groups');
+    const groups = await response.json();
+    res.send(groups);
+  } catch (err) {
+    console.error("Emoji group fetch failed:", err);
+    res.status(500).send({ error: "Failed to fetch emoji groups" });
+  }
 });
 
-apiRouter.get('/emoji-groups', (_req, res) => {
-  res.send([
-    "face-positive",
-    "face-neutral",
-    "face-negative",
-    "body",
-    "cat-face",
-    "animal-bird",
-    "animal-mammal",
-    "food-fruit",
-    "food-sweet",
-    "travel-and-places",
-    "activities",
-    "objects",
-    "symbols",
-    "flags"
-  ]);
+apiRouter.get('/emojis/group/:group', async (req, res) => {
+  try {
+    const group = req.params.group;
+
+    const response = await fetch(
+      `https://emojihub.yurace.pro/api/all/group/${encodeURIComponent(group)}`
+    );
+
+    const data = await response.json();
+    res.send(data);
+  } catch (err) {
+    console.error("Emoji fetch failed:", err);
+    res.status(500).send({ error: "Failed to fetch emojis" });
+  }
 });
 
 app.use(function (err, req, res, next) {

@@ -58,7 +58,9 @@ export function Community() {
 
     useEffect(() => {
         if (!selectedGroup) return;
-        fetch(`/api/emojis/group/${selectedGroup}`).then(res => res.json()).then(data => setEmojis(data)).catch(err => console.error(err));
+        console.log("Selected group:", selectedGroup)
+        fetch(`/api/emojis/group/${selectedGroup}`).then(res => res.json()).then(data => {
+            console.log("Emoji data returned:", data); setEmojis(data);}).catch(err => console.error(err));
     }, [selectedGroup]);
 
     useEffect(() => {
@@ -156,7 +158,14 @@ export function Community() {
                                     {post.reactions?.map((r, i) => (<button key={i} onClick={() => addReaction(index, r.emoji)} className="reaction-btn">{r.emoji} {r.count}</button>))}
                                     <select value={selectedEmoji} onChange={e => setSelectedEmoji(e.target.value)}>
                                         <option value="">React...</option>
-                                        {emojis.map(emoji => (<option key={emoji.unicode[0]} value={emoji.htmlCode[0]}>{emoji.name} {emoji.htmlCode[0]}</option>))}
+                                        {emojis.map(emoji => {
+                                            const code = parseInt(emoji.unicode[0].replace("U+", ""), 16);
+                                            const symbol = String.fromCodePoint(code);
+
+                                            return (
+                                                <option key={emoji.unicode[0]} value={symbol}>{symbol} {emoji.name}</option>
+                                            );
+                                        })}
                                     </select>
                                     <button onClick={() => selectedEmoji && addReaction(index, selectedEmoji)}>Add Reaction</button>
                                 </div>
