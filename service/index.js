@@ -108,12 +108,12 @@ apiRouter.get('/emoji-groups', async (_req, res) => {
   }
 });
 
-apiRouter.get('/emojis/group/:group', async (req, res) => {
+apiRouter.get('/emojis/category/:category', async (req, res) => {
   try {
-    const group = req.params.group;
+    const category = req.params.category;
 
     const response = await fetch(
-      `https://emojihub.yurace.pro/api/all/group/${encodeURIComponent(group)}`
+      `https://emojihub.yurace.pro/api/all/category/${encodeURIComponent(category)}`
     );
 
     const data = await response.json();

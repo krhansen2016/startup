@@ -50,18 +50,20 @@ export function Community() {
     }
 
     useEffect(() => {
-        fetch("/api/emoji-groups").then(res => res.json()).then(groups => {
+        fetch("/api/emoji-groups")
+        .then(res => res.json())
+        .then(groups => {
             setEmojiGroups(groups);
             setSelectedGroup(groups[0]);
         });
     }, []);
 
     useEffect(() => {
-        if (!selectedGroup) return;
-        console.log("Selected group:", selectedGroup)
-        fetch(`/api/emojis/group/${selectedGroup}`).then(res => res.json()).then(data => {
-            console.log("Emoji data returned:", data); setEmojis(data);}).catch(err => console.error(err));
-    }, [selectedGroup]);
+        fetch(`/api/emojis/category/smileys-and-people`)
+            .then(res => res.json())
+            .then(data => setEmojis(data))
+            .catch(err => console.error(err));
+    }, []);
 
     useEffect(() => {
         const storedPosts = localStorage.getItem("communityPosts");
