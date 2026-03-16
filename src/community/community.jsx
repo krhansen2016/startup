@@ -163,7 +163,7 @@ export function Community() {
                                             {selectedEmoji || "Reactions"}
                                         </button>
                                         <div className="emoji-menu">
-                                            {emojis.map(emoji => {
+                                            {emojis.slice(0, 72).map(emoji => {
                                                 const symbol = String.fromCodePoint(...emoji.unicode.map(u => parseInt(u.replace("U+", ""), 16)));
 
                                                 return (
