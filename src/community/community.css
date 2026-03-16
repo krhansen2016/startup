@@ -121,3 +121,41 @@
 .new-post button:hover {
     transform: scale(0.95);
 }
+
+.emoji-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.emoji-button {
+  padding: 5px 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.emoji-menu {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 5px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  border: 1px solid #ccc;
+  padding: 5px;
+  max-height: 200px; 
+  overflow-y: auto;
+  z-index: 10;
+  display: none;
+}
+
+.emoji-dropdown:hover .emoji-menu {
+  display: grid;
+}
+
+.emoji-item {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}

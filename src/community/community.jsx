@@ -51,11 +51,11 @@ export function Community() {
 
     useEffect(() => {
         fetch("/api/emoji-groups")
-        .then(res => res.json())
-        .then(groups => {
-            setEmojiGroups(groups);
-            setSelectedGroup(groups[0]);
-        });
+            .then(res => res.json())
+            .then(groups => {
+                setEmojiGroups(groups);
+                setSelectedGroup(groups[0]);
+            });
     }, []);
 
     useEffect(() => {
@@ -158,18 +158,27 @@ export function Community() {
                                 <p>{post.text}</p>
                                 <div className="post-reactions">
                                     {post.reactions?.map((r, i) => (<button key={i} onClick={() => addReaction(index, r.emoji)} className="reaction-btn">{r.emoji} {r.count}</button>))}
-                                    <select value={selectedEmoji} onChange={e => setSelectedEmoji(e.target.value)}>
-                                        <option value="">React...</option>
-                                        {emojis.map(emoji => {
-                                            const code = parseInt(emoji.unicode[0].replace("U+", ""), 16);
-                                            const symbol = String.fromCodePoint(code);
+                                    <div className="emoji-dropdown">
+                                        <button className="emoji-button">
+                                            {selectedEmoji || "Reactions"}
+                                        </button>
+                                        <div className="emoji-menu">
+                                            {emojis.map(emoji => {
+                                                const symbol = String.fromCodePoint(...emoji.unicode.map(u => parseInt(u.replace("U+", ""), 16)));
 
-                                            return (
-                                                <option key={emoji.unicode[0]} value={symbol}>{symbol} {emoji.name}</option>
-                                            );
-                                        })}
-                                    </select>
-                                    <button onClick={() => selectedEmoji && addReaction(index, selectedEmoji)}>Add Reaction</button>
+                                                return (
+                                                    <button
+                                                        key={emoji.unicode[0]}
+                                                        className="emoji-item"
+                                                        onClick={() => setSelectedEmoji(symbol)}
+                                                    >
+                                                        {symbol}
+                                                    </button>
+                                                );
+                                            })}
+                                        </div>
+                                    </div>
+                                    <button onClick={() => selectedEmoji && addReaction(index, selectedEmoji)}>React!</button>
                                 </div>
                             </div>
                         </li>
