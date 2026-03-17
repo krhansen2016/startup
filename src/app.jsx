@@ -28,7 +28,7 @@ export default function App() {
                 </header>
 
                 <Routes>
-                    <Route path="/" element={<Login userName={userName} authState={authState} onAuthChange={handleAuthChange}/>} />
+                    <Route path="/" element={<Login userName={userName} authState={authState} onAuthChange={handleAuthChange} />} />
                     <Route path="/create" element={<Create />} />
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/community" element={<Community />} />
@@ -39,14 +39,15 @@ export default function App() {
                     <div>Created by: Kendyl Hansen</div>
                     <div>Find my GitHub Repository <a id="github-link" href="https://github.com/krhansen2016/startup">here</a>!</div>
                     <div>
-                        <nav>
-                            <menu>
-                                <li><NavLink to="/" className="btn w-100">Login</NavLink></li>
-                                <li><NavLink to="/create" className="btn w-100">Create</NavLink></li>
-                                <li><NavLink to="/profile" className="btn w-100">Profile</NavLink></li>
-                                <li><NavLink to="/community" className="btn w-100">Community</NavLink></li>
-                            </menu>
-                        </nav>
+                        {authState === AuthState.Authenticated && (
+                            <nav>
+                                <menu>
+                                    <li><NavLink to="/create" className="btn w-100">Create</NavLink></li>
+                                    <li><NavLink to="/profile" className="btn w-100">Profile</NavLink></li>
+                                    <li><NavLink to="/community" className="btn w-100">Community</NavLink></li>
+                                </menu>
+                            </nav>
+                        )}
                     </div>
                 </footer>
             </div>
