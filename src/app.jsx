@@ -33,19 +33,21 @@ export default function App() {
         <BrowserRouter>
             <div className="app">
                 <header>
-                    <h1 className="heading" id="main-header">Concept Threads</h1>
+                    <div className="top-header">
+                        <h1 className="heading" id="main-header">Concept Threads</h1>
 
-                    {authState === AuthState.Authenticated && (
-                        <button onClick={handleLogout} className="logout-btn">Logout</button>
-                    )}
+                        {authState === AuthState.Authenticated && (
+                            <button onClick={handleLogout} className="logout-btn">Logout</button>
+                        )}
+                    </div>
                     <hr />
                 </header>
 
                 <Routes>
                     <Route path="/" element={<Login userName={userName} authState={authState} onAuthChange={handleAuthChange} />} />
                     <Route path="/create" element={<Create authState={authState} />} />
-                    <Route path="/profile" element={<Profile authState={authState}/>} />
-                    <Route path="/community" element={<Community authState={authState}/>} />
+                    <Route path="/profile" element={<Profile authState={authState} />} />
+                    <Route path="/community" element={<Community authState={authState} />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
 

@@ -10,17 +10,17 @@
 }
 
 .heading {
-    font-family: 'Hachi Maru Pop';
+  font-family: 'Hachi Maru Pop';
 }
 
 #description-header {
-    text-align: center;
-    font-size: 25px;
-    margin-top: 15px;
-    margin-bottom: 30px;
-    text-decoration: underline;
-    text-underline-offset: 6px;
-    text-decoration-thickness: 2px;
+  text-align: center;
+  font-size: 25px;
+  margin-top: 15px;
+  margin-bottom: 30px;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 2px;
 }
 
 footer {
@@ -32,12 +32,12 @@ footer {
 
 }
 
-header h1{
+header h1 {
   font-size: 35px;
   margin: 10px;
 }
 
-header hr{
+header hr {
   border: none;
   height: 2px;
   background-color: black;
@@ -86,4 +86,28 @@ main {
 
 .nav .btn:hover {
   background-color: #FA4C4F;
+}
+
+.top-header {
+  display: flex;
+  justify-content: space-between;
+  width: 95%;
+}
+
+.logout-btn {
+  font-family: 'Lexend';
+  cursor: pointer;
+  font-size: 18px;
+  background-color: #C6E0FF;
+  border-radius: 25px;
+  border: 3px solid black;
+  height: 50px;
+  margin-top: 15px;
+  width: 100px;
+  transition: transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, .2);
+}
+
+.logout-btn:hover {
+  transform: scale(0.95);
 }
