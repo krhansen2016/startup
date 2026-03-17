@@ -1,21 +1,35 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { MessageDialog } from './messageDialog';
+import './login.css'
 
-export function Authenticated({ userName, onLogout }) {
-    const navigate = useNavigate();
+export function Authenticated(props) {
+    const [displayError, setDisplayError] = useState(null);
 
-    function logout() {
-        fetch("/api/auth/logout", { method: "DELETE" }).finally(() => {
-            localStorage.removeItem("userName");
-            onLogout();
-        });
+    async function logout() {
+        try {
+            await fetch('/api/auth/logout', { method: 'delete' });
+            localStorage.removeItem('userName');
+            props.onLogout();
+        } catch (err) {
+            setDisplayError('⚠ Logout failed.');
+        }
     }
 
     return (
-        <div>
-            <div>Welcome, {userName}</div>
-            <button onClick={() => navigate("/create")}>Go to Create</button>
-            <button onClick={logout}>Logout</button>
+        <div className="login-box">
+            <h1 className="heading">Welcome, {props.userName}!</h1>
+
+            <div className="user-box">
+                <p>You are logged in.</p>
+            </div>
+
+            <div className="buttons">
+                <button type="button" onClick={logout}>
+                    Logout
+                </button>
+            </div>
+
+            {displayError && <MessageDialog message={displayError} onHide={() => setDisplayError(null)} />}
         </div>
     );
 }

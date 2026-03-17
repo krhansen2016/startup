@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./app.css";
 import "./login/login.css";
@@ -8,8 +8,17 @@ import { Login } from "./login/login";
 import { Create } from "./create/create"
 import { Profile } from "./profile/profile"
 import { Community } from "./community/community"
+import { AuthState } from "./login/authState";
 
 export default function App() {
+    const [userName, setUserName] = useState(localStorage.getItem("userName") || "");
+    const [authState, setAuthState] = useState(userName ? AuthState.Authenticated : AuthState.Unauthenticated);
+
+    function handleAuthChange(user, state) {
+        setUserName(user);
+        setAuthState(state);
+    }
+
     return (
         <BrowserRouter>
             <div className="app">
@@ -19,11 +28,11 @@ export default function App() {
                 </header>
 
                 <Routes>
-                    <Route path="/" element={<Login />} exact />
-                    <Route path="/create" element={<Create />} exact />
-                    <Route path="/profile" element={<Profile />} exact />
-                    <Route path="/community" element={<Community />} exact />
-                    <Route path="*" element={<NotFound />} exact />
+                    <Route path="/" element={<Login userName={userName} authState={authState} onAuthChange={handleAuthChange}/>} />
+                    <Route path="/create" element={<Create />} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/community" element={<Community />} />
+                    <Route path="*" element={<NotFound />} />
                 </Routes>
 
                 <footer className="nav">
