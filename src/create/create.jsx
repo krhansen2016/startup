@@ -180,7 +180,9 @@ export function Create({ authState }) {
                     <button id="light-brown" onClick={() => selectColor("light-brown")}></button>
                 </div>
             </div>
-            <button onClick={saveDesign} className="save-btn">Save Design</button>
+            <div className="save-design">
+                <button onClick={saveDesign} className="save-btn">Save Design</button>
+            </div>
         </main>
     )
 }
