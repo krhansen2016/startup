@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthState } from "../login/authState";
 import "./community.css";
 
-export function Community() {
+export function Community({ authState }) {
 
     const [posts, setPosts] = useState([]);
     const [text, setText] = useState("");
@@ -12,6 +14,14 @@ export function Community() {
     const [selectedGroup, setSelectedGroup] = useState("");
     const [emojis, setEmojis] = useState([]);
     const [selectedEmoji, setSelectedEmoji] = useState("");
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (authState !== AuthState.Authenticated) {
+            navigate("/");
+        }
+    }, [authState, navigate]);
 
     function addReaction(postIndex, emoji) {
         setPosts(prevPosts => {
@@ -136,7 +146,7 @@ export function Community() {
                     <img src="live_preview_empty.png" />
                     {selectedDesign?.design.bodice && (<img src={`/bodices/${selectedDesign.design.bodice}${selectedDesign.design.color ? `/${selectedDesign.design.bodice}_${selectedDesign.design.color}.png` : `/${selectedDesign.design.bodice}.png`}`} />)}
                     {selectedDesign?.design.sleeves && (<img src={`/sleeves/${selectedDesign.design.sleeves}${selectedDesign.design.color ? `/${selectedDesign.design.sleeves}_${selectedDesign.design.color}.png` : `/${selectedDesign.design.sleeves}.png`}`} />)}
-                    {selectedDesign?.design.necklines && (<img src={`/necklines/${selectedDesign.design.neckline}${selectedDesign.design.color ? `/${selectedDesign.design.neckline}_${selectedDesign.design.color}.png` : `/${selectedDesign.design.neckline}.png`}`} />)}
+                    {selectedDesign?.design.necklines && (<img src={`/necklines/${selectedDesign.design.necklines}${selectedDesign.design.color ? `/${selectedDesign.design.necklines}_${selectedDesign.design.color}.png` : `/${selectedDesign.design.necklines}.png`}`} />)}
                     {selectedDesign?.design.bottom.style && (<img src={`/bottoms/${selectedDesign.design.bottom.type}/${selectedDesign.design.bottom.style}${selectedDesign.design.color ? `/${selectedDesign.design.bottom.style}_${selectedDesign.design.color}.png` : `/${selectedDesign.design.bottom.style}.png`}`} />)}
                 </div>
                 <button onClick={addPost}>Post</button>

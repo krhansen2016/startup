@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthState } from "../login/authState";
 import "./create.css";
 
-export function Create() {
+export function Create({ authState }) {
     const [openMenus, setOpenMenus] = useState({
         bodice: false,
         necklines: false,
@@ -21,16 +23,24 @@ export function Create() {
         color: "",
     });
 
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (authState !== AuthState.Authenticated) {
+            navigate("/");
+        }
+    }, [authState, navigate]);
+
     function selectColor(color) {
-        setDesign(prev => ({...prev, color }));
+        setDesign(prev => ({ ...prev, color }));
     }
 
     function toggleMenu(menuName) {
-        setOpenMenus(prev => ({...prev, [menuName]: !prev[menuName],}));
+        setOpenMenus(prev => ({ ...prev, [menuName]: !prev[menuName], }));
     }
 
     function selectOption(category, value) {
-        setDesign({...design, [category]: value,});
+        setDesign({ ...design, [category]: value, });
         setOpenMenus({
             bodice: false,
             necklines: false,
@@ -42,7 +52,7 @@ export function Create() {
     }
 
     function selectBottom(type, style) {
-        setDesign({...design, bottom: { type, style }});
+        setDesign({ ...design, bottom: { type, style } });
         setOpenMenus({
             bodice: false,
             necklines: false,
@@ -55,7 +65,7 @@ export function Create() {
 
     function saveDesign() {
         const storedDesigns = JSON.parse(localStorage.getItem("userDesigns")) || [];
-        const newDesign = {id: Date.now(), design,};
+        const newDesign = { id: Date.now(), design, };
         const updatedDesigns = [newDesign, ...storedDesigns];
         localStorage.setItem("userDesigns", JSON.stringify(updatedDesigns));
         alert("Design saved!")
@@ -145,17 +155,17 @@ export function Create() {
                         </li>
                     </ul>
                 </div>
-                    <div id="live-preview">
-                        <div className="preview-stack">
+                <div id="live-preview">
+                    <div className="preview-stack">
 
-                            <img src="live_preview_empty.png" />
+                        <img src="live_preview_empty.png" />
 
-                            {design.bodice && (<img src={`/bodices/${design.bodice}${design.color ? `/${design.bodice}_${design.color}.png` : `/${design.bodice}.png`}`} alt="bodice" />)}
-                            {design.sleeves && (<img src={`/sleeves/${design.sleeves}${design.color ? `/${design.sleeves}_${design.color}.png` : `/${design.sleeves}.png`}`} alt="sleeves" />)}
-                            {design.necklines && (<img src={`/necklines/${design.necklines}${design.color ? `/${design.necklines}_${design.color}.png` : `/${design.necklines}.png`}`} alt="necklines" />)}
-                            {design.bottom.style && (<img src={`/bottoms/${design.bottom.type}/${design.bottom.style}${design.color ? `/${design.bottom.style}_${design.color}.png` : `/${design.bottom.style}.png`}`} alt="bottom"/>)}
-                        </div>
+                        {design.bodice && (<img src={`/bodices/${design.bodice}${design.color ? `/${design.bodice}_${design.color}.png` : `/${design.bodice}.png`}`} alt="bodice" />)}
+                        {design.sleeves && (<img src={`/sleeves/${design.sleeves}${design.color ? `/${design.sleeves}_${design.color}.png` : `/${design.sleeves}.png`}`} alt="sleeves" />)}
+                        {design.necklines && (<img src={`/necklines/${design.necklines}${design.color ? `/${design.necklines}_${design.color}.png` : `/${design.necklines}.png`}`} alt="necklines" />)}
+                        {design.bottom.style && (<img src={`/bottoms/${design.bottom.type}/${design.bottom.style}${design.color ? `/${design.bottom.style}_${design.color}.png` : `/${design.bottom.style}.png`}`} alt="bottom" />)}
                     </div>
+                </div>
             </div>
             <div className="color-select">
                 <label id="color-label">Colors:</label>

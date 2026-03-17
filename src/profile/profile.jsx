@@ -1,9 +1,19 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthState } from "../login/authState";
 import "./profile.css"
 
-export function Profile() {
+export function Profile({ authState }) {
     const [designs, setDesigns] = useState([]);
     const [profilePic, setProfilePic] = useState("default_profile2.0.jpg");
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (authState !== AuthState.Authenticated) {
+            navigate("/");
+        }
+    }, [authState, navigate]);
 
     useEffect(() => {
         const savedPic = localStorage.getItem("profilePic");
@@ -47,25 +57,24 @@ export function Profile() {
                         <label>Design</label>
                         <button className="delete-btn" onClick={() => deleteDesign(item.id)}>Delete</button>
                         <div className="preview-stack">
-    <img src="live_preview_empty.png" />
+                            <img src="live_preview_empty.png" />
 
-    {item.design.bodice && (
-        <img src={`/bodices/${item.design.bodice}${item.design.color? `/${item.design.bodice}_${item.design.color}.png`: `/${item.design.bodice}.png`}`}/>
-    )}
+                            {item.design.bodice && (
+                                <img src={`/bodices/${item.design.bodice}${item.design.color ? `/${item.design.bodice}_${item.design.color}.png` : `/${item.design.bodice}.png`}`} />
+                            )}
 
-    {item.design.sleeves && (
-        <img src={`/sleeves/${item.design.sleeves}${
-                item.design.color ? `/${item.design.sleeves}_${item.design.color}.png`: `/${item.design.sleeves}.png`}`} />
-    )}
+                            {item.design.sleeves && (
+                                <img src={`/sleeves/${item.design.sleeves}${item.design.color ? `/${item.design.sleeves}_${item.design.color}.png` : `/${item.design.sleeves}.png`}`} />
+                            )}
 
-    {item.design.necklines && (
-        <img src={`/necklines/${item.design.necklines}${item.design.color ? `/${item.design.necklines}_${item.design.color}.png`: `/${item.design.necklines}.png` }`} />
-    )}
+                            {item.design.necklines && (
+                                <img src={`/necklines/${item.design.necklines}${item.design.color ? `/${item.design.necklines}_${item.design.color}.png` : `/${item.design.necklines}.png`}`} />
+                            )}
 
-    {item.design.bottom.style && (
-        <img src={`/bottoms/${item.design.bottom.type}/${item.design.bottom.style}${item.design.color ? `/${item.design.bottom.style}_${item.design.color}.png`: `/${item.design.bottom.style}.png`}`} />
-    )}
-</div>
+                            {item.design.bottom.style && (
+                                <img src={`/bottoms/${item.design.bottom.type}/${item.design.bottom.style}${item.design.color ? `/${item.design.bottom.style}_${item.design.color}.png` : `/${item.design.bottom.style}.png`}`} />
+                            )}
+                        </div>
                     </li>
                 ))}
             </ul>

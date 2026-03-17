@@ -43,9 +43,9 @@ export default function App() {
 
                 <Routes>
                     <Route path="/" element={<Login userName={userName} authState={authState} onAuthChange={handleAuthChange} />} />
-                    <Route path="/create" element={<Create />} />
-                    <Route path="/profile" element={<Profile />} />
-                    <Route path="/community" element={<Community />} />
+                    <Route path="/create" element={<Create authState={authState} />} />
+                    <Route path="/profile" element={<Profile authState={authState}/>} />
+                    <Route path="/community" element={<Community authState={authState}/>} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
 
