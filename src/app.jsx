@@ -19,11 +19,25 @@ export default function App() {
         setAuthState(state);
     }
 
+    function handleLogout() {
+        fetch('/api/auth/logout', { method: 'delete' })
+            .catch(() => { })
+            .finally(() => {
+                localStorage.removeItem('userName');
+                setUserName("");
+                setAuthState(AuthState.Unauthenticated);
+            });
+    }
+
     return (
         <BrowserRouter>
             <div className="app">
                 <header>
                     <h1 className="heading" id="main-header">Concept Threads</h1>
+
+                    {authState === AuthState.Authenticated && (
+                        <button onClick={handleLogout} className="logout-btn">Logout</button>
+                    )}
                     <hr />
                 </header>
 
