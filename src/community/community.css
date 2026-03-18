@@ -16,13 +16,45 @@
     background-color: #FF5D60;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-.posts li .post-content {
+.post-header {
     display: flex;
-    align-items: stretch;
+    align-items: center;
     gap: 10px;
+    margin-bottom: 10px;
+}
+
+.post-body {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    align-items: flex-start;
+    overflow: hidden;
+}
+
+.post-body .preview-stack {
+    flex: 0 0 50%;
+    max-width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    overflow: hidden;
+}
+
+.post-body .preview-stack img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.post-text {
+    flex: 1;
+    background-color: #C6E0FF;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 .posts li .profile-pic {
@@ -46,13 +78,18 @@
 }
 
 .posts li p {
-    margin: 0;
-    margin-bottom: 10px;
-    flex: 1;
-    overflow-y: auto;
+    flex: 1 1 auto;
     background-color: #C6E0FF;
-    padding: 8px;
+    padding: 10px;
     border-radius: 10px;
+    margin: 0;
+}
+
+.post-reactions {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
 }
 
 .new-post {
@@ -65,7 +102,7 @@
     border: 4px solid black;
     border-radius: 10px;
     background-color: #FF5D60;
-    box-shadow: 0 4px 6px rgba(0,0,0,.2);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, .2);
 }
 
 .new-post input {
@@ -114,7 +151,7 @@
     border-radius: 25px;
     border: 2px solid black;
     background-color: #C6E0FF;
-    box-shadow: 0 4px 6px rgba(0,0,0,.2);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, .2);
     transition: transform 0.2s ease;
 }
 
@@ -123,39 +160,39 @@
 }
 
 .emoji-dropdown {
-  position: relative;
-  display: inline-block;
+    position: relative;
+    display: inline-block;
 }
 
 .emoji-button {
-  padding: 5px 10px;
-  font-size: 1.2rem;
-  cursor: pointer;
+    padding: 5px 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
 }
 
 .emoji-menu {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 5px;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: white;
-  border: 1px solid #ccc;
-  padding: 5px;
-  max-height: 200px; 
-  overflow-y: auto;
-  z-index: 10;
-  display: none;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 5px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    border: 1px solid #ccc;
+    padding: 5px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 10;
+    display: none;
 }
 
 .emoji-dropdown:hover .emoji-menu {
-  display: grid;
+    display: grid;
 }
 
 .emoji-item {
-  font-size: 1.5rem;
-  background: none;
-  border: none;
-  cursor: pointer;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
 }
