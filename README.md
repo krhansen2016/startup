@@ -70,7 +70,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Proper HTML element usage** - I did proper use of HTML tags. Each HTML page is built up of heads and bodies, with the bodies containing headers, mains, and footers.
 - [x] **Links** - I created several links between each of my pages. Each page has links that can access all of the other pages.
 - [x] **Text** - I have plenty text in my pages to act as headers, labels, or placeholders.
-- [x] **3rd party API placeholder** - I included placeholders for a 3rd party Authentication API that will allow users to add emojis to their posts.
+- [x] **3rd party API placeholder** - I included placeholders for a 3rd party Authentication API that will allow users to react to posts with emojis.
 - [x] **Images** - I included several images like a favicon, default profile pictures, and placeholders for designs.
 - [x] **Login placeholder** - I created a placeholder for the login with a text type of input tag and buttons to submit entered text.
 - [x] **DB data placeholder** - I used text and images to represent designs and other data that will we saved and pulled from a database.
@@ -106,12 +106,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
-- [ ] **Static middleware for frontend** - I did not complete this part of the deliverable.
-- [ ] **Calls to third party endpoints** - I did not complete this part of the deliverable.
-- [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Supports registration, login, logout, and restricted endpoint** - I did not complete this part of the deliverable.
+- [x] **Node.js/Express HTTP service** - I created a Node.js server with Express. It handles HTTP requests, routing, and middleware.
+- [x] **Static middleware for frontend** - I wrote code that uses Express static middleware in my index.js. It serves my frontend files from my application's public directory.
+- [x] **Calls to third party endpoints** - I used a free third-party API called emojihub. I made backend calls to it in order to fetch emoji groups and categories so users can use them to react to posts.
+- [x] **Backend service endpoints** - I created multiple backend endpoints that are used for login authentication, posts, and retrieving emojis.
+- [x] **Frontend calls service endpoints** - I wrote out code that makes frontend calls to service endpoints for emoji data and user authentication.
+- [x] **Supports registration, login, logout, and restricted endpoint** - I created a user authentication system that includes registration, login, logout, cookies, and token verification.
 
 ## 🚀 DB deliverable
 
