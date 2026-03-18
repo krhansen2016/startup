@@ -159,7 +159,7 @@ export function Community({ authState }) {
                                 <img className="profile-pic" src={post.profilePic} alt="profile" />
                                 <label>{post.username}</label>
                             </div>
-                            <div className="post-body">
+                            <div className="post-content">
                                 <div className="preview-stack">
                                     <img src="live_preview_empty.png" />
                                     {post.design?.bodice && (<img src={`/bodices/${post.design.bodice}${post.design.color ? `/${post.design.bodice}_${post.design.color}.png` : `/${post.design.bodice}.png`}`} alt="bodice" />)}
@@ -170,30 +170,31 @@ export function Community({ authState }) {
                                 <div className="post-text">
                                     <p>{post.text}</p>
                                 </div>
-                            </div>
-                            <div className="post-reactions">
-                                {post.reactions?.map((r, i) => (<button key={i} onClick={() => addReaction(index, r.emoji)} className="reaction-btn">{r.emoji} {r.count}</button>))}
-                                <div className="emoji-dropdown">
-                                    <button className="emoji-button">
-                                        {selectedEmoji || "Reactions"}
-                                    </button>
-                                    <div className="emoji-menu">
-                                        {emojis.slice(0, 72).map(emoji => {
-                                            const symbol = String.fromCodePoint(...emoji.unicode.map(u => parseInt(u.replace("U+", ""), 16)));
 
-                                            return (
-                                                <button
-                                                    key={emoji.unicode[0]}
-                                                    className="emoji-item"
-                                                    onClick={() => setSelectedEmoji(symbol)}
-                                                >
-                                                    {symbol}
-                                                </button>
-                                            );
-                                        })}
+                                <div className="post-reactions">
+                                    {post.reactions?.map((r, i) => (<button key={i} onClick={() => addReaction(index, r.emoji)} className="reaction-btn">{r.emoji} {r.count}</button>))}
+                                    <div className="emoji-dropdown">
+                                        <button className="emoji-button">
+                                            {selectedEmoji || "Reactions"}
+                                        </button>
+                                        <div className="emoji-menu">
+                                            {emojis.slice(0, 72).map(emoji => {
+                                                const symbol = String.fromCodePoint(...emoji.unicode.map(u => parseInt(u.replace("U+", ""), 16)));
+
+                                                return (
+                                                    <button
+                                                        key={emoji.unicode[0]}
+                                                        className="emoji-item"
+                                                        onClick={() => setSelectedEmoji(symbol)}
+                                                    >
+                                                        {symbol}
+                                                    </button>
+                                                );
+                                            })}
+                                        </div>
                                     </div>
+                                    <button onClick={() => selectedEmoji && addReaction(index, selectedEmoji)}>React!</button>
                                 </div>
-                                <button onClick={() => selectedEmoji && addReaction(index, selectedEmoji)}>React!</button>
                             </div>
                         </li>
                     ))}

@@ -27,36 +27,6 @@
     margin-bottom: 10px;
 }
 
-.post-body {
-    display: flex;
-    gap: 15px;
-    width: 100%;
-    align-items: flex-start;
-    overflow: hidden;
-}
-
-.post-body .preview-stack {
-    flex: 0 0 50%;
-    max-width: 50%;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    overflow: hidden;
-}
-
-.post-body .preview-stack img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-}
-
-.post-text {
-    flex: 1;
-    background-color: #C6E0FF;
-    padding: 10px;
-    border-radius: 10px;
-}
-
 .posts li .profile-pic {
     width: 70px;
     height: 70px;
@@ -77,19 +47,33 @@
     margin-bottom: 10px;
 }
 
-.posts li p {
-    flex: 1 1 auto;
-    background-color: #C6E0FF;
+.post-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    width: 100%;
+}
+
+.preview-stack {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.preview-stack img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.post-text {
+    grid-column: 2;
+    grid-row: 1;
     padding: 10px;
-    border-radius: 10px;
-    margin: 0;
 }
 
 .post-reactions {
-    display: flex;
-    gap: 5px;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+    grid-column: 1;
+    grid-row: 2;
 }
 
 .new-post {
