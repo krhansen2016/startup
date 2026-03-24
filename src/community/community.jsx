@@ -38,13 +38,13 @@ export function Community({ authState }) {
                 post.reactions.push({ emoji, count: 1 });
             }
 
-            localStorage.setItem("communityPosts", JSON.stringify(updated));
             return updated;
         });
     }
 
-    function addPost() {
+    async function addPost() {
         if (!selectedDesign) return alert("You must have at least one saved design!");
+
         const newPost = {
             username: localStorage.getItem("userName") || "Guest",
             text: text,
@@ -53,10 +53,24 @@ export function Community({ authState }) {
             reactions: []
         };
 
-        const updatedPosts = [newPost, ...posts].slice(0, 10);
-        setPosts(updatedPosts);
-        localStorage.setItem("communityPosts", JSON.stringify(updatedPosts));
-        setText("");
+        try {
+            const response = await fetch('/api/post', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                credentials: 'include',
+                body: JSON.stringify(newPost),
+            });
+
+            if (response.ok) {
+                const updatedPosts = await response.json();
+                setPosts(updatedPosts);
+                setText("");
+            } else {
+                console.error("Failed to create post");
+            }
+        } catch (err) {
+            console.error("Error creating post:", err);
+        }
     }
 
     useEffect(() => {
@@ -76,60 +90,22 @@ export function Community({ authState }) {
     }, []);
 
     useEffect(() => {
-        const storedPosts = localStorage.getItem("communityPosts");
+        async function loadPosts() {
+            try {
+                const response = await fetch('/api/posts');
 
-        if (storedPosts) {
-            setPosts(JSON.parse(storedPosts));
-        }
-        else {
-            const mockPosts = [
-                {
-                    username: "DesignQueen",
-                    text: "My newest outfit!",
-                    image: "default_design.jpg",
-                    profilePic: "default_profile2.0.jpg",
-                    reactions: []
-                },
-                {
-                    username: "ThreadMaster",
-                    text: "Trying a new style today.",
-                    image: "default_design.jpg",
-                    profilePic: "default_profile2.0.jpg",
-                    reactions: []
+                if (response.ok) {
+                    const data = await response.json();
+                    setPosts(data);
+                } else {
+                    console.error("Failed to load posts");
                 }
-            ];
-
-            setPosts(mockPosts);
-            localStorage.setItem("communityPosts", JSON.stringify(mockPosts));
+            } catch (err) {
+                console.error("Error loading posts:", err);
+            }
         }
-    }, []);
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            const randomUser = "User-" + Math.floor(Math.random() * 100);
-
-            const randomMessages = [
-                "What do you think?",
-                "Felt cute, might delete later",
-                "I'm absolutely obsessed with this!",
-                "Trying something new!"
-            ];
-
-            const newPost = {
-                username: randomUser,
-                text: randomMessages[Math.floor(Math.random() * randomMessages.length)],
-                image: "default_design.jpg",
-                profilePic: "default_profile2.0.jpg"
-            };
-
-            setPosts(prevPosts => {
-                const updated = [newPost, ...prevPosts].slice(0, 10);
-
-                localStorage.setItem("communityPosts", JSON.stringify(updated));
-                return updated;
-            });
-        }, 10000);
-        return () => clearInterval(interval);
+        loadPosts();
     }, []);
 
     return (
