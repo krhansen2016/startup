@@ -4,9 +4,7 @@ const express = require('express');
 const { v4: uuidv4 } = require('uuid')
 const app = express();
 const DB = require('./database.js');
-
 const authCookieName = 'token';
-
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
 app.use(express.json());
@@ -15,6 +13,16 @@ app.use(express.static('public'));
 
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
+
+app.use(function (err, req, res, next) {
+  res.status(500).send({ type: err.name, message: err.message });
+});
+
+app.use((_req, res) => {
+  res.sendFile('index.html', { root: 'public' });
+});
+
+// user login code here
 
 apiRouter.post('/auth/create', async (req, res) => {
   if (await findUser('email', req.body.email)) {
@@ -91,6 +99,8 @@ function setAuthCookie(res, authToken) {
   });
 }
 
+// posts code here
+
 apiRouter.get('/profile', verifyAuth, (req, res) => {
   const user = req.user;
   res.send({ email: user.email, profilePic: user.profilePic });
@@ -157,6 +167,8 @@ apiRouter.get('/emojis/category/:category', async (req, res) => {
   }
 });
 
+// designs code here
+
 apiRouter.get('/designs', verifyAuth, (req, res) => {
   const user = req.user;
   res.send(designs.filter(d => d.userEmail === user.email));
@@ -180,14 +192,7 @@ apiRouter.delete('/designs/:id', verifyAuth, (req, res) => {
   res.status(204).end();
 });
 
-app.use(function (err, req, res, next) {
-  res.status(500).send({ type: err.name, message: err.message });
-});
-
-app.use((_req, res) => {
-  res.sendFile('index.html', { root: 'public' });
-});
-
+// listening on port code
 const httpService = app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
