@@ -3,11 +3,13 @@ const bcrypt = require('bcryptjs');
 const express = require('express');
 const { v4: uuidv4 } = require('uuid')
 const app = express();
+const fetch = require('node-fetch');
 
 const authCookieName = 'token';
 
 let users = [];
 let posts = [];
+let designs = [];
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
@@ -54,20 +56,21 @@ apiRouter.delete('/auth/logout', async (req, res) => {
 const verifyAuth = async (req, res, next) => {
   const user = await findUser('token', req.cookies[authCookieName]);
   if (user) {
+    req.user = user;
     next();
-  }
-  else {
+  } else {
     res.status(401).send({ msg: 'Unauthorized' });
   }
 };
 
 async function createUser(email, password) {
   const passwordHash = await bcrypt.hash(password, 10);
-  
+
   const user = {
     email: email,
     password: passwordHash,
     token: uuidv4(),
+    profilePic: "default_profile2.0.jpg",
   };
   users.push(user);
   return user;
@@ -81,19 +84,49 @@ async function findUser(field, value) {
 function setAuthCookie(res, authToken) {
   res.cookie(authCookieName, authToken, {
     maxAge: 1000 * 60 * 60 * 24 * 365,
-    secure: true,
+    secure: process.env.NODE_ENV === 'production',
     httpOnly: true,
     sameSite: 'strict',
   });
 }
+
+apiRouter.get('/profile', verifyAuth, (req, res) => {
+  const user = req.user;
+  res.send({ email: user.email, profilePic: user.profilePic });
+});
+
+apiRouter.post('/profile/pic', verifyAuth, (req, res) => {
+  const user = req.user;
+  user.profilePic = req.body.profilePic;
+  res.send({ profilePic: user.profilePic });
+});
 
 apiRouter.get('/posts', verifyAuth, (_req, res) => {
   res.send(posts);
 });
 
 apiRouter.post('/post', verifyAuth, (req, res) => {
-  posts.push(req.body);
+  const newPost = { ...req.body, id: uuidv4() };
+  posts.push(newPost);
   res.send(posts);
+});
+
+apiRouter.post('/posts/:id/reaction', verifyAuth, (req, res) => {
+  const post = posts.find(p => p.id === Number(req.params.id));
+  if (!post) return res.status(404).send({ msg: "Post not found" });
+
+  const { emoji } = req.body;
+
+  if (!post.reactions) post.reactions = [];
+
+  const existing = post.reactions.find(r => r.emoji === emoji);
+  if (existing) {
+    existing.count += 1;
+  } else {
+    post.reactions.push({ emoji, count: 1 });
+  }
+
+  res.send(post);
 });
 
 apiRouter.get('/emoji-groups', async (_req, res) => {
@@ -121,6 +154,29 @@ apiRouter.get('/emojis/category/:category', async (req, res) => {
     console.error("Emoji fetch failed:", err);
     res.status(500).send({ error: "Failed to fetch emojis" });
   }
+});
+
+apiRouter.get('/designs', verifyAuth, (req, res) => {
+  const user = req.user;
+  res.send(designs.filter(d => d.userEmail === user.email));
+});
+
+apiRouter.post('/designs', verifyAuth, (req, res) => {
+  const user = req.user;
+  const newDesign = {
+    id: designs.length + 1,
+    userEmail: user.email,
+    design: req.body
+  };
+  designs.push(newDesign);
+  res.send(newDesign);
+});
+
+apiRouter.delete('/designs/:id', verifyAuth, (req, res) => {
+  const user = req.user;
+  const id = Number(req.params.id);
+  designs = designs.filter(d => !(d.id === id && d.userEmail === user.email));
+  res.status(204).end();
 });
 
 app.use(function (err, req, res, next) {

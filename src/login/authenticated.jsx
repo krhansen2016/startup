@@ -7,7 +7,10 @@ export function Authenticated(props) {
 
     async function logout() {
         try {
-            await fetch('/api/auth/logout', { method: 'delete' });
+            await fetch('/api/auth/logout', {
+                method: 'delete',
+                credentials: 'include'
+            });
             localStorage.removeItem('userName');
             props.onLogout();
         } catch (err) {

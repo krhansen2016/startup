@@ -7,13 +7,13 @@ export function Community({ authState }) {
 
     const [posts, setPosts] = useState([]);
     const [text, setText] = useState("");
-    const userDesigns = JSON.parse(localStorage.getItem("userDesigns")) || [];
-    const [selectedDesign, setSelectedDesign] = useState(userDesigns.length > 0 ? userDesigns[0] : null);
-
+    const [userDesigns, setUserDesigns] = useState([]);
+    const [selectedDesign, setSelectedDesign] = useState(null);
     const [emojiGroups, setEmojiGroups] = useState([]);
-    const [selectedGroup, setSelectedGroup] = useState("");
+    const [selectedGroup, setSelectedGroup] = useState(null);
     const [emojis, setEmojis] = useState([]);
     const [selectedEmoji, setSelectedEmoji] = useState("");
+    const [profile, setProfile] = useState(null);
 
     const navigate = useNavigate();
 
@@ -23,33 +23,59 @@ export function Community({ authState }) {
         }
     }, [authState, navigate]);
 
-    function addReaction(postIndex, emoji) {
-        setPosts(prevPosts => {
-            const updated = [...prevPosts];
-            const post = updated[postIndex];
-
-            if (!post.reactions) post.reactions = [];
-
-            const existing = post.reactions.find(r => r.emoji === emoji);
-            if (existing) {
-                existing.count += 1;
+    useEffect(() => {
+        async function loadUserDesigns() {
+            try {
+                const res = await fetch("/api/designs", { credentials: "include" });
+                if (res.ok) {
+                    const designs = await res.json();
+                    setUserDesigns(designs);
+                    if (designs.length > 0) setSelectedDesign(designs[0]);
+                }
+            } catch (err) {
+                console.error("Failed to load user designs:", err);
             }
-            else {
-                post.reactions.push({ emoji, count: 1 });
-            }
+        }
+        loadUserDesigns();
+    }, []);
 
-            return updated;
-        });
+    async function addReaction(postId, emoji) {
+        try {
+            const res = await fetch(`/api/posts/${postId}/reaction`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                credentials: "include",
+                body: JSON.stringify({ emoji })
+            });
+
+            if (res.ok) {
+                const updatedPost = await res.json();
+                setPosts(prev =>
+                    prev.map(p => p.id === updatedPost.id ? updatedPost : p)
+                );
+            }
+        } catch (err) {
+            console.error(err);
+        }
     }
+
+    useEffect(() => {
+        fetch("/api/profile", { credentials: "include" })
+            .then(res => {
+                if (!res.ok) throw new Error("Failed profile fetch");
+                return res.json();
+            })
+            .then(data => setProfile(data));
+    }, []);
 
     async function addPost() {
         if (!selectedDesign) return alert("You must have at least one saved design!");
 
         const newPost = {
-            username: localStorage.getItem("userName") || "Guest",
-            text: text,
+            username: profile?.email || "Guest",
+            profilePic: profile?.profilePic || "default_profile2.0.jpg",
             design: selectedDesign.design,
-            profilePic: localStorage.getItem("profilePic") || "default_profile2.0.jpg",
+            text,
             reactions: []
         };
 
@@ -75,24 +101,31 @@ export function Community({ authState }) {
 
     useEffect(() => {
         fetch("/api/emoji-groups")
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) throw new Error("Failed emoji groups");
+                return res.json();
+            })
             .then(groups => {
                 setEmojiGroups(groups);
-                setSelectedGroup(groups[0]);
+                if (groups.length > 0) setSelectedGroup(groups[0]);
             });
     }, []);
 
     useEffect(() => {
-        fetch(`/api/emojis/category/smileys-and-people`)
+        if (!selectedGroup) return;
+
+        fetch(`/api/emojis/category/${selectedGroup}`)
             .then(res => res.json())
             .then(data => setEmojis(data))
             .catch(err => console.error(err));
-    }, []);
+    }, [selectedGroup]);
 
     useEffect(() => {
         async function loadPosts() {
             try {
-                const response = await fetch('/api/posts');
+                const response = await fetch('/api/posts', {
+                    credentials: 'include'
+                });
 
                 if (response.ok) {
                     const data = await response.json();
@@ -130,7 +163,7 @@ export function Community({ authState }) {
             <div className="posts">
                 <ul>
                     {posts.slice(0, 10).map((post, index) => (
-                        <li key={index} className="post">
+                        <li key={post.id} className="post">
                             <div className="post-header">
                                 <img className="profile-pic" src={post.profilePic} alt="profile" />
                                 <label>{post.username}</label>
@@ -148,7 +181,7 @@ export function Community({ authState }) {
                                 </div>
 
                                 <div className="post-reactions">
-                                    {post.reactions?.map((r, i) => (<button key={i} onClick={() => addReaction(index, r.emoji)} className="reaction-btn">{r.emoji} {r.count}</button>))}
+                                    {post.reactions?.map((r, i) => (<button key={i} onClick={() => addReaction(post.id, r.emoji)} className="reaction-btn">{r.emoji} {r.count}</button>))}
                                     <div className="emoji-dropdown">
                                         <button className="emoji-button">
                                             {selectedEmoji || "Reactions"}
@@ -161,7 +194,7 @@ export function Community({ authState }) {
                                                     <button
                                                         key={emoji.unicode[0]}
                                                         className="emoji-item"
-                                                        onClick={() => setSelectedEmoji(symbol)}
+                                                        onClick={() => addReaction(post.id, symbol)}
                                                     >
                                                         {symbol}
                                                     </button>
@@ -169,7 +202,6 @@ export function Community({ authState }) {
                                             })}
                                         </div>
                                     </div>
-                                    <button onClick={() => selectedEmoji && addReaction(index, selectedEmoji)}>React!</button>
                                 </div>
                             </div>
                         </li>

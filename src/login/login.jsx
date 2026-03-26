@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Unauthenticated } from "./unauthenticated";
 import { AuthState } from "./authState";
 
-export function Login({ username, authState, onAuthChange }) {
+export function Login({ userName, authState, onAuthChange }) {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -18,7 +18,7 @@ export function Login({ username, authState, onAuthChange }) {
       <div className="login-box">
         <h1 className="heading">Login</h1>
         {authState === AuthState.Unauthenticated && (
-          <Unauthenticated username={username} onLogin={(loginUserName) => onAuthChange(loginUserName, AuthState.Authenticated)} />
+          <Unauthenticated userName={userName} onLogin={(loginUserName) => onAuthChange(loginUserName, AuthState.Authenticated)} />
         )}
       </div>
     </main>

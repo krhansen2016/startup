@@ -4,6 +4,7 @@ import { AuthState } from "../login/authState";
 import "./create.css";
 
 export function Create({ authState }) {
+    const [designs, setDesigns] = useState([]);
     const [openMenus, setOpenMenus] = useState({
         bodice: false,
         necklines: false,
@@ -24,6 +25,18 @@ export function Create({ authState }) {
     });
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (authState === AuthState.Authenticated) {
+            fetch("/api/designs", { credentials: 'include' })
+                .then(res => {
+                    if (!res.ok) throw new Error("Failed to fetch designs");
+                    return res.json();
+                })
+                .then(data => setDesigns(data))
+                .catch(err => console.error(err));
+        }
+    }, [authState]);
 
     useEffect(() => {
         if (authState !== AuthState.Authenticated) {
@@ -51,6 +64,24 @@ export function Create({ authState }) {
         });
     }
 
+    function saveDesign() {
+        fetch("/api/designs", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: "include",
+            body: JSON.stringify(design) // <-- changed here
+        })
+            .then(res => res.json())
+            .then(saved => {
+                alert("Design saved!");
+                setDesigns(prev => [saved, ...prev]);
+                setDesign({ bodice: "", necklines: "", sleeves: "", bottom: { type: "", style: "" }, color: "" });
+            })
+            .catch(err => console.error(err));
+    }
+
     function selectBottom(type, style) {
         setDesign({ ...design, bottom: { type, style } });
         setOpenMenus({
@@ -61,14 +92,6 @@ export function Create({ authState }) {
             pants: false,
             skirts: false,
         });
-    }
-
-    function saveDesign() {
-        const storedDesigns = JSON.parse(localStorage.getItem("userDesigns")) || [];
-        const newDesign = { id: Date.now(), design, };
-        const updatedDesigns = [newDesign, ...storedDesigns];
-        localStorage.setItem("userDesigns", JSON.stringify(updatedDesigns));
-        alert("Design saved!")
     }
 
     return (

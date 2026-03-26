@@ -16,26 +16,60 @@ export function Profile({ authState }) {
     }, [authState, navigate]);
 
     useEffect(() => {
-        const savedPic = localStorage.getItem("profilePic");
-        if (savedPic) setProfilePic(savedPic)
-    }, []);
+        async function loadProfile() {
+            const res = await fetch("/api/profile", {
+                credentials: "include"
+            });
+            if (res.ok) {
+                const data = await res.json();
+                setProfilePic(data.profilePic);
+            }
+        }
+
+        if (authState === AuthState.Authenticated) {
+            loadProfile();
+        }
+    }, [authState]);
 
     useEffect(() => {
-        const saved = JSON.parse(localStorage.getItem("userDesigns")) || [];
-        setDesigns(saved);
-    }, []);
+        if (authState === AuthState.Authenticated) {
+            fetch("/api/designs", {
+                credentials: "include"
+            })
+                .then(res => {
+                    if (!res.ok) throw new Error("Failed to fetch designs");
+                    return res.json();
+                })
+                .then(data => setDesigns(data))
+                .catch(err => console.error(err));
+        }
+    }, [authState]);
 
     function deleteDesign(id) {
-        const updatedDesigns = designs.filter(design => design.id !== id);
-        setDesigns(updatedDesigns);
-        localStorage.setItem("userDesigns", JSON.stringify(updatedDesigns));
+        fetch(`/api/designs/${id}`, {
+            method: 'DELETE',
+            credentials: "include"
+        })
+            .then(res => {
+                if (!res.ok) throw new Error("Failed to delete design");
+                setDesigns(prev => prev.filter(design => design.id !== id));
+            })
+            .catch(err => console.error(err));
     }
 
-    function changeProfilePic() {
+    async function changeProfilePic() {
         const newPic = prompt("Enter image url to change profile picture: ", profilePic);
-        if (newPic) {
-            setProfilePic(newPic);
-            localStorage.setItem("profilePic", newPic);
+        if (newPic && newPic.startsWith("http")) {
+            const res = await fetch("/api/profile/pic", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                credentials: "include",
+                body: JSON.stringify({ profilePic: newPic })
+            });
+
+            if (res.ok) {
+                setProfilePic(newPic);
+            }
         }
     }
 
@@ -71,7 +105,7 @@ export function Profile({ authState }) {
                                 <img src={`/necklines/${item.design.necklines}${item.design.color ? `/${item.design.necklines}_${item.design.color}.png` : `/${item.design.necklines}.png`}`} />
                             )}
 
-                            {item.design.bottom.style && (
+                            {item.design?.bottom?.style && (
                                 <img src={`/bottoms/${item.design.bottom.type}/${item.design.bottom.style}${item.design.color ? `/${item.design.bottom.style}_${item.design.color}.png` : `/${item.design.bottom.style}.png`}`} />
                             )}
                         </div>

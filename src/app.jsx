@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./app.css";
 import "./login/login.css";
@@ -14,13 +14,26 @@ export default function App() {
     const [userName, setUserName] = useState(localStorage.getItem("userName") || "");
     const [authState, setAuthState] = useState(userName ? AuthState.Authenticated : AuthState.Unauthenticated);
 
+    useEffect(() => {
+        fetch('/api/profile', { credentials: 'include' })
+            .then(res => {
+                if (res.ok) {
+                    setAuthState(AuthState.Authenticated);
+                }
+            })
+            .catch(() => { });
+    }, []);
+
     function handleAuthChange(user, state) {
         setUserName(user);
         setAuthState(state);
     }
 
     function handleLogout() {
-        fetch('/api/auth/logout', { method: 'delete' })
+        fetch('/api/auth/logout', {
+            method: 'delete',
+            credentials: 'include'
+        })
             .catch(() => { })
             .finally(() => {
                 localStorage.removeItem('userName');
