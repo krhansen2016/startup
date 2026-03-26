@@ -36,6 +36,22 @@ async function updateUserRemoveAuth(user) {
     await userCollection.updateOne({ email: user.email }, { $unset: { token: 1 } });
 }
 
+async function addDesign(design) {
+    return designCollection.insertOne(design);
+}
+
+async function deleteDesign(design) {
+    return designCollection.deleteOne(design);
+}
+
+async function getDesign(design) {
+    return designCollection.findOne(design);
+}
+
+async function addPost(post) {
+    return postsCollection.insertOne(post);
+}
+
 module.exports = {
     getUser,
     getUserByToken,
