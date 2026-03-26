@@ -100,7 +100,7 @@ export function Community({ authState }) {
     }
 
     useEffect(() => {
-        fetch("/api/emoji-groups")
+        fetch("/api/emoji-groups", { credentials: "include" })
             .then(res => {
                 if (!res.ok) throw new Error("Failed emoji groups");
                 return res.json();
@@ -114,10 +114,13 @@ export function Community({ authState }) {
     useEffect(() => {
         if (!selectedGroup) return;
 
-        fetch(`/api/emojis/category/${selectedGroup}`)
+        fetch(`/api/emojis/category/${selectedGroup}`, { credentials: "include" })
             .then(res => res.json())
-            .then(data => setEmojis(data))
-            .catch(err => console.error(err));
+            .then(data => setEmojis(Array.isArray(data) ? data : []))
+            .catch(err => {
+                console.error(err);
+                setEmojis([]);
+            });
     }, [selectedGroup]);
 
     useEffect(() => {
@@ -187,9 +190,8 @@ export function Community({ authState }) {
                                             {selectedEmoji || "Reactions"}
                                         </button>
                                         <div className="emoji-menu">
-                                            {emojis.slice(0, 72).map(emoji => {
+                                            {(emojis || []).slice(0, 72).map(emoji => {
                                                 const symbol = String.fromCodePoint(...emoji.unicode.map(u => parseInt(u.replace("U+", ""), 16)));
-
                                                 return (
                                                     <button
                                                         key={emoji.unicode[0]}
