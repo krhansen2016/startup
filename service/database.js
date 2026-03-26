@@ -48,8 +48,24 @@ async function getDesign(design) {
     return designCollection.findOne(design);
 }
 
+async function getDesignsByUser() {
+    
+}
+
+async function getDesignById() {
+    
+}
+
 async function addPost(post) {
     return postsCollection.insertOne(post);
+}
+
+async function getPosts() {
+
+}
+
+async function getPostById() {
+
 }
 
 module.exports = {
@@ -61,5 +77,9 @@ module.exports = {
     addDesign,
     deleteDesign,
     getDesign,
-    addPost
+    getDesignsByUser,
+    getDesignById,
+    addPost,
+    getPosts,
+    getPostById
 }
