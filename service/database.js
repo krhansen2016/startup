@@ -3,8 +3,9 @@ const config = require('./dbConfig.json');
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
 const client = new MongoClient(url);
 const db = client.db('conceptthreads');
-const userCollection = db.collection('user')
-const designCollection = db.collection('design')
+const userCollection = db.collection('user');
+const designCollection = db.collection('design');
+const postsCollection = db.collection('posts');
 
 (async function testConnection() {
   try {
