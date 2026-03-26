@@ -7,10 +7,6 @@ const DB = require('./database.js');
 
 const authCookieName = 'token';
 
-let users = [];
-let posts = [];
-let designs = [];
-
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
 app.use(express.json());
