@@ -58,4 +58,8 @@ module.exports = {
     addUser,
     updateUser,
     updateUserRemoveAuth,
+    addDesign,
+    deleteDesign,
+    getDesign,
+    addPost
 }
