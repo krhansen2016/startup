@@ -17,7 +17,7 @@ const postsCollection = db.collection('posts');
 })();
 
 function getUser(email) {
-    return usercollection.findOne({ email:email });
+    return userCollection.findOne({ email:email });
 }
 
 function getUserByToken(token) {
