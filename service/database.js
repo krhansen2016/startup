@@ -49,11 +49,11 @@ async function getDesign(design) {
 }
 
 async function getDesignsByUser() {
-    
+    return designCollection.find({ userEmail: email }).toArray();
 }
 
 async function getDesignById() {
-    
+    return designCollection.findOne({ id: id });
 }
 
 async function addPost(post) {
@@ -61,11 +61,11 @@ async function addPost(post) {
 }
 
 async function getPosts() {
-
+    return postsCollection.find().toArray();
 }
 
 async function getPostById() {
-
+    return postsCollection.findOne({ id: id });
 }
 
 module.exports = {
