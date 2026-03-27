@@ -129,6 +129,7 @@ apiRouter.post('/post', verifyAuth, async (req, res) => {
 });
 
 apiRouter.post('/posts/:id/reaction', verifyAuth, async (req, res) => {
+  console.log("Reaction route hit:", req.params.id, req.body);
   const post = await DB.getPostById(req.params.id);
 
   if (!post) return res.status(404).send({ msg: "Post not found" });
@@ -163,11 +164,18 @@ apiRouter.get('/emoji-groups', async (_req, res) => {
 
 apiRouter.get('/emojis/category/:category', async (req, res) => {
   try {
-    const category = req.params.category;
+    const group = req.params.category
+      .trim()
+      .toLowerCase()
+      .replace(/\s+/g, '-');
 
     const response = await fetch(
-      `https://emojihub.yurace.pro/api/all/category/${encodeURIComponent(category)}`
+      `https://emojihub.yurace.pro/api/all/group/${encodeURIComponent(group)}`
     );
+
+    if (!response.ok) {
+      throw new Error(`Emoji API returned ${response.status}`);
+    }
 
     const data = await response.json();
     res.send(data);

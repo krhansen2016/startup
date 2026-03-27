@@ -12,8 +12,8 @@ export function Community({ authState }) {
     const [emojiGroups, setEmojiGroups] = useState([]);
     const [selectedGroup, setSelectedGroup] = useState(null);
     const [emojis, setEmojis] = useState([]);
-    const [selectedEmoji, setSelectedEmoji] = useState("");
     const [profile, setProfile] = useState(null);
+    const [openReactionPostId, setOpenReactionPostId] = useState(null);
 
     const navigate = useNavigate();
 
@@ -53,6 +53,7 @@ export function Community({ authState }) {
                 setPosts(prev =>
                     prev.map(p => p.id === updatedPost.id ? updatedPost : p)
                 );
+                setOpenReactionPostId(null);
             }
         } catch (err) {
             console.error(err);
@@ -165,7 +166,7 @@ export function Community({ authState }) {
             </div>
             <div className="posts">
                 <ul>
-                    {posts.slice(0, 10).map((post, index) => (
+                    {posts.slice(0, 10).map((post) => (
                         <li key={post.id} className="post">
                             <div className="post-header">
                                 <img className="profile-pic" src={post.profilePic} alt="profile" />
@@ -186,16 +187,28 @@ export function Community({ authState }) {
                                 <div className="post-reactions">
                                     {post.reactions?.map((r, i) => (<button key={i} onClick={() => addReaction(post.id, r.emoji)} className="reaction-btn">{r.emoji} {r.count}</button>))}
                                     <div className="emoji-dropdown">
-                                        <button className="emoji-button">
-                                            {selectedEmoji || "Reactions"}
+                                        <button
+                                            className="emoji-button"
+                                            type="button"
+                                            onClick={() => setOpenReactionPostId((current) => current === post.id ? null : post.id)}
+                                        >
+                                            Reactions
                                         </button>
-                                        <div className="emoji-menu">
-                                            {(emojis || []).slice(0, 72).map(emoji => {
-                                                const symbol = String.fromCodePoint(...emoji.unicode.map(u => parseInt(u.replace("U+", ""), 16)));
+                                        <div className={`emoji-menu ${openReactionPostId === post.id ? "open" : ""}`}>
+                                            {emojis.slice(0, 72).map(emoji => {
+                                                const unicodeArray = Array.isArray(emoji.unicode)
+                                                    ? emoji.unicode
+                                                    : [emoji.unicode];
+
+                                                const symbol = String.fromCodePoint(
+                                                    ...unicodeArray.map(u => parseInt(u.replace("U+", ""), 16))
+                                                );
+
                                                 return (
                                                     <button
-                                                        key={emoji.unicode[0]}
+                                                        key={unicodeArray.join("-") || symbol}
                                                         className="emoji-item"
+                                                        type="button"
                                                         onClick={() => addReaction(post.id, symbol)}
                                                     >
                                                         {symbol}

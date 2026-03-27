@@ -58,7 +58,8 @@ async function addPost(post) {
 }
 
 async function updatePost(post) {
-    await postCollection.updateOne({ id: post.id }, { $set: post });
+    const { _id, ...rest } = post;
+    await postCollection.updateOne({ id: post.id }, { $set: rest });
 }
 
 async function getPosts() {
