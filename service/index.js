@@ -83,7 +83,7 @@ async function createUser(email, password) {
 
 async function findUser(field, value) {
   if (!value) return null;
-  
+
   if (field === 'token') {
     return DB.getUserByToken(value);
   }
@@ -119,7 +119,11 @@ apiRouter.get('/posts', verifyAuth, async (_req, res) => {
 });
 
 apiRouter.post('/post', verifyAuth, async (req, res) => {
-  const newPost = { ...req.body, id: uuidv4() };
+  const newPost = {
+    ...req.body,
+    id: uuidv4(),
+    userEmail: req.user.email
+  };
   await DB.addPost(newPost);
   const posts = await DB.getPosts();
   res.send(posts);
