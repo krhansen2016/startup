@@ -129,7 +129,6 @@ apiRouter.post('/post', verifyAuth, async (req, res) => {
 });
 
 apiRouter.post('/posts/:id/reaction', verifyAuth, async (req, res) => {
-  console.log("Reaction route hit:", req.params.id, req.body);
   const post = await DB.getPostById(req.params.id);
 
   if (!post) return res.status(404).send({ msg: "Post not found" });
