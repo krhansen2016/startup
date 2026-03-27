@@ -8,16 +8,16 @@ const designCollection = db.collection('design');
 const postsCollection = db.collection('posts');
 
 (async function testConnection() {
-  try {
-    await db.command({ ping: 1 });
-  } catch (ex) {
-    console.log(`Unable to connect to database with ${url} because ${ex.message}`);
-    process.exit(1);
-  }
+    try {
+        await db.command({ ping: 1 });
+    } catch (ex) {
+        console.log(`Unable to connect to database with ${url} because ${ex.message}`);
+        process.exit(1);
+    }
 })();
 
 function getUser(email) {
-    return userCollection.findOne({ email:email });
+    return userCollection.findOne({ email });
 }
 
 function getUserByToken(token) {
@@ -40,19 +40,15 @@ async function addDesign(design) {
     return designCollection.insertOne(design);
 }
 
-async function deleteDesign(design) {
-    return designCollection.deleteOne(design);
+async function deleteDesign(id, userEmail) {
+    return designCollection.deleteOne({ id, userEmail });
 }
 
-async function getDesign(design) {
-    return designCollection.findOne(design);
-}
-
-async function getDesignsByUser() {
+async function getDesignsByUser(email) {
     return designCollection.find({ userEmail: email }).toArray();
 }
 
-async function getDesignById() {
+async function getDesignById(id) {
     return designCollection.findOne({ id: id });
 }
 
@@ -60,11 +56,15 @@ async function addPost(post) {
     return postsCollection.insertOne(post);
 }
 
-async function getPosts() {
-    return postsCollection.find().toArray();
+async function updatePost(post) {
+    await postsCollection.updateOne({ id: post.id }, { $set: post });
 }
 
-async function getPostById() {
+async function getPosts() {
+    return postsCollection.find().sort({ _id: -1 }).toArray();
+}
+
+async function getPostById(id) {
     return postsCollection.findOne({ id: id });
 }
 
@@ -76,10 +76,10 @@ module.exports = {
     updateUserRemoveAuth,
     addDesign,
     deleteDesign,
-    getDesign,
     getDesignsByUser,
     getDesignById,
     addPost,
+    updatePost,
     getPosts,
     getPostById
 }
