@@ -106,24 +106,28 @@ apiRouter.get('/profile', verifyAuth, (req, res) => {
   res.send({ email: user.email, profilePic: user.profilePic });
 });
 
-apiRouter.post('/profile/pic', verifyAuth, (req, res) => {
+apiRouter.post('/profile/pic', verifyAuth, async (req, res) => {
   const user = req.user;
   user.profilePic = req.body.profilePic;
+  await DB.updateUser(user);
   res.send({ profilePic: user.profilePic });
 });
 
-apiRouter.get('/posts', verifyAuth, (_req, res) => {
+apiRouter.get('/posts', verifyAuth, async (_req, res) => {
+  const posts = await DB.getPosts();
   res.send(posts);
 });
 
-apiRouter.post('/post', verifyAuth, (req, res) => {
+apiRouter.post('/post', verifyAuth, async (req, res) => {
   const newPost = { ...req.body, id: uuidv4() };
-  posts.push(newPost);
+  await DB.addPost(newPost);
+  const posts = await DB.getPosts();
   res.send(posts);
 });
 
-apiRouter.post('/posts/:id/reaction', verifyAuth, (req, res) => {
-  const post = posts.find(p => p.id === Number(req.params.id));
+apiRouter.post('/posts/:id/reaction', verifyAuth, async (req, res) => {
+  const post = await DB.getPostById(req.params.id);
+
   if (!post) return res.status(404).send({ msg: "Post not found" });
 
   const { emoji } = req.body;
@@ -131,11 +135,14 @@ apiRouter.post('/posts/:id/reaction', verifyAuth, (req, res) => {
   if (!post.reactions) post.reactions = [];
 
   const existing = post.reactions.find(r => r.emoji === emoji);
+
   if (existing) {
     existing.count += 1;
   } else {
     post.reactions.push({ emoji, count: 1 });
   }
+
+  await DB.updatePost(post);
 
   res.send(post);
 });
@@ -169,26 +176,29 @@ apiRouter.get('/emojis/category/:category', async (req, res) => {
 
 // designs code here
 
-apiRouter.get('/designs', verifyAuth, (req, res) => {
+apiRouter.get('/designs', verifyAuth, async (req, res) => {
   const user = req.user;
-  res.send(designs.filter(d => d.userEmail === user.email));
+  const designs = await DB.getDesignsByUser(user.email);
+  res.send(designs);
 });
 
-apiRouter.post('/designs', verifyAuth, (req, res) => {
+apiRouter.post('/designs', verifyAuth, async (req, res) => {
   const user = req.user;
+
   const newDesign = {
-    id: designs.length + 1,
+    id: uuidv4(),
     userEmail: user.email,
     design: req.body
   };
-  designs.push(newDesign);
+
+  await DB.addDesign(newDesign);
   res.send(newDesign);
 });
 
-apiRouter.delete('/designs/:id', verifyAuth, (req, res) => {
+apiRouter.delete('/designs/:id', verifyAuth, async (req, res) => {
   const user = req.user;
-  const id = Number(req.params.id);
-  designs = designs.filter(d => !(d.id === id && d.userEmail === user.email));
+  const id = req.params.id;
+  await DB.deleteDesign(id, user.email);
   res.status(204).end();
 });
 
