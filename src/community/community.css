@@ -74,6 +74,11 @@
 .post-reactions {
     grid-column: 1;
     grid-row: 2;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
 }
 
 .new-post {
@@ -152,10 +157,13 @@
     padding: 5px 10px;
     font-size: 1.2rem;
     cursor: pointer;
+    border: 2px solid black;
+    border-radius: 999px;
+    background: #C6E0FF;
 }
 
 .emoji-menu {
-    display: grid;
+    display: none;
     grid-template-columns: repeat(6, 1fr);
     gap: 5px;
     position: absolute;
@@ -165,12 +173,14 @@
     border: 1px solid #ccc;
     padding: 5px;
     max-height: 200px;
+    min-width: 220px;
     overflow-y: auto;
     z-index: 10;
-    display: none;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
 }
 
-.emoji-dropdown:hover .emoji-menu {
+.emoji-menu.open {
     display: grid;
 }
 
