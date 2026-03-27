@@ -3,9 +3,9 @@ const config = require('./dbConfig.json');
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
 const client = new MongoClient(url);
 const db = client.db('conceptthreads');
-const userCollection = db.collection('users');
-const designCollection = db.collection('designs');
-const postsCollection = db.collection('posts');
+const userCollection = db.collection('user');
+const designCollection = db.collection('design');
+const postCollection = db.collection('post');
 
 (async function testConnection() {
     try {
@@ -21,8 +21,8 @@ async function getUser(email) {
     return await userCollection.findOne({ email });
 }
 
-function getUserByToken(token) {
-    return userCollection.findOne({ token: token });
+async function getUserByToken(token) {
+    return await userCollection.findOne({ token });
 }
 
 async function addUser(user) {
@@ -30,7 +30,7 @@ async function addUser(user) {
 }
 
 async function updateUser(user) {
-    await userCollection.updateOne({ email: user.email }, { $set: { ...user } });
+    await userCollection.updateOne({ email: user.email }, { $set: user });
 }
 
 async function updateUserRemoveAuth(user) {
@@ -54,19 +54,19 @@ async function getDesignById(id) {
 }
 
 async function addPost(post) {
-    return postsCollection.insertOne(post);
+    return postCollection.insertOne(post);
 }
 
 async function updatePost(post) {
-    await postsCollection.updateOne({ id: post.id }, { $set: post });
+    await postCollection.updateOne({ id: post.id }, { $set: post });
 }
 
 async function getPosts() {
-    return postsCollection.find().sort({ _id: -1 }).toArray();
+    return postCollection.find().sort({ _id: -1 }).toArray();
 }
 
 async function getPostById(id) {
-    return postsCollection.findOne({ id: id });
+    return postCollection.findOne({ id: id });
 }
 
 module.exports = {

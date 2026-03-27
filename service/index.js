@@ -51,7 +51,14 @@ apiRouter.delete('/auth/logout', async (req, res) => {
 });
 
 const verifyAuth = async (req, res, next) => {
-  const user = await findUser('token', req.cookies[authCookieName]);
+  const token = req.cookies[authCookieName];
+
+  if (!token) {
+    return res.status(401).send({ msg: 'Unauthorized' });
+  }
+
+  const user = await findUser('token', token);
+
   if (user) {
     req.user = user;
     next();
@@ -77,9 +84,9 @@ async function findUser(field, value) {
   if (!value) return null;
 
   if (field === 'token') {
-    return DB.getUserByToken(value);
+    return await DB.getUserByToken(value);
   }
-  return DB.getUser(value);
+  return await DB.getUser(value);
 }
 
 function setAuthCookie(res, authToken) {
