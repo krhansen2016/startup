@@ -114,7 +114,7 @@ export function Create({ authState }) {
                             <ul className={`dropdown-menu ${openMenus.necklines ? "show" : ""}`}>
                                 <li onClick={() => selectOption("necklines", "crew")}>Crew</li>
                                 <li onClick={() => selectOption("necklines", "vneck")}>V-Neck</li>
-                                <li onClick={() => selectOption("necklines", "Square")}>Square</li>
+                                <li onClick={() => selectOption("necklines", "square")}>square</li>
                                 <li onClick={() => selectOption("necklines", "turtleneck")}>Turtleneck</li>
                                 <li onClick={() => selectOption("necklines", "sweetheart")}>Sweetheart</li>
                                 <li onClick={() => selectOption("necklines", "collared")}>Collared</li>
@@ -131,10 +131,10 @@ export function Create({ authState }) {
                                 <li onClick={() => selectOption("sleeves", "elbow_length")}>Elbow-Length</li>
                                 <li onClick={() => selectOption("sleeves", "puffed")}>Puffed</li>
                                 <li onClick={() => selectOption("sleeves", "juliet")}>Juliet</li>
-                                <li onClick={() => selectOption("sleeves", "bishops")}>Bishops</li>
+                                <li onClick={() => selectOption("sleeves", "bishop")}>Bishop</li>
                                 <li onClick={() => selectOption("sleeves", "flounce")}>Flounce</li>
                                 <li onClick={() => selectOption("sleeves", "bell")}>Bell</li>
-                                <li onClick={() => selectOption("sleeves", "layered")}>Layered</li>
+                                <li onClick={() => selectOption("sleeves", "layered_sleeves")}>Layered</li>
                                 <li onClick={() => selectOption("sleeves", "kimono")}>Kimono</li>
                             </ul>
                         </li>
