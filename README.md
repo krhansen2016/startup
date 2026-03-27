@@ -117,8 +117,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Stores data in MongoDB** - I did not complete this part of the deliverable.
-- [ ] **Stores credentials in MongoDB** - I did not complete this part of the deliverable.
+- [x] **Stores data in MongoDB** - I created three database collections: one for user and login information, another for saved outfit designs, and finally one for community posts. All of it is stored in MongoDB.
+- [x] **Stores credentials in MongoDB** - User account data is stored in my MongoDB cluster. The passwords are hashed with BCrypt before being saved.
 
 ## 🚀 WebSocket deliverable
 
