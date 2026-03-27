@@ -14,14 +14,6 @@ app.use(express.static('public'));
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
-app.use(function (err, req, res, next) {
-  res.status(500).send({ type: err.name, message: err.message });
-});
-
-app.use((_req, res) => {
-  res.sendFile('index.html', { root: 'public' });
-});
-
 // user login code here
 
 apiRouter.post('/auth/create', async (req, res) => {
@@ -206,7 +198,15 @@ apiRouter.delete('/designs/:id', verifyAuth, async (req, res) => {
   res.status(204).end();
 });
 
-// listening on port code
+// Other code
+app.use(function (err, req, res, next) {
+  res.status(500).send({ type: err.name, message: err.message });
+});
+
+app.use((_req, res) => {
+  res.sendFile('index.html', { root: 'public' });
+});
+
 const httpService = app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
