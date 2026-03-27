@@ -3,8 +3,8 @@ const config = require('./dbConfig.json');
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
 const client = new MongoClient(url);
 const db = client.db('conceptthreads');
-const userCollection = db.collection('user');
-const designCollection = db.collection('design');
+const userCollection = db.collection('users');
+const designCollection = db.collection('designs');
 const postsCollection = db.collection('posts');
 
 (async function testConnection() {
@@ -17,8 +17,8 @@ const postsCollection = db.collection('posts');
     }
 })();
 
-function getUser(email) {
-    return userCollection.findOne({ email });
+async function getUser(email) {
+    return await userCollection.findOne({ email });
 }
 
 function getUserByToken(token) {
@@ -30,7 +30,7 @@ async function addUser(user) {
 }
 
 async function updateUser(user) {
-    await userCollection.updateOne({ email: user.email }, { $set: user });
+    await userCollection.updateOne({ email: user.email }, { $set: { ...user } });
 }
 
 async function updateUserRemoveAuth(user) {
