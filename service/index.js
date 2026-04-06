@@ -125,6 +125,18 @@ apiRouter.post('/post', verifyAuth, async (req, res) => {
     userEmail: req.user.email
   };
   await DB.addPost(newPost);
+  
+  const event = {
+    type: 'postCreated',
+    value: newPost,
+  };
+
+  socketServer.clients.forEach((client) => {
+    if (client.readyState === 1) {
+      client.send(JSON.stringify(event));
+    }
+  });
+
   const posts = await DB.getPosts();
   res.send(posts);
 });
