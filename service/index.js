@@ -6,6 +6,7 @@ const app = express();
 const DB = require('./database.js');
 const authCookieName = 'token';
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
+const { peerProxy } = require('./peerProxy.js');
 
 app.use(express.json());
 app.use(cookieParser());
