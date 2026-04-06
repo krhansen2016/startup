@@ -2,13 +2,13 @@ class CommunityEventNotifier {
     handlers = [];
 
     constructor() {
-        const protocol = window.location.protocol === 'http: ' ? 'ws' : 'wss';
+        const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
         const host = window.location.host;
         this.socket = new WebSocket(`${protocol}://${host}/ws`);
 
         this.socket.onmessage = async (msg) => {
             try {
-                const event = JSON.parse(await msg.data.text());
+                const event = JSON.parse(msg.data);
                 this.handlers.forEach((handler) => handler(event));
             } catch (err) {
                 console.error('WebSocket message error:', err);
