@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthState } from "../login/authState";
 import "./community.css";
+import { CommunityNotifier } from "./communityNotifier";
 
 export function Community({ authState }) {
 
@@ -16,6 +17,24 @@ export function Community({ authState }) {
     const [openReactionPostId, setOpenReactionPostId] = useState(null);
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        function handleMessage(event) {
+            if (event.type == "postCreated") {
+                setPosts((currentPosts) => {
+                    const alreadyExists = currentPosts.some((post) => post.id === event.vlaue.id);
+                    if (alreadyExists) return currentPosts;
+                    return [event.value, ...currentPosts];
+                });
+            }
+        }
+
+        CommunityNotifier.addHandler(handleMessage);
+
+        return () => {
+            CommunityNotifier.removeHandler(handleMessage);
+        };
+    }, []);
 
     useEffect(() => {
         if (authState !== AuthState.Authenticated) {
