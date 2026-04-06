@@ -25,3 +25,5 @@ function peerProxy(httpServer) {
 
     return socketServer;
 }
+
+module.exports = { peerProxy };
