@@ -225,3 +225,5 @@ app.use((_req, res) => {
 const httpService = app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
+
+const socketServer = peerProxy(httpService);
