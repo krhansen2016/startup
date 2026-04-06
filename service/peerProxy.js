@@ -12,6 +12,8 @@ function peerProxy(httpServer) {
             });
         });
 
-        
-    })
+        socket.on('pong', () => {socket.isAlive = true;});
+    });
+
+    
 }
