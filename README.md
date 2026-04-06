@@ -124,8 +124,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Backend listens for WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Frontend makes WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Data sent over WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **WebSocket data displayed** - I did not complete this part of the deliverable.
-- [ ] **Application is fully functional** - I did not complete this part of the deliverable.
+- [x] **Backend listens for WebSocket connection** - I added a WebSocket server to my backend by installing ws.
+- [x] **Frontend makes WebSocket connection** - I made the community page connect to the backend through the /ws route.
+- [x] **Data sent over WebSocket connection** - When a user creates a post, the backend sends a postCreated message with the new post data.
+- [x] **WebSocket data displayed** - The community page listens for messages and automatically updates the page with new posts without the need for a refresh.
+- [x] **Application is fully functional** - Community posts are saved through my backend and database and then pushed live to other connected users.
