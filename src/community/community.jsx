@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthState } from "../login/authState";
 import "./community.css";
-import { CommunityNotifier } from "./communityNotifier";
+import { communityNotifier } from "./communityNotifier";
 
 export function Community({ authState }) {
 
@@ -22,17 +22,17 @@ export function Community({ authState }) {
         function handleMessage(event) {
             if (event.type == "postCreated") {
                 setPosts((currentPosts) => {
-                    const alreadyExists = currentPosts.some((post) => post.id === event.vlaue.id);
+                    const alreadyExists = currentPosts.some((post) => post.id === event.value.id);
                     if (alreadyExists) return currentPosts;
                     return [event.value, ...currentPosts];
                 });
             }
         }
 
-        CommunityNotifier.addHandler(handleMessage);
+        communityNotifier.addHandler(handleMessage);
 
         return () => {
-            CommunityNotifier.removeHandler(handleMessage);
+            communityNotifier.removeHandler(handleMessage);
         };
     }, []);
 

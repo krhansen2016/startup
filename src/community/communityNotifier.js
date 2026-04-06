@@ -1,4 +1,4 @@
-class CommunityNotifier {
+class CommunityEventNotifier {
     handlers = [];
 
     constructor() {
@@ -25,5 +25,5 @@ class CommunityNotifier {
     }
 }
 
-const CommunityNotifier = new CommunityNotifier();
-export { CommunityNotifier };
+const communityNotifier = new CommunityEventNotifier();
+export { communityNotifier };
