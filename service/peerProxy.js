@@ -15,5 +15,13 @@ function peerProxy(httpServer) {
         socket.on('pong', () => {socket.isAlive = true;});
     });
 
-    
+    setInterval(() => {
+        socketServer.clients.forEach((client) => {
+            if (client.isAlive === false) return client.terminate();
+            client.isAlive = false;
+            client.ping();
+        });
+    }, 10000);
+
+    return socketServer;
 }
