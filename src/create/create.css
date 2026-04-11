@@ -56,11 +56,8 @@
 .design-dropdown-menu {
     list-style: none;
     font-size: 18px;
-    /* background: #FF5D60; */
     margin: 5px 20px 5px 40px;
     padding: 10px;
-    /* border: 3px solid black; */
-    /* border-radius: 10px; */
     display: none;
 }
 
