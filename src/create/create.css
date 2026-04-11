@@ -78,7 +78,11 @@
 .design-dropdown-menu li:hover {
     transform: scale(1.02);
     background-color: #84baf9;
-} 
+}
+
+.design-dropdown-menu li.selected-option {
+    background-color: #FF5D60;
+}
 
 .design-dropdown-menu.show {
     display: block;
