@@ -123,7 +123,7 @@ export function Create({ authState }) {
                 <div id="clothing-select">
                     <ul className="menu">
                         <li className="design-dropdown">
-                            <button className="dropdown-btn" onClick={() => toggleMenu("bodice")}>Bodice Type <span className="arrow">▼</span></button>
+                            <button className="dropdown-btn" onClick={() => toggleMenu("bodice")}>Bodice Type <span className="arrow">{openMenus.bodice ? "▲" : "▼"}</span></button>
                             <ul className={`design-dropdown-menu ${openMenus.bodice ? "show" : ""}`}>
                                 <li onClick={() => selectOption("bodice", "loose")}>Loose</li>
                                 <li onClick={() => selectOption("bodice", "fitted")}>Form Fitting</li>
@@ -132,7 +132,7 @@ export function Create({ authState }) {
                             </ul>
                         </li>
                         <li className="design-dropdown">
-                            <button className="dropdown-btn" onClick={() => toggleMenu("necklines")}>Necklines <span className="arrow">▼</span></button>
+                            <button className="dropdown-btn" onClick={() => toggleMenu("necklines")}>Necklines <span className="arrow">{openMenus.necklines ? "▲" : "▼"}</span></button>
                             <ul className={`design-dropdown-menu ${openMenus.necklines ? "show" : ""}`}>
                                 <li onClick={() => selectOption("necklines", "crew")}>Crew</li>
                                 <li onClick={() => selectOption("necklines", "vneck")}>V-Neck</li>
@@ -144,7 +144,7 @@ export function Create({ authState }) {
                             </ul>
                         </li>
                         <li className="design-dropdown">
-                            <button className="dropdown-btn" onClick={() => toggleMenu("sleeves")}>Sleeves <span className="arrow">▼</span></button>
+                            <button className="dropdown-btn" onClick={() => toggleMenu("sleeves")}>Sleeves <span className="arrow">{openMenus.sleeves ? "▲" : "▼"}</span></button>
                             <ul className={`design-dropdown-menu ${openMenus.sleeves ? "show" : ""}`}>
                                 <li onClick={() => selectOption("sleeves", "straps")}>Straps</li>
                                 <li onClick={() => selectOption("sleeves", "off_shoulder")}>Off the Shoulder</li>
@@ -161,10 +161,10 @@ export function Create({ authState }) {
                             </ul>
                         </li>
                         <li className="design-dropdown">
-                            <button className="dropdown-btn" onClick={() => toggleMenu("bottoms")}>Bottoms <span className="arrow">▼</span></button>
+                            <button className="dropdown-btn" onClick={() => toggleMenu("bottoms")}>Bottoms <span className="arrow">{openMenus.bottoms ? "▲" : "▼"}</span></button>
                             <ul className={`design-dropdown-menu ${openMenus.bottoms ? "show" : ""}`}>
                                 <li className="design-dropdown">
-                                    <button className="dropdown-btn" onClick={() => toggleMenu("pants")}>Pants <span className="arrow">▼</span></button>
+                                    <button className="dropdown-btn" onClick={() => toggleMenu("pants")}>Pants <span className="arrow">{openMenus.pants ? "▲" : "▼"}</span></button>
                                     <ul className={`design-dropdown-menu ${openMenus.pants ? "show" : ""}`}>
                                         <li onClick={() => selectBottom("pants", "shorts")}>Shorts</li>
                                         <li onClick={() => selectBottom("pants", "capris")}>Capris</li>
@@ -178,7 +178,7 @@ export function Create({ authState }) {
                                     </ul>
                                 </li>
                                 <li className="design-dropdown">
-                                    <button className="dropdown-btn" onClick={() => toggleMenu("skirts")}>Skirts <span className="arrow">▼</span></button>
+                                    <button className="dropdown-btn" onClick={() => toggleMenu("skirts")}>Skirts <span className="arrow">{openMenus.skirts ? "▲" : "▼"}</span></button>
                                     <ul className={`design-dropdown-menu ${openMenus.skirts ? "show" : ""}`}>
                                         <li onClick={() => selectBottom("skirts", "mini")}>Mini</li>
                                         <li onClick={() => selectBottom("skirts", "midi")}>Midi</li>
