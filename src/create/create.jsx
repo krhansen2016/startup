@@ -76,14 +76,6 @@ export function Create({ authState }) {
 
     function selectOption(category, value) {
         setDesign({ ...design, [category]: value, });
-        // setOpenMenus({
-        //     bodice: false,
-        //     necklines: false,
-        //     sleeves: false,
-        //     bottoms: false,
-        //     pants: false,
-        //     skirts: false,
-        // });
     }
 
     function saveDesign() {
@@ -106,14 +98,6 @@ export function Create({ authState }) {
 
     function selectBottom(type, style) {
         setDesign({ ...design, bottom: { type, style } });
-        // setOpenMenus({
-        //     bodice: false,
-        //     necklines: false,
-        //     sleeves: false,
-        //     bottoms: false,
-        //     pants: false,
-        //     skirts: false,
-        // });
     }
 
     return (
