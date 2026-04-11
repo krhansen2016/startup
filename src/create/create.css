@@ -68,7 +68,13 @@
     border-radius: 8px;
     margin-bottom: 5px;
     padding: 8px 0px 8px 22px;
+    cursor: pointer;
 }
+
+.design-dropdown-menu li:hover {
+    transform: scale(1.02);
+    background-color: #84baf9;
+} 
 
 .design-dropdown-menu.show {
     display: block;
