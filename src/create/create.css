@@ -29,6 +29,12 @@
 .menu {
     list-style: none;
     width: 80%;
+    margin: 0;
+    padding: 0;
+}
+
+.design-dropdown {
+    display: block;
 }
 
 .dropdown-btn {
@@ -47,7 +53,7 @@
     align-items: center;
 }
 
-.dropdown-menu {
+.design-dropdown-menu {
     list-style: none;
     background: #FF5D60;
     margin: 5px 0 15px 0;
@@ -55,6 +61,10 @@
     border: 3px solid black;
     border-radius: 10px;
     display: none;
+}
+
+.design-dropdown-menu.show {
+    display: block;
 }
 
 .dropdown-menu.show {
