@@ -53,6 +53,10 @@
     align-items: center;
 }
 
+.dropdown-btn:hover {
+    background-color: #84baf9;
+}
+
 .design-dropdown-menu {
     list-style: none;
     font-size: 18px;
