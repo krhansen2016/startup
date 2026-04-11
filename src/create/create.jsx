@@ -49,7 +49,29 @@ export function Create({ authState }) {
     }
 
     function toggleMenu(menuName) {
-        setOpenMenus(prev => ({ ...prev, [menuName]: !prev[menuName], }));
+        setOpenMenus(prev => {
+            const isOpen = prev[menuName];
+            if (isOpen) {
+                return { ...prev, [menuName]:false, };
+            }
+
+            const closedMenus = {
+                bodice: false,
+                necklines: false,
+                sleeves: false,
+                bottoms: false,
+                pants: false,
+                skirts: false
+            };
+
+            if (menuName === "pants" || menuName == "skirts") {
+                return { ...closedMenus, bottoms: true, [menuName]: true };
+            }
+
+            return {
+                ...closedMenus, [menuName]: true,
+            };
+        });
     }
 
     function selectOption(category, value) {
