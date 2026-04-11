@@ -76,14 +76,14 @@ export function Create({ authState }) {
 
     function selectOption(category, value) {
         setDesign({ ...design, [category]: value, });
-        setOpenMenus({
-            bodice: false,
-            necklines: false,
-            sleeves: false,
-            bottoms: false,
-            pants: false,
-            skirts: false,
-        });
+        // setOpenMenus({
+        //     bodice: false,
+        //     necklines: false,
+        //     sleeves: false,
+        //     bottoms: false,
+        //     pants: false,
+        //     skirts: false,
+        // });
     }
 
     function saveDesign() {
@@ -106,14 +106,14 @@ export function Create({ authState }) {
 
     function selectBottom(type, style) {
         setDesign({ ...design, bottom: { type, style } });
-        setOpenMenus({
-            bodice: false,
-            necklines: false,
-            sleeves: false,
-            bottoms: false,
-            pants: false,
-            skirts: false,
-        });
+        // setOpenMenus({
+        //     bodice: false,
+        //     necklines: false,
+        //     sleeves: false,
+        //     bottoms: false,
+        //     pants: false,
+        //     skirts: false,
+        // });
     }
 
     return (
@@ -125,10 +125,10 @@ export function Create({ authState }) {
                         <li className="design-dropdown">
                             <button className="dropdown-btn" onClick={() => toggleMenu("bodice")}>Bodice Type <span className="arrow">{openMenus.bodice ? "▲" : "▼"}</span></button>
                             <ul className={`design-dropdown-menu ${openMenus.bodice ? "show" : ""}`}>
-                                <li onClick={() => selectOption("bodice", "loose")}>Loose</li>
+                                <li className={design.bodice === "loose" ? "selected-option" : ""} onClick={() => selectOption("bodice", "loose")}>Loose</li>
                                 <li onClick={() => selectOption("bodice", "fitted")}>Form Fitting</li>
                                 <li onClick={() => selectOption("bodice", "gathered")}>Gathered</li>
-                                <li onClick={() => selectOption("bodice", "boned")}>Boned</li>
+                                <li onClick={() => selectOption("bodice", "boned")}>Corset</li>
                             </ul>
                         </li>
                         <li className="design-dropdown">
