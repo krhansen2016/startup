@@ -199,14 +199,14 @@ export function Create({ authState }) {
             <div className="color-select">
                 <label id="color-label">Colors:</label>
                 <div className="colors">
-                    <button id="dark-red" onClick={() => selectColor("dark-red")}></button>
-                    <button id="red-orange" onClick={() => selectColor("red-orange")}></button>
-                    <button id="yellow" onClick={() => selectColor("yellow")}></button>
-                    <button id="olive" onClick={() => selectColor("olive")}></button>
-                    <button id="blue" onClick={() => selectColor("blue")}></button>
-                    <button id="dark-purple" onClick={() => selectColor("dark-purple")}></button>
-                    <button id="light-pink" onClick={() => selectColor("light-pink")}></button>
-                    <button id="light-brown" onClick={() => selectColor("light-brown")}></button>
+                    <button id="dark-red" className={design.color === "dark-red" ? "selected-color" : ""} onClick={() => selectColor("dark-red")}></button>
+                    <button id="red-orange" className={design.color === "red-orange" ? "selected-color" : ""} onClick={() => selectColor("red-orange")}></button>
+                    <button id="yellow" className={design.color === "yellow" ? "selected-color" : ""} onClick={() => selectColor("yellow")}></button>
+                    <button id="olive" className={design.color === "olive" ? "selected-color" : ""} onClick={() => selectColor("olive")}></button>
+                    <button id="blue" className={design.color === "blue" ? "selected-color" : ""} onClick={() => selectColor("blue")}></button>
+                    <button id="dark-purple" className={design.color === "dark-purple" ? "selected-color" : ""} onClick={() => selectColor("dark-purple")}></button>
+                    <button id="light-pink" className={design.color === "light-pink" ? "selected-color" : ""} onClick={() => selectColor("light-pink")}></button>
+                    <button id="light-brown" className={design.color === "light-brown" ? "selected-color" : ""} onClick={() => selectColor("light-brown")}></button>
                 </div>
             </div>
             <div className="save-design">
