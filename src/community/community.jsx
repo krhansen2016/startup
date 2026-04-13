@@ -171,7 +171,7 @@ export function Community({ authState }) {
                 <input value={text} onChange={(e) => setText(e.target.value)} placeholder="Make a community post..." />
                 <select value={selectedDesign?.id || ""} onChange={(e) => setSelectedDesign(userDesigns.find(d => d.id === e.target.value))}>
                     {userDesigns.map(d => (
-                        <option key={d.id} value={d.id}>{`Design ${d.id}`}</option>
+                        <option key={d.id} value={d.id}>{d.name || "Untitled Design"}</option>
                     ))}
                 </select>
                 <div className="preview-stack">

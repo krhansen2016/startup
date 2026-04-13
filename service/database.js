@@ -41,6 +41,10 @@ async function addDesign(design) {
     return designCollection.insertOne(design);
 }
 
+async function updateDesignName(id, userEmail, name) {
+    return designCollection.updateOne( { id, userEmail }, { $set: { name } });
+}
+
 async function deleteDesign(id, userEmail) {
     return designCollection.deleteOne({ id, userEmail });
 }
@@ -77,6 +81,7 @@ module.exports = {
     updateUser,
     updateUserRemoveAuth,
     addDesign,
+    updateDesignName,
     deleteDesign,
     getDesignsByUser,
     getDesignById,

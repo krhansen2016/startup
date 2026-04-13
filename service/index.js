@@ -125,7 +125,7 @@ apiRouter.post('/post', verifyAuth, async (req, res) => {
     userEmail: req.user.email
   };
   await DB.addPost(newPost);
-  
+
   const event = {
     type: 'postCreated',
     value: newPost,
@@ -211,12 +211,27 @@ apiRouter.post('/designs', verifyAuth, async (req, res) => {
   const newDesign = {
     id: uuidv4(),
     userEmail: user.email,
+    name: "Untitled Design",
     design: req.body
   };
 
   await DB.addDesign(newDesign);
   res.send(newDesign);
 });
+
+apiRouter.put('/designs/:id/name', verifyAuth, async (req, res) => {
+  const user = req.user;
+  const id = req.params.id;
+  const { name } = req.body;
+
+  if (!name || !name.trim()) {
+    return res.status(400).send({ msg: "Name is required" });
+  }
+
+  await DB.updateDesignName(id, user.email, name);
+  res.send({ id, name });
+});
+
 
 apiRouter.delete('/designs/:id', verifyAuth, async (req, res) => {
   const user = req.user;

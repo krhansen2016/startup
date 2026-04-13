@@ -45,6 +45,27 @@ export function Profile({ authState }) {
         }
     }, [authState]);
 
+    async function renameDesign(id, currentName) {
+        const newName = prompt("Enter a new design name:", currentName);
+
+        if (!newName || !newName.trim()) return;
+
+        const res = await fetch(`/api/designs/${id}/name`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            credentials: "include",
+            body: JSON.stringify({ name: newName.trim() })
+        });
+
+        if (res.ok) {
+            setDesigns(prev =>
+                prev.map(design =>
+                    design.id === id ? { ...design, name: newName.trim() } : design
+                )
+            );
+        }
+    }
+
     function deleteDesign(id) {
         fetch(`/api/designs/${id}`, {
             method: 'DELETE',
@@ -88,7 +109,8 @@ export function Profile({ authState }) {
             <ul className="designs row g-4">
                 {designs.map((item) => (
                     <li key={item.id} className="col-12 col-sm-6 col-md-4">
-                        <label>Design</label>
+                        <label>{item.name || "Untitled Design"}</label>
+                        <button onClick={() => renameDesign(item.id, item.name)}>Rename</button>
                         <button className="delete-btn" onClick={() => deleteDesign(item.id)}>Delete</button>
                         <div className="preview-stack">
                             <img src="live_preview_empty.png" />
