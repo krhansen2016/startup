@@ -110,7 +110,7 @@ export function Profile({ authState }) {
                 {designs.map((item) => (
                     <li key={item.id} className="col-12 col-sm-6 col-md-4">
                         <label>{item.name || "Untitled Design"}</label>
-                        <button onClick={() => renameDesign(item.id, item.name)}>Rename</button>
+                        <button className="delete-btn" onClick={() => renameDesign(item.id, item.name)}>Rename</button>
                         <button className="delete-btn" onClick={() => deleteDesign(item.id)}>Delete</button>
                         <div className="preview-stack">
                             <img src="live_preview_empty.png" />
